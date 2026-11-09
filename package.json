@@ -1,0 +1,36 @@
+{
+  "name": "chemistry",
+  "private": true,
+  "packageManager": "pnpm@12.4.1",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "data:fetch": "pnpm --filter @chem/data fetch",
+    "data:build": "pnpm --filter @chem/data build",
+    "data:images": "pnpm --filter @chem/data images",
+    "typecheck": "pnpm data:build && pnpm -r typecheck",
+    "test": "pnpm data:build && pnpm -r test",
+    "e2e": "pnpm --filter web e2e",
+    "lint": "eslint --cache --cache-location node_modules/.cache/eslint .",
+    "format": "prettier --write .",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm e2e",
+    "lint:fix": "pnpm lint --fix",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@next/eslint-plugin-next": "^16.4.5",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

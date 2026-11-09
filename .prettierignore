@@ -1,0 +1,20 @@
+pnpm-lock.yaml
+node_modules
+.next
+out
+dist
+coverage
+playwright-report
+test-results
+.eslintcache
+
+# Dữ liệu: snapshot tải về và JSON sinh ra, không format tay
+packages/data/raw
+apps/web/public/data
+apps/web/public/workers
+
+# Tài liệu viết tay: giữ nguyên định dạng bảng markdown
+docs
+apps/web/next-env.d.ts
+packages/data/images
+apps/web/public/images

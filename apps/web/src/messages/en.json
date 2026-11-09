@@ -1,0 +1,352 @@
+{
+  "meta": {
+    "title": "Nguyên Tố — Interactive Periodic Table",
+    "description": "Interactive periodic table: electron configurations, atomic models, data and properties of all 118 elements.",
+    "elementTitle": "{nameEn} ({symbol}) — Nguyên Tố",
+    "elementDescription": "{nameEn}, atomic number {z}, atomic mass {mass}. Electron configuration {config}."
+  },
+  "nav": {
+    "table": "Periodic table",
+    "language": "Language",
+    "theme": "Toggle light/dark theme",
+    "compare": "Compare"
+  },
+  "table": {
+    "label": "Periodic table of the chemical elements",
+    "hint": "Hover to preview, click to open. Use arrow keys to move.",
+    "seriesLabel": "{name} (atomic numbers {range}): shown in the row below"
+  },
+  "category": {
+    "alkali-metal": "Alkali metal",
+    "alkaline-earth-metal": "Alkaline earth metal",
+    "transition-metal": "Transition metal",
+    "post-transition-metal": "Post-transition metal",
+    "metalloid": "Metalloid",
+    "nonmetal": "Nonmetal",
+    "halogen": "Halogen",
+    "noble-gas": "Noble gas",
+    "lanthanide": "Lanthanide",
+    "actinide": "Actinide"
+  },
+  "phase": {
+    "solid": "Solid",
+    "liquid": "Liquid",
+    "gas": "Gas",
+    "unknown": "Unknown",
+    "predicted": "predicted"
+  },
+  "prop": {
+    "atomicNumber": "Atomic number",
+    "atomicMass": "Atomic mass",
+    "category": "Category",
+    "block": "Block",
+    "group": "Group",
+    "period": "Period",
+    "phase": "State (25 °C)",
+    "electronConfiguration": "Electron configuration",
+    "shells": "Electrons per shell",
+    "electronegativity": "Electronegativity (Pauling)",
+    "atomicRadius": "Van der Waals radius",
+    "ionizationEnergy": "First ionization energy",
+    "electronAffinity": "Electron affinity",
+    "oxidationStates": "Common oxidation states",
+    "meltingPoint": "Melting point",
+    "boilingPoint": "Boiling point",
+    "density": "Density",
+    "discovery": "Discovered",
+    "discoveredBy": "Discovered by",
+    "appearance": "Appearance",
+    "ancient": "Ancient times",
+    "unpaired": "Unpaired electrons"
+  },
+  "element": {
+    "overview": "Overview",
+    "atomicStructure": "Atomic structure",
+    "orbitalDiagram": "Orbital box diagram",
+    "properties": "Properties",
+    "position": "Position in the periodic table",
+    "positionText": "Period {period} because it has {period} electron shells; {block}-block because its last electron enters a {block} subshell.",
+    "positionGroup": "Group {group}.",
+    "predicted": "Superheavy element: the electron configuration is a theoretical prediction.",
+    "exception": "Exception to the Aufbau filling order.",
+    "summaryEn": "Summary (from Wikipedia)",
+    "close": "Close",
+    "openFull": "Open full page",
+    "prev": "Previous element",
+    "next": "Next element",
+    "loading": "Loading…",
+    "loadError": "Could not load data.",
+    "sources": "Data sources",
+    "back": "Back to the table"
+  },
+  "footer": {
+    "data": "Data: PubChem (NIH) and Bowserinator/Periodic-Table-JSON (CC BY-SA 3.0)."
+  },
+  "hero": {
+    "eyebrow": "Periodic table · 118 elements",
+    "title": "Everything around us starts here."
+  },
+  "view": {
+    "label": "View",
+    "table": "Table",
+    "list": "List"
+  },
+  "search": {
+    "label": "Search elements",
+    "placeholder": "Search by name, symbol, number…",
+    "empty": "No elements found.",
+    "count": "{count} elements",
+    "clear": "Clear"
+  },
+  "photo": {
+    "alt": "Photo of {name}",
+    "credit": "Photo:",
+    "none": "Nobody has ever made enough of this element to photograph it."
+  },
+  "credits": {
+    "title": "Credits",
+    "intro": "Element photos are used under their authors' open licenses. Click an author to see the original.",
+    "photos": "Element photos",
+    "data": "Data",
+    "element": "Element",
+    "author": "Author",
+    "license": "License",
+    "noPhoto": "No usable photo yet:",
+    "link": "Credits"
+  },
+  "friendly": {
+    "roomTemp": "{phase} at room temperature",
+    "radioactive": "Radioactive",
+    "discovered": "Discovered in {year}",
+    "ancient": "Known since ancient times"
+  },
+  "academic": {
+    "title": "Chemistry corner",
+    "hint": "Electron configuration, atomic model, orbital diagram, data table, position in the table",
+    "open": "Show",
+    "close": "Hide"
+  },
+  "humanScale": {
+    "title": "Putting it in perspective",
+    "radioactive": {
+      "head": "Every {name} atom will eventually decay",
+      "sub": "It has no stable form: this is a radioactive element"
+    },
+    "meltsInHand": {
+      "head": "It melts in the palm of your hand",
+      "sub": "Melts at {c}, below body temperature"
+    },
+    "density": {
+      "heavierThanWater": "{ratio} times heavier than water",
+      "lighterThanWater": "{ratio} times lighter than water",
+      "likeWater": "About as heavy as water",
+      "heavierThanAir": "{ratio} times heavier than air",
+      "lighterThanAir": "{ratio} times lighter than air",
+      "likeAir": "About as heavy as air",
+      "perLitre": "A 1-litre bottle full of it would weigh {kg} kg",
+      "perLitreGas": "One litre of the gas weighs {g} g"
+    },
+    "melting": {
+      "above": "Only melts when hotter than {landmark}",
+      "below": "Only freezes when colder than {landmark}",
+      "near": "Melts at about the temperature of {landmark}",
+      "exact": "Melting point: {c}"
+    },
+    "boiling": {
+      "above": "Only boils when hotter than {landmark}",
+      "below": "Only turns liquid when colder than {landmark}",
+      "near": "Boils at about the temperature of {landmark}",
+      "exact": "Boiling point: {c}"
+    },
+    "landmark": {
+      "coldestEarth": "the coldest place ever measured on Earth (−89 °C)",
+      "freezer": "a freezer (−18 °C)",
+      "ice": "melting ice (0 °C)",
+      "room": "room temperature (25 °C)",
+      "body": "your body (37 °C)",
+      "boilingWater": "boiling water (100 °C)",
+      "oven": "a hot oven (250 °C)",
+      "lava": "volcanic lava (~1200 °C)",
+      "gasFlame": "a gas stove flame (~1950 °C)",
+      "sunSurface": "the surface of the Sun (~5500 °C)"
+    },
+    "atomsPerMm": {
+      "head": "You would need {count} atoms in a row to make 1 mm",
+      "sub": "Each atom has a radius of about {r} pm (trillionths of a metre)"
+    },
+    "atomsPerGram": {
+      "head": "1 gram holds about {count} atoms",
+      "headHypothetical": "If you could collect 1 gram, it would hold about {count} atoms",
+      "sub": "Each atom weighs {m} u",
+      "subHypothetical": "Nobody has ever made enough to weigh"
+    }
+  },
+  "lens": {
+    "label": "Explore:",
+    "source": "Source",
+    "clear": "Clear lens",
+    "body": {
+      "name": "In your body",
+      "desc": "Just four elements, O, C, H and N, make up about 96% of your body mass. Tiles show the mass percentage, or grams in a 70 kg person for trace elements."
+    },
+    "phone": {
+      "name": "In your phone",
+      "desc": "EuChemS counts 30 elements in a smartphone. These are the 20 whose supply is a concern. Red: serious threat within 100 years; orange: rising threat from increasing use; yellow: limited availability."
+    },
+    "kitchen": {
+      "name": "In the kitchen",
+      "desc": "Elements you meet right in your kitchen: table salt, iodised salt, cast-iron pans, stainless steel pots, foil and tin cans. Sources are on each element's page."
+    },
+    "precious": {
+      "name": "Precious",
+      "desc": "Precious metals: gold, silver and the six platinum-group metals. Rare, durable and almost never rust."
+    },
+    "radioactive": {
+      "name": "Radioactive",
+      "desc": "37 elements have no stable form: every one of their atoms will eventually decay."
+    },
+    "liquid": {
+      "name": "Liquid (or almost)",
+      "desc": "Mercury and bromine are liquid at room temperature. Gallium, caesium, rubidium and francium melt just a little warmer, below 40 °C."
+    },
+    "synthetic": {
+      "name": "Lab-made only",
+      "desc": "The 24 elements from americium (95) onwards do not exist in nature; people make them, usually just a few atoms at a time."
+    }
+  },
+  "story": {
+    "uses": "Where you meet it",
+    "facts": "Did you know?",
+    "source": "Source"
+  },
+  "safety": {
+    "title": "Safety",
+    "harmless": "harmless",
+    "careful": "handle with care",
+    "toxic": "toxic",
+    "radioactive": "radioactive",
+    "radioactiveNote": "Gives off harmful radiation. Only kept and handled in specialised laboratories."
+  },
+  "didYouKnow": {
+    "title": "Did you know?",
+    "another": "Another one"
+  },
+  "colorMode": {
+    "label": "Colour by",
+    "mode": {
+      "category": "Category",
+      "block": "Block",
+      "phase": "State",
+      "discovery": "Discovery",
+      "property": "Property"
+    },
+    "property": {
+      "en": "Electronegativity",
+      "radius": "Atomic radius",
+      "ie": "First ionisation energy",
+      "ea": "Electron affinity",
+      "density": "Density",
+      "mp": "Melting point",
+      "bp": "Boiling point"
+    },
+    "block": "{block}-block",
+    "blockShort": "{block}-block",
+    "blockHint": "The block tells you which subshell (s, p, d or f) the last electron goes into.",
+    "temperature": "Temperature",
+    "roomTemp": "Back to room temperature",
+    "phase": {
+      "solid": "Solid",
+      "liquid": "Liquid",
+      "gas": "Gas"
+    },
+    "noData": "No data",
+    "year": "Year",
+    "known": "In {year}, people knew {count} elements.",
+    "notYet": "Not yet discovered",
+    "logScale": "(log scale)",
+    "wide": "32-column table",
+    "wideHint": "Put the lanthanides and actinides in their own rows",
+    "compareHint": "Tip: Shift + click a tile to add it to the comparison tray."
+  },
+  "compare": {
+    "title": "Compare elements",
+    "intro": "Put up to 3 elements side by side. Each chart axis is one property, scaled from the lowest to the highest value in the whole periodic table.",
+    "add": "Compare",
+    "added": "Comparing",
+    "addHint": "Add to the comparison tray (up to {max})",
+    "tray": "Comparison tray",
+    "count": "{count}/{max}",
+    "remove": "Remove {name}",
+    "clear": "Clear",
+    "go": "Compare",
+    "selected": "Elements being compared",
+    "empty": "No elements selected yet. Type a name to add one.",
+    "chartTitle": "Radar chart comparing {names}",
+    "scaleNote": "The centre is the lowest and the outer ring the highest value among all 118 elements; density uses a log scale. A hollow point at the centre means no data.",
+    "tableCaption": "Comparison data table",
+    "property": "Property",
+    "addLabel": "Add an element",
+    "addPlaceholder": "Add an element…"
+  },
+  "palette": {
+    "title": "Quick search",
+    "placeholder": "Type a name, symbol, number or use…",
+    "page": "Page",
+    "open": "Quick search (⌘K)",
+    "button": "Search"
+  },
+  "atom": {
+    "builder": "Build the atom electron by electron",
+    "controls": "Controls",
+    "first": "Back to start",
+    "prev": "Remove one electron",
+    "play": "Play",
+    "pause": "Pause",
+    "next": "Add one electron",
+    "last": "Go to the final configuration",
+    "speed": "Speed",
+    "stepLabel": "Step",
+    "stepValue": "Step {step} of {total}",
+    "start": "Press ▶ to fill the {count} electrons of {name} one by one.",
+    "rule": {
+      "aufbau": "Electron {index} goes into {sub}: the empty subshell with the lowest energy (Aufbau principle).",
+      "hund": "Electron {index} takes the next empty box in {sub}, with the same spin as the others (Hund's rule).",
+      "pauli": "Electron {index} pairs up, with opposite spin, in a box of {sub} (Pauli principle: at most 2 opposite-spin electrons per box).",
+      "exception": "Exception: measured experimentally, {symbol} has the configuration {config}. The subshell energies here are so close that the filling order no longer holds exactly.",
+      "halfFull": "A half-filled or full d subshell is more stable, so one electron moves from s to d."
+    },
+    "boxes": "Orbital box diagram",
+    "madelung": "Filling order (diagonal arrows)",
+    "madelungLabel": "Electron filling order diagram following the Madelung rule (increasing n + l)",
+    "added": "just added",
+    "removed": "removed",
+    "ion": {
+      "title": "Ions",
+      "pick": "Choose an ion",
+      "atom": "{symbol} atom",
+      "ion": "{ion} ion",
+      "bare": "(no electrons left)",
+      "cationRule": "Positive ion: the atom loses {count, plural, one {# electron} other {# electrons}}, taken from the outermost shell (highest n) first. That is why transition metals lose 4s electrons before 3d, even though 4s fills first.",
+      "anionRule": "Negative ion: the atom gains {count, plural, one {# electron} other {# electrons}}, which go into the next empty subshell in filling order.",
+      "none": "This element has no oxidation states in the data."
+    },
+    "orbital": {
+      "title": "Orbital shapes",
+      "show": "Show the 3D cloud of {name}",
+      "showHint": "Loads about 150 KB more",
+      "sampling": "Calculating…",
+      "cloudLabel": "Probability cloud of the {name} orbital",
+      "positive": "ψ positive",
+      "negative": "ψ negative",
+      "autoRotate": "Auto-rotate",
+      "noWebgl": "Your browser does not support WebGL: showing a 2D projection.",
+      "valence": "Valence subshells of {symbol}",
+      "pickN": "Shell (n)",
+      "pickL": "Subshell (l)",
+      "pickM": "Orbital (m)",
+      "radialNodes": "Spherical nodes (n − l − 1)",
+      "angularNodes": "Angular nodes (l)",
+      "note": "Each dot is a place the electron might be found; dense where it is likely. Shapes follow the hydrogen-atom solution; sizes are only qualitative. Drag to rotate, scroll to zoom."
+    }
+  }
+}

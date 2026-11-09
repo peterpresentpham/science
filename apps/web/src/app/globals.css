@@ -1,0 +1,307 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+ * Ngôn ngữ thiết kế: "sổ tay phòng thí nghiệm".
+ * Nền giấy ấm có lưới mờ, mực đậm, màu loại nguyên tố chỉ làm điểm nhấn (thanh màu, chấm, hover).
+ */
+
+/* ---------- Design tokens: light (mặc định) ---------- */
+:root {
+  --bg: oklch(0.975 0.006 85);
+  --grid-line: oklch(0.9 0.008 85 / 0.55);
+  --surface: oklch(0.995 0.002 85);
+  --surface-2: oklch(0.955 0.007 85);
+  --fg: oklch(0.2 0.015 270);
+  --muted: oklch(0.52 0.015 270);
+  --border: oklch(0.89 0.008 85);
+  --accent: oklch(0.52 0.2 275);
+  --ring: oklch(0.55 0.2 275);
+  --shadow: 0 1px 0 oklch(0.2 0.02 270 / 0.04), 0 8px 24px -12px oklch(0.2 0.02 270 / 0.18);
+  --shadow-lg: 0 24px 60px -20px oklch(0.2 0.03 270 / 0.35);
+
+  /* Màu loại nguyên tố: --cat-x là sắc độ đậm (mực/viền), nền ô pha từ màu này */
+  --cat-alkali-metal: oklch(0.62 0.19 28);
+  --cat-alkaline-earth-metal: oklch(0.7 0.15 62);
+  --cat-transition-metal: oklch(0.58 0.14 255);
+  --cat-post-transition-metal: oklch(0.6 0.09 215);
+  --cat-metalloid: oklch(0.62 0.13 160);
+  --cat-nonmetal: oklch(0.66 0.15 125);
+  --cat-halogen: oklch(0.62 0.12 190);
+  --cat-noble-gas: oklch(0.56 0.18 300);
+  --cat-lanthanide: oklch(0.6 0.17 345);
+  --cat-actinide: oklch(0.58 0.17 10);
+
+  --tile-mix: 14%;
+  --tile-mix-hover: 30%;
+
+  /* Dataviz (M2): bảng màu phân loại theo thứ tự cố định (đã kiểm định CVD) + thang liên tục một sắc */
+  /* 3 ô đầu đạt kiểm định "mọi cặp" (radar so sánh, trạng thái) */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  /* Khối s/p/d/f: bộ 4 màu duy nhất trong bảng gốc đạt kiểm định mọi cặp ở cả sáng lẫn tối */
+  --block-s: #2a78d6;
+  --block-p: #eda100;
+  --block-d: #e87ba4;
+  --block-f: #008300;
+  --seq: #0d366b;
+}
+
+/* ---------- Dark ---------- */
+:root[data-theme='dark'] {
+  --bg: oklch(0.16 0.012 270);
+  --grid-line: oklch(0.3 0.015 270 / 0.35);
+  --surface: oklch(0.2 0.014 270);
+  --surface-2: oklch(0.25 0.016 270);
+  --fg: oklch(0.95 0.008 85);
+  --muted: oklch(0.7 0.015 270);
+  --border: oklch(0.3 0.016 270);
+  --accent: oklch(0.75 0.15 275);
+  --ring: oklch(0.75 0.16 275);
+  --shadow: 0 1px 0 oklch(0 0 0 / 0.3), 0 8px 24px -12px oklch(0 0 0 / 0.6);
+  --shadow-lg: 0 24px 60px -20px oklch(0 0 0 / 0.7);
+
+  --cat-alkali-metal: oklch(0.72 0.17 28);
+  --cat-alkaline-earth-metal: oklch(0.8 0.14 70);
+  --cat-transition-metal: oklch(0.74 0.12 255);
+  --cat-post-transition-metal: oklch(0.76 0.08 210);
+  --cat-metalloid: oklch(0.78 0.12 160);
+  --cat-nonmetal: oklch(0.82 0.14 125);
+  --cat-halogen: oklch(0.78 0.11 190);
+  --cat-noble-gas: oklch(0.74 0.15 300);
+  --cat-lanthanide: oklch(0.74 0.14 345);
+  --cat-actinide: oklch(0.72 0.15 15);
+
+  --tile-mix: 18%;
+  --tile-mix-hover: 34%;
+
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --block-s: #3987e5;
+  --block-p: #c98500;
+  --block-d: #d55181;
+  --block-f: #008300;
+  --seq: #86b6ef;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-be-vietnam), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --shadow-card: var(--shadow);
+  --shadow-float: var(--shadow-lg);
+}
+
+html {
+  color-scheme: light;
+}
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg);
+  /* Lưới giấy kẻ ô 24px, mờ dần xuống dưới */
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Ô nguyên tố ---------- */
+.tile {
+  --c: var(--cat-nonmetal);
+  background: color-mix(in oklch, var(--c) var(--tile-mix), var(--surface));
+  border: 1px solid color-mix(in oklch, var(--c) 28%, var(--border));
+  box-shadow: var(--shadow);
+  transition:
+    transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 180ms,
+    box-shadow 180ms,
+    opacity 200ms,
+    filter 200ms;
+}
+.tile:hover,
+.tile:focus-visible {
+  background: color-mix(in oklch, var(--c) var(--tile-mix-hover), var(--surface));
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.tile .tile-bar {
+  background: var(--c);
+  transition: width 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.tile:hover .tile-bar,
+.tile:focus-visible .tile-bar {
+  width: calc(100% - 10px);
+}
+.tile-symbol {
+  color: color-mix(in oklch, var(--c) 55%, var(--fg));
+}
+.tile[data-dimmed='true'] {
+  opacity: 0.22;
+  filter: saturate(0.3);
+}
+
+/* ---------- Chế độ tô màu (M2) ---------- */
+/* Thang liên tục: một sắc xanh pha vào nền theo --seq-p (0–80%) */
+.tile[data-scale],
+.tile[data-scale]:hover,
+.tile[data-scale]:focus-visible {
+  background: color-mix(in oklch, var(--seq) var(--seq-p), var(--surface));
+  border-color: color-mix(in oklch, var(--seq) 30%, var(--border));
+}
+.tile[data-scale] .tile-bar {
+  display: none;
+}
+.tile[data-scale] .tile-symbol,
+.tile[data-scale] .tile-muted {
+  color: var(--fg);
+}
+/* Nền đậm: chữ đổi sang màu nền để đủ tương phản (sáng: chữ trắng; tối: chữ đen) */
+.tile[data-strong] .tile-symbol,
+.tile[data-strong] .tile-muted {
+  color: var(--surface);
+}
+/* Không có dữ liệu / chưa được tìm ra: sọc chéo, không dùng màu nào trên thang */
+.tile[data-missing],
+.tile[data-missing]:hover,
+.tile[data-missing]:focus-visible {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--surface) 0 5px,
+    color-mix(in oklch, var(--fg) 9%, var(--surface)) 5px 7px
+  );
+  border-color: var(--border);
+}
+.tile[data-missing] .tile-symbol {
+  color: var(--muted);
+}
+.tile[data-missing] .tile-bar {
+  display: none;
+}
+.swatch-missing {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--surface) 0 3px,
+    color-mix(in oklch, var(--fg) 18%, var(--surface)) 3px 4.5px
+  );
+}
+/* Nhóm rời rạc (khối, trạng thái): nền đậm hơn màu loại để phân biệt rõ */
+.tile[data-group] {
+  --tile-mix: 34%;
+  --tile-mix-hover: 48%;
+}
+/* Đang trong khay so sánh */
+.tile[data-compared] {
+  outline: 2px solid var(--fg);
+  outline-offset: 1px;
+}
+
+/* ---------- M3: electron vừa được thêm ---------- */
+@keyframes atom-pop {
+  from {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+.atom-pop {
+  display: inline-block;
+  animation: atom-pop 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .atom-pop {
+    animation: none;
+  }
+}
+
+/* ---------- Mô hình Bohr ---------- */
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Quay quanh gốc toạ độ (0,0) của viewBox = tâm hạt nhân */
+.bohr-shell {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  animation: orbit var(--orbit-duration, 12s) linear infinite;
+}
+@keyframes nucleus-pulse {
+  50% {
+    transform: scale(1.06);
+  }
+}
+.bohr-nucleus {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  animation: nucleus-pulse 3.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bohr-shell,
+  .bohr-nucleus {
+    animation: none;
+  }
+  .tile,
+  .tile .tile-bar {
+    transition: none;
+  }
+}
+
+/* ---------- Panel ---------- */
+@keyframes sheet-in {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.sheet[data-state='open'] {
+  animation: sheet-in 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.overlay[data-state='open'] {
+  animation: fade-in 200ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sheet[data-state='open'],
+  .overlay[data-state='open'] {
+    animation: none;
+  }
+}
+
+/* ---------- View Transition: ô nguyên tố ↔ ô ký hiệu trong panel ---------- */
+::view-transition-group(element-tile) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+::view-transition-old(element-tile),
+::view-transition-new(element-tile) {
+  height: 100%;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+}

@@ -1,0 +1,352 @@
+{
+  "meta": {
+    "title": "Nguyên Tố — Bảng tuần hoàn tương tác",
+    "description": "Bảng tuần hoàn hoá học tương tác bằng tiếng Việt: cấu hình electron, mô hình nguyên tử, dữ liệu và tính chất của 118 nguyên tố.",
+    "elementTitle": "{name} ({symbol}) — Nguyên Tố",
+    "elementDescription": "{name} ({nameEn}), số hiệu {z}, khối lượng nguyên tử {mass}. Cấu hình electron {config}."
+  },
+  "nav": {
+    "table": "Bảng tuần hoàn",
+    "language": "Ngôn ngữ",
+    "theme": "Đổi giao diện sáng/tối",
+    "compare": "So sánh"
+  },
+  "table": {
+    "label": "Bảng tuần hoàn các nguyên tố hoá học",
+    "hint": "Di chuột để xem nhanh, bấm để mở chi tiết. Dùng phím mũi tên để di chuyển.",
+    "seriesLabel": "{name} (số hiệu {range}): xem ở hàng phía dưới"
+  },
+  "category": {
+    "alkali-metal": "Kim loại kiềm",
+    "alkaline-earth-metal": "Kim loại kiềm thổ",
+    "transition-metal": "Kim loại chuyển tiếp",
+    "post-transition-metal": "Kim loại hậu chuyển tiếp",
+    "metalloid": "Á kim",
+    "nonmetal": "Phi kim",
+    "halogen": "Halogen",
+    "noble-gas": "Khí hiếm",
+    "lanthanide": "Họ Lanthan",
+    "actinide": "Họ Actini"
+  },
+  "phase": {
+    "solid": "Rắn",
+    "liquid": "Lỏng",
+    "gas": "Khí",
+    "unknown": "Chưa rõ",
+    "predicted": "dự đoán"
+  },
+  "prop": {
+    "atomicNumber": "Số hiệu nguyên tử",
+    "atomicMass": "Khối lượng nguyên tử",
+    "category": "Loại",
+    "block": "Khối",
+    "group": "Nhóm",
+    "period": "Chu kỳ",
+    "phase": "Trạng thái (25 °C)",
+    "electronConfiguration": "Cấu hình electron",
+    "shells": "Số e trên các lớp",
+    "electronegativity": "Độ âm điện (Pauling)",
+    "atomicRadius": "Bán kính van der Waals",
+    "ionizationEnergy": "Năng lượng ion hoá thứ nhất",
+    "electronAffinity": "Ái lực electron",
+    "oxidationStates": "Số oxi hoá thường gặp",
+    "meltingPoint": "Nhiệt độ nóng chảy",
+    "boilingPoint": "Nhiệt độ sôi",
+    "density": "Khối lượng riêng",
+    "discovery": "Phát hiện",
+    "discoveredBy": "Người phát hiện",
+    "appearance": "Bề ngoài",
+    "ancient": "Từ thời cổ đại",
+    "unpaired": "Số e độc thân"
+  },
+  "element": {
+    "overview": "Tổng quan",
+    "atomicStructure": "Cấu tạo nguyên tử",
+    "orbitalDiagram": "Sơ đồ ô lượng tử",
+    "properties": "Tính chất",
+    "position": "Vị trí trong bảng tuần hoàn",
+    "positionText": "Chu kỳ {period} vì có {period} lớp electron; khối {block} vì electron cuối cùng điền vào phân lớp {block}.",
+    "positionGroup": "Nhóm {group}.",
+    "predicted": "Nguyên tố siêu nặng: cấu hình electron là dự đoán lý thuyết.",
+    "exception": "Ngoại lệ so với quy tắc điền electron (Aufbau).",
+    "summaryEn": "Mô tả (tiếng Anh, từ Wikipedia)",
+    "close": "Đóng",
+    "openFull": "Mở trang đầy đủ",
+    "prev": "Nguyên tố trước",
+    "next": "Nguyên tố sau",
+    "loading": "Đang tải…",
+    "loadError": "Không tải được dữ liệu.",
+    "sources": "Nguồn dữ liệu",
+    "back": "Về bảng tuần hoàn"
+  },
+  "footer": {
+    "data": "Dữ liệu: PubChem (NIH) và Bowserinator/Periodic-Table-JSON (CC BY-SA 3.0)."
+  },
+  "hero": {
+    "eyebrow": "Bảng tuần hoàn · 118 nguyên tố",
+    "title": "Mọi thứ quanh ta bắt đầu từ đây."
+  },
+  "view": {
+    "label": "Kiểu hiển thị",
+    "table": "Bảng",
+    "list": "Danh sách"
+  },
+  "search": {
+    "label": "Tìm nguyên tố",
+    "placeholder": "Tìm theo tên, ký hiệu, số hiệu…",
+    "empty": "Không tìm thấy nguyên tố nào.",
+    "count": "{count} nguyên tố",
+    "clear": "Xoá"
+  },
+  "photo": {
+    "alt": "Ảnh {name}",
+    "credit": "Ảnh:",
+    "none": "Chưa ai từng thu được đủ lượng nguyên tố này để chụp ảnh."
+  },
+  "credits": {
+    "title": "Ghi công",
+    "intro": "Ảnh nguyên tố được dùng theo giấy phép mở của tác giả. Bấm vào tên tác giả để xem ảnh gốc.",
+    "photos": "Ảnh nguyên tố",
+    "data": "Dữ liệu",
+    "element": "Nguyên tố",
+    "author": "Tác giả",
+    "license": "Giấy phép",
+    "noPhoto": "Chưa có ảnh dùng được:",
+    "link": "Ghi công"
+  },
+  "friendly": {
+    "roomTemp": "{phase} ở nhiệt độ phòng",
+    "radioactive": "Phóng xạ",
+    "discovered": "Tìm ra năm {year}",
+    "ancient": "Biết đến từ thời cổ đại"
+  },
+  "academic": {
+    "title": "Góc học hoá",
+    "hint": "Cấu hình electron, mô hình nguyên tử, ô lượng tử, bảng số liệu, vị trí trong bảng",
+    "open": "Mở ra",
+    "close": "Thu gọn"
+  },
+  "humanScale": {
+    "title": "Nói cho dễ hình dung",
+    "radioactive": {
+      "head": "Mọi nguyên tử {name} rồi sẽ tự phân rã",
+      "sub": "Không có dạng bền nào: đây là nguyên tố phóng xạ"
+    },
+    "meltsInHand": {
+      "head": "Tan chảy trong lòng bàn tay bạn",
+      "sub": "Nóng chảy ở {c}, thấp hơn thân nhiệt"
+    },
+    "density": {
+      "heavierThanWater": "Nặng gấp {ratio} lần nước",
+      "lighterThanWater": "Nhẹ hơn nước {ratio} lần",
+      "likeWater": "Nặng gần bằng nước",
+      "heavierThanAir": "Nặng hơn không khí {ratio} lần",
+      "lighterThanAir": "Nhẹ hơn không khí {ratio} lần",
+      "likeAir": "Nặng gần bằng không khí",
+      "perLitre": "Một chai 1 lít đựng đầy sẽ nặng {kg} kg",
+      "perLitreGas": "Mỗi lít khí nặng {g} gam"
+    },
+    "melting": {
+      "above": "Chỉ nóng chảy khi nóng hơn {landmark}",
+      "below": "Chỉ đông cứng khi lạnh hơn {landmark}",
+      "near": "Nóng chảy ở nhiệt độ gần bằng {landmark}",
+      "exact": "Nhiệt độ nóng chảy: {c}"
+    },
+    "boiling": {
+      "above": "Chỉ sôi khi nóng hơn {landmark}",
+      "below": "Chỉ hoá lỏng khi lạnh hơn {landmark}",
+      "near": "Sôi ở nhiệt độ gần bằng {landmark}",
+      "exact": "Nhiệt độ sôi: {c}"
+    },
+    "landmark": {
+      "coldestEarth": "nơi lạnh nhất từng đo trên Trái Đất (−89 °C)",
+      "freezer": "ngăn đá tủ lạnh (−18 °C)",
+      "ice": "nước đá đang tan (0 °C)",
+      "room": "nhiệt độ phòng (25 °C)",
+      "body": "thân nhiệt (37 °C)",
+      "boilingWater": "nước sôi (100 °C)",
+      "oven": "lò nướng (250 °C)",
+      "lava": "dung nham núi lửa (~1200 °C)",
+      "gasFlame": "ngọn lửa bếp gas (~1950 °C)",
+      "sunSurface": "bề mặt Mặt Trời (~5500 °C)"
+    },
+    "atomsPerMm": {
+      "head": "Phải xếp {count} nguyên tử thành hàng mới dài 1 mm",
+      "sub": "Bán kính mỗi nguyên tử khoảng {r} pm (phần tỉ milimét)"
+    },
+    "atomsPerGram": {
+      "head": "1 gam chứa khoảng {count} nguyên tử",
+      "headHypothetical": "Nếu gom được 1 gam, sẽ có khoảng {count} nguyên tử",
+      "sub": "Mỗi nguyên tử nặng {m} u",
+      "subHypothetical": "Chưa ai từng tạo ra đủ lượng để cân được"
+    }
+  },
+  "lens": {
+    "label": "Xem theo:",
+    "source": "Nguồn",
+    "clear": "Bỏ chọn lăng kính",
+    "body": {
+      "name": "Trong cơ thể bạn",
+      "desc": "Chỉ 4 nguyên tố O, C, H, N đã chiếm khoảng 96% khối lượng cơ thể. Số trên ô là % khối lượng; với các nguyên tố vi lượng là số gam trong người nặng 70 kg."
+    },
+    "phone": {
+      "name": "Trong điện thoại",
+      "desc": "EuChemS đếm được 30 nguyên tố trong một chiếc điện thoại. Đây là 20 nguyên tố trong số đó có nguồn cung đáng lo. Chấm đỏ: nguy cơ nghiêm trọng trong 100 năm tới; cam: nguy cơ tăng vì dùng ngày càng nhiều; vàng: trữ lượng hạn chế."
+    },
+    "kitchen": {
+      "name": "Trong bếp",
+      "desc": "Những nguyên tố bạn gặp ngay trong bếp: muối ăn, muối i-ốt, chảo gang, nồi inox, giấy bạc, đồ hộp. Nguồn nằm ở trang của từng nguyên tố."
+    },
+    "precious": {
+      "name": "Quý và đắt",
+      "desc": "Kim loại quý: vàng, bạc và 6 kim loại nhóm bạch kim. Hiếm, bền và hầu như không bị gỉ."
+    },
+    "radioactive": {
+      "name": "Phóng xạ",
+      "desc": "37 nguyên tố không có dạng bền nào: mọi nguyên tử của chúng rồi sẽ tự phân rã."
+    },
+    "liquid": {
+      "name": "Lỏng (hoặc gần lỏng)",
+      "desc": "Thuỷ ngân và brom lỏng ở nhiệt độ phòng. Gali, xesi, rubiđi và franxi tan chảy chỉ khi ấm hơn một chút, dưới 40 °C."
+    },
+    "synthetic": {
+      "name": "Chỉ có trong phòng thí nghiệm",
+      "desc": "24 nguyên tố từ americi (95) trở đi không tồn tại trong tự nhiên; con người tạo ra chúng, thường chỉ vài nguyên tử một lần."
+    }
+  },
+  "story": {
+    "uses": "Bạn gặp nó ở đâu",
+    "facts": "Có thể bạn chưa biết",
+    "source": "Nguồn"
+  },
+  "safety": {
+    "title": "An toàn",
+    "harmless": "vô hại",
+    "careful": "cẩn thận",
+    "toxic": "độc",
+    "radioactive": "phóng xạ",
+    "radioactiveNote": "Phát ra bức xạ có hại. Chỉ được giữ và xử lý trong phòng thí nghiệm chuyên dụng."
+  },
+  "didYouKnow": {
+    "title": "Bạn có biết?",
+    "another": "Điều khác"
+  },
+  "colorMode": {
+    "label": "Tô màu theo",
+    "mode": {
+      "category": "Loại",
+      "block": "Khối",
+      "phase": "Trạng thái",
+      "discovery": "Năm tìm ra",
+      "property": "Thuộc tính"
+    },
+    "property": {
+      "en": "Độ âm điện",
+      "radius": "Bán kính nguyên tử",
+      "ie": "Năng lượng ion hoá thứ nhất",
+      "ea": "Ái lực electron",
+      "density": "Khối lượng riêng",
+      "mp": "Nhiệt độ nóng chảy",
+      "bp": "Nhiệt độ sôi"
+    },
+    "block": "Khối {block}",
+    "blockShort": "khối {block}",
+    "blockHint": "Khối cho biết electron cuối cùng đi vào phân lớp nào (s, p, d hay f).",
+    "temperature": "Nhiệt độ",
+    "roomTemp": "Về nhiệt độ phòng",
+    "phase": {
+      "solid": "Rắn",
+      "liquid": "Lỏng",
+      "gas": "Khí"
+    },
+    "noData": "Không có dữ liệu",
+    "year": "Năm",
+    "known": "Năm {year}: loài người đã biết {count} nguyên tố.",
+    "notYet": "Chưa được tìm ra",
+    "logScale": "(thang log)",
+    "wide": "Bảng 32 cột",
+    "wideHint": "Đặt họ Lantan và Actini vào đúng hàng của chúng",
+    "compareHint": "Mẹo: Shift + bấm vào ô để thêm nguyên tố vào khay so sánh."
+  },
+  "compare": {
+    "title": "So sánh nguyên tố",
+    "intro": "Đặt tối đa 3 nguyên tố cạnh nhau. Mỗi trục của biểu đồ là một thuộc tính, chia theo giá trị nhỏ nhất và lớn nhất trong cả bảng tuần hoàn.",
+    "add": "So sánh",
+    "added": "Đang so sánh",
+    "addHint": "Thêm vào khay so sánh (tối đa {max})",
+    "tray": "Khay so sánh",
+    "count": "{count}/{max}",
+    "remove": "Bỏ {name}",
+    "clear": "Xoá hết",
+    "go": "So sánh",
+    "selected": "Nguyên tố đang so sánh",
+    "empty": "Chưa chọn nguyên tố nào. Gõ tên để thêm.",
+    "chartTitle": "Biểu đồ radar so sánh {names}",
+    "scaleNote": "Tâm là giá trị nhỏ nhất, vòng ngoài là giá trị lớn nhất trong 118 nguyên tố; khối lượng riêng dùng thang log. Điểm rỗng ở tâm nghĩa là không có dữ liệu.",
+    "tableCaption": "Bảng số liệu so sánh",
+    "property": "Thuộc tính",
+    "addLabel": "Thêm nguyên tố",
+    "addPlaceholder": "Thêm nguyên tố…"
+  },
+  "palette": {
+    "title": "Tìm nhanh",
+    "placeholder": "Gõ tên, ký hiệu, số hiệu hoặc công dụng…",
+    "page": "Trang",
+    "open": "Tìm nhanh (⌘K)",
+    "button": "Tìm"
+  },
+  "atom": {
+    "builder": "Dựng nguyên tử từng electron",
+    "controls": "Điều khiển",
+    "first": "Về đầu",
+    "prev": "Lùi một electron",
+    "play": "Chạy",
+    "pause": "Tạm dừng",
+    "next": "Thêm một electron",
+    "last": "Đến cấu hình cuối",
+    "speed": "Tốc độ",
+    "stepLabel": "Bước",
+    "stepValue": "Bước {step} trên {total}",
+    "start": "Bấm ▶ để điền lần lượt {count} electron của {name}.",
+    "rule": {
+      "aufbau": "Electron thứ {index} vào phân lớp {sub}: phân lớp còn trống có năng lượng thấp nhất (nguyên lý vững bền).",
+      "hund": "Electron thứ {index} vào ô còn trống tiếp theo của {sub}, cùng chiều với các electron trước (quy tắc Hund).",
+      "pauli": "Electron thứ {index} ghép đôi, ngược chiều, vào một ô của {sub} (nguyên lý Pauli: mỗi ô tối đa 2 electron ngược chiều).",
+      "exception": "Ngoại lệ: thực tế đo được, {symbol} có cấu hình {config}. Năng lượng các phân lớp ở đây rất sát nhau nên thứ tự điền không còn đúng hoàn toàn.",
+      "halfFull": "Phân lớp d nửa bão hoà hoặc bão hoà bền hơn, nên một electron chuyển từ phân lớp s sang d."
+    },
+    "boxes": "Sơ đồ ô lượng tử",
+    "madelung": "Thứ tự điền (mũi tên chéo)",
+    "madelungLabel": "Sơ đồ thứ tự điền electron theo quy tắc Klechkowski (n + l tăng dần)",
+    "added": "vừa thêm",
+    "removed": "bị lấy đi",
+    "ion": {
+      "title": "Ion",
+      "pick": "Chọn ion",
+      "atom": "Nguyên tử {symbol}",
+      "ion": "Ion {ion}",
+      "bare": "(không còn electron)",
+      "cationRule": "Ion dương: nguyên tử mất {count, plural, other {# electron}}, lấy từ lớp ngoài cùng (n lớn nhất) trước. Vì vậy kim loại chuyển tiếp mất electron 4s trước 3d, dù 4s được điền trước.",
+      "anionRule": "Ion âm: nguyên tử nhận thêm {count, plural, other {# electron}}, điền tiếp vào phân lớp còn trống theo thứ tự điền.",
+      "none": "Nguyên tố này không có số oxi hoá nào trong dữ liệu."
+    },
+    "orbital": {
+      "title": "Hình dạng orbital",
+      "show": "Xem đám mây 3D của {name}",
+      "showHint": "Tải thêm khoảng 150 KB",
+      "sampling": "Đang tính…",
+      "cloudLabel": "Đám mây xác suất của orbital {name}",
+      "positive": "ψ dương",
+      "negative": "ψ âm",
+      "autoRotate": "Tự xoay",
+      "noWebgl": "Trình duyệt không hỗ trợ WebGL: đang hiện hình chiếu 2D.",
+      "valence": "Phân lớp hoá trị của {symbol}",
+      "pickN": "Lớp (n)",
+      "pickL": "Phân lớp (l)",
+      "pickM": "Orbital (m)",
+      "radialNodes": "Mặt nút hình cầu (n − l − 1)",
+      "angularNodes": "Mặt nút góc (l)",
+      "note": "Mỗi chấm là một vị trí có thể gặp electron, dày ở nơi xác suất cao. Hình dạng theo nghiệm nguyên tử hydro; kích thước chỉ mang tính định tính. Kéo để xoay, cuộn để phóng to."
+    }
+  }
+}

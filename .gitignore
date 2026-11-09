@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+dist
+coverage
+*.tsbuildinfo
+.DS_Store
+playwright-report
+test-results
+.env*
+
+# Sinh ra bởi apps/web/scripts/sync-data.mjs
+apps/web/public/data
+apps/web/public/images/elements
