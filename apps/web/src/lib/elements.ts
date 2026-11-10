@@ -1,5 +1,6 @@
 import type { Category, ElementLite } from '@chem/data';
 import elementsJson from '@chem/data/elements.json';
+import { type GALLERY_WIDTHS, galleryFile } from '@chem/data/gallery';
 import { PHOTO_WIDTHS, photoFile } from '@chem/data/photo';
 
 export const ELEMENTS = elementsJson as ElementLite[];
@@ -30,3 +31,6 @@ export const photoUrl = (slug: string, size: keyof typeof PHOTO_WIDTHS) =>
 /** srcset gồm cả 2 cỡ ảnh: trình duyệt tự chọn theo `sizes` và mật độ điểm ảnh. */
 export const photoSrcSet = (slug: string) =>
   `${photoUrl(slug, 'thumb')} ${PHOTO_WIDTHS.thumb}w, ${photoUrl(slug, 'large')} ${PHOTO_WIDTHS.large}w`;
+
+export const galleryUrl = (slug: string, index: number, size: keyof typeof GALLERY_WIDTHS) =>
+  `${BASE_PATH}/images/elements/gallery/${galleryFile(slug, index, size)}`;

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { CATEGORIES } from './constants';
+import { GalleryItem } from './gallery';
 import { LENS_IDS, PHONE_RISKS } from './lenses';
 import { PhotoCredit, PhotoSize } from './photo';
 import { Story } from './story';
@@ -161,6 +162,8 @@ export const ElementFull = ElementLite.extend({
   summary: z.object({ en: z.string(), vi: z.string().nullable() }),
   wikipedia: z.string().url().nullable(),
   photoCredit: PhotoCredit.nullable(),
+  /** Ảnh thư viện (curated/gallery.ts), chỉ gồm ảnh đã tải; chỉ số = thứ tự, khớp tên file images/gallery */
+  gallery: z.array(GalleryItem),
   sources: z.array(z.string()),
   /** Câu chuyện tự biên soạn (stories/<slug>.ts); null nếu chưa có */
   story: Story.nullable(),

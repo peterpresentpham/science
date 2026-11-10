@@ -63,7 +63,7 @@
 
 > Trạng thái (2026-11-10): **xong code, trừ thư viện ảnh**. Lint, typecheck, build qua; **chưa chạy test, chưa xem trên trình duyệt**.
 
-- [ ] ~~`curated/images.yaml`~~ + Tab Hình ảnh (gallery, lightbox): **chưa làm**. Thử tự chọn ảnh từ Wikimedia Commons nhưng kết quả tìm kiếm rất nhiễu (bản đồ, sơ đồ, ảnh địa danh) và API trả 429. Cần người chọn tay danh sách file Commons, sau đó viết script tải + nén giống `scripts/images.ts`. 30 nguyên tố ưu tiên đều đã có ảnh chính (M1).
+- [x] Thư viện ảnh trên trang nguyên tố (lưới + hộp xem lớn): GPT chọn 90 ảnh Commons cho 30 nguyên tố ưu tiên (`curated/gallery.ts`, kiểm bằng `scripts/check-gallery.ts`); `scripts/gallery-images.ts` tải và nén WebP (1000 px + 360 px vuông) vào `images/gallery/` (đã commit, 7,4 MB); `build.ts` gắn `gallery` vào dữ liệu nguyên tố; component `ElementGallery`; gói offline `gallery` (7,1 MB). Chưa có test e2e cho phần này.
 - [x] `fetch-spectra` (NIST ASD, nguyên tử trung hoà, 380–750 nm, tối đa 60 vạch mạnh nhất) → `raw/spectra.json` (97 nguyên tố, 64 KB) → `SpectrumBar` (bước sóng → sRGB, độ đậm theo √cường độ, có dải phổ liên tục để so sánh, hover xem bước sóng).
 - [x] Màu ngọn lửa: hiệu ứng SVG + CSS (`FlameTest`), dữ liệu tuyển `curated/flame.ts` (13 nguyên tố), đánh dấu vạch tạo màu trên phổ.
 - [x] `curated/compounds.ts` (~150 chất, ≥ 5 chất cho mỗi nguyên tố trong 30 nguyên tố ưu tiên) → `fetch-compounds` (kiểm tra thành phần với PubChem) → `compounds/index.json` + `compounds/sdf/*.sdf` (161 chất kể cả phân tử đơn chất, 700 KB, commit sẵn).

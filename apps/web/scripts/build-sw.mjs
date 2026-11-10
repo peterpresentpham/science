@@ -75,7 +75,19 @@ packs.push(
   pack(
     'data',
     null,
-    files.filter((f) => f.rel.startsWith('data/') || f.rel.startsWith('images/'))
+    files.filter(
+      (f) =>
+        f.rel.startsWith('data/') ||
+        (f.rel.startsWith('images/') && !f.rel.startsWith('images/elements/gallery/'))
+    )
+  )
+);
+// Ảnh thư viện trên trang nguyên tố (≈ 7 MB): gói riêng, tải khi người dùng muốn
+packs.push(
+  pack(
+    'gallery',
+    null,
+    files.filter((f) => f.rel.startsWith('images/elements/gallery/'))
   )
 );
 // RDKit.js + WASM (≈ 7,5 MB) cho trang Dựng phân tử: gói riêng vì nặng

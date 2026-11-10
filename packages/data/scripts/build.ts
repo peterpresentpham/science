@@ -19,6 +19,7 @@ import { z } from 'zod';
 import { COMPOUND_CRYSTALS } from '../curated/compound-crystals.ts';
 import { COMPOUNDS } from '../curated/compounds.ts';
 import { FLAME } from '../curated/flame.ts';
+import { GALLERY } from '../curated/gallery.ts';
 import {
   BODY_MASS_PERCENT,
   BODY_TRACE_GRAMS,
@@ -30,8 +31,9 @@ import {
 import { ATOMIC_MASS_OVERRIDES, DISCOVERY_YEAR_OVERRIDES, NAMES_VI } from '../curated/names-vi.ts';
 import { STRUCTURES } from '../curated/structures.ts';
 import { Compound } from '../src/compound.ts';
+import { GalleryManifest, galleryPageUrl } from '../src/gallery.ts';
 import { type LensId, normalizeSearch } from '../src/lenses.ts';
-import { PhotoManifest } from '../src/photo.ts';
+import { PHOTO_LICENSES, PhotoManifest } from '../src/photo.ts';
 import { type Category, ElementFull, ElementLite, Isotope } from '../src/schema.ts';
 import { Story } from '../src/story.ts';
 
@@ -64,6 +66,13 @@ interface Bow {
   source: string;
   block: 's' | 'p' | 'd' | 'f';
 }
+
+// Ảnh thư viện do scripts/gallery-images.ts sinh ra; chưa có thì nguyên tố không có thư viện.
+const galleryManifest = GalleryManifest.parse(
+  JSON.parse(
+    await readFile(join(ROOT, 'images', 'gallery', 'manifest.json'), 'utf8').catch(() => '{}')
+  )
+);
 
 // Ảnh do scripts/images.ts sinh ra (đã commit). Chưa có thì mọi nguyên tố không có ảnh.
 const photos = PhotoManifest.parse(
@@ -275,6 +284,22 @@ for (let z = 1; z <= 118; z++) {
     summary: { en: b.summary, vi: null },
     wikipedia: b.source?.startsWith('http') ? b.source : null,
     photoCredit: photo?.credit ?? null,
+    gallery: (GALLERY[sym] ?? []).flatMap((g, i) => {
+      const made = galleryManifest[sym]?.[i];
+      if (made?.file !== g.file) return []; // chưa tải: bỏ để chỉ số vẫn khớp tên file nén
+      return [
+        {
+          kind: g.kind,
+          caption: g.caption,
+          author: g.author,
+          license: g.license,
+          licenseUrl: PHOTO_LICENSES[g.license],
+          sourceUrl: galleryPageUrl(g.file),
+          w: made.w,
+          h: made.h,
+        },
+      ];
+    }),
     sources: ['PubChem Periodic Table', 'Bowserinator/Periodic-Table-JSON (CC BY-SA 3.0)'],
     story: story ?? null,
     spectrum: spectra[sym]?.filter(([, i]) => i > 0) ?? null,

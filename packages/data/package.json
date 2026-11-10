@@ -10,6 +10,7 @@
     "./elements.json": "./dist/elements.json",
     "./elements/*.json": "./dist/elements/*.json",
     "./photo": "./src/photo.ts",
+    "./gallery": "./src/gallery.ts",
     "./images/*": "./images/*",
     "./lenses": "./src/lenses.ts",
     "./story": "./src/story.ts",

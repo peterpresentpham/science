@@ -15,6 +15,7 @@ import { BY_Z, categoryColor, categoryInk } from '@/lib/elements';
 import { cn, formatNumber, formatOxidationStates } from '@/lib/format';
 
 import { AcademicSection } from './AcademicSection';
+import { ElementGallery } from './ElementGallery';
 import { ElementHero } from './ElementHero';
 import { HumanScale } from './HumanScale';
 import { MiniTable } from './MiniTable';
@@ -87,6 +88,7 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
 
       <UsesSection el={el} />
       <FactsSection el={el} />
+      <ElementGallery slug={el.slug} gallery={el.gallery} />
       <HumanScale el={el} />
       <SafetyNote el={el} />
 

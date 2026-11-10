@@ -1,4 +1,5 @@
 export * from './compound';
+export * from './gallery';
 export * from './lenses';
 export * from './photo';
 export * from './reaction';

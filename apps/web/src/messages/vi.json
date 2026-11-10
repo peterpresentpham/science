@@ -108,7 +108,27 @@
     "loading": "Đang tải…",
     "loadError": "Không tải được dữ liệu.",
     "sources": "Nguồn dữ liệu",
-    "back": "Về bảng tuần hoàn"
+    "back": "Về bảng tuần hoàn",
+    "gallery": {
+      "title": "Thư viện ảnh",
+      "count": "{count} ảnh",
+      "open": "Xem ảnh lớn: {caption}",
+      "close": "Đóng",
+      "prev": "Ảnh trước",
+      "next": "Ảnh sau",
+      "position": "Ảnh {n} / {total}",
+      "credit": "Ảnh: {author} · {license}",
+      "source": "Trang gốc trên Wikimedia Commons",
+      "kind": {
+        "element": "Đơn chất",
+        "mineral": "Khoáng vật",
+        "compound": "Hợp chất",
+        "reaction": "Phản ứng",
+        "flame": "Màu ngọn lửa",
+        "use": "Ứng dụng",
+        "history": "Lịch sử"
+      }
+    }
   },
   "footer": {
     "data": "Dữ liệu: PubChem (NIH) và Bowserinator/Periodic-Table-JSON (CC BY-SA 3.0).",
@@ -764,6 +784,10 @@
       "rdkit": {
         "title": "Công cụ dựng phân tử (RDKit)",
         "desc": "{count} file: RDKit.js và WASM cho trang Dựng phân tử"
+      },
+      "gallery": {
+        "title": "Thư viện ảnh nguyên tố",
+        "desc": "{count} ảnh: khoáng vật, ứng dụng, thí nghiệm trên trang nguyên tố"
       }
     },
     "download": "Tải về",

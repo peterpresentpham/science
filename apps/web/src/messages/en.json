@@ -108,7 +108,27 @@
     "loading": "Loading…",
     "loadError": "Could not load data.",
     "sources": "Data sources",
-    "back": "Back to the table"
+    "back": "Back to the table",
+    "gallery": {
+      "title": "Photo gallery",
+      "count": "{count} photos",
+      "open": "View large photo: {caption}",
+      "close": "Close",
+      "prev": "Previous photo",
+      "next": "Next photo",
+      "position": "Photo {n} of {total}",
+      "credit": "Photo: {author} · {license}",
+      "source": "Original page on Wikimedia Commons",
+      "kind": {
+        "element": "Element",
+        "mineral": "Mineral",
+        "compound": "Compound",
+        "reaction": "Reaction",
+        "flame": "Flame test",
+        "use": "Use",
+        "history": "History"
+      }
+    }
   },
   "footer": {
     "data": "Data: PubChem (NIH) and Bowserinator/Periodic-Table-JSON (CC BY-SA 3.0).",
@@ -764,6 +784,10 @@
       "rdkit": {
         "title": "Molecule builder engine (RDKit)",
         "desc": "{count} files: RDKit.js and WASM for the molecule builder"
+      },
+      "gallery": {
+        "title": "Element photo gallery",
+        "desc": "{count} photos: minerals, uses, experiments on element pages"
       }
     },
     "download": "Download",
