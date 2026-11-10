@@ -6,6 +6,14 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 // Host dưới đường dẫn con (ví dụ GitHub Pages): NEXT_PUBLIC_BASE_PATH=/chemistry
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || undefined;
 
+// canonical, hreflang, sitemap, og:image đều cần URL tuyệt đối thật; thiếu thì sẽ trỏ về localhost
+if (process.env.NODE_ENV === 'production' && !process.env.NEXT_PUBLIC_SITE_URL) {
+  console.warn(
+    '\n⚠ NEXT_PUBLIC_SITE_URL chưa được đặt: link SEO (canonical, sitemap, og:image) sẽ trỏ về http://localhost:3000.\n' +
+      '  Ví dụ: NEXT_PUBLIC_SITE_URL=https://peterpresentpham.github.io NEXT_PUBLIC_BASE_PATH=/science pnpm build\n'
+  );
+}
+
 const config: NextConfig = {
   output: 'export',
   basePath,

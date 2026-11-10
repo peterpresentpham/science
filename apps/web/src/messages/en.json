@@ -1,15 +1,44 @@
 {
   "meta": {
-    "title": "Nguyên Tố — Interactive Periodic Table",
-    "description": "Interactive periodic table: electron configurations, atomic models, data and properties of all 118 elements.",
-    "elementTitle": "{nameEn} ({symbol}) — Nguyên Tố",
-    "elementDescription": "{nameEn}, atomic number {z}, atomic mass {mass}. Electron configuration {config}."
+    "title": "Nguyên Tố: Interactive periodic table of all 118 elements",
+    "description": "Interactive periodic table: all 118 elements with electron configurations, atomic masses and 3D atom models, plus an equation balancer and molar mass calculator.",
+    "home": "Periodic table",
+    "elementTitle": "{name} ({symbol}): electron configuration, atomic mass, properties",
+    "elementDescription": "{name} ({symbol}), element {z} ({category}): atomic mass {mass}, electron configuration {config}, {protons} protons, {neutrons} neutrons. Uses, 3D model, properties.",
+    "compareDescription": "Compare up to 3 chemical elements visually: electronegativity, atomic radius, ionization energy, melting point and density.",
+    "creditsDescription": "Data sources (PubChem) and photo credits for the chemical elements on this site.",
+    "toolsTitle": "Free online chemistry tools",
+    "toolsDescription": "Molar mass calculator, chemical equation balancer with worked solutions, solubility table, metal reactivity series and periodic trend charts. Free, no sign-up.",
+    "tool": {
+      "molar": {
+        "title": "Molar mass calculator",
+        "description": "Type a chemical formula to get its molar mass and percent composition, and convert grams ↔ moles ↔ particles ↔ gas volume."
+      },
+      "balance": {
+        "title": "Chemical equation balancer with steps",
+        "description": "Balance chemical equations automatically, with electron-balance and algebraic solutions plus limiting and excess reagents. Supports ionic equations."
+      },
+      "solubility": {
+        "title": "Solubility table of acids, bases and salts",
+        "description": "Water solubility of acids, bases and salts: soluble, slightly soluble, insoluble or decomposes. Look up any cation–anion pair."
+      },
+      "activity": {
+        "title": "Reactivity series of metals",
+        "description": "The metal reactivity series K Na Ba Ca Mg Al Zn Fe Ni Sn Pb H Cu Hg Ag Pt Au: which metals react with water and acids, and which displace others from salts."
+      },
+      "trends": {
+        "title": "Periodic trends charts",
+        "description": "Charts of electronegativity, atomic radius, ionization energy and more against atomic number, plus scatter plots of any two properties for 118 elements."
+      }
+    }
   },
   "nav": {
     "table": "Periodic table",
     "language": "Language",
     "theme": "Toggle light/dark theme",
-    "compare": "Compare"
+    "compare": "Compare",
+    "tools": "Tools",
+    "compounds": "Compounds"
   },
   "table": {
     "label": "Periodic table of the chemical elements",
@@ -296,30 +325,6 @@
     "button": "Search"
   },
   "atom": {
-    "builder": "Build the atom electron by electron",
-    "controls": "Controls",
-    "first": "Back to start",
-    "prev": "Remove one electron",
-    "play": "Play",
-    "pause": "Pause",
-    "next": "Add one electron",
-    "last": "Go to the final configuration",
-    "speed": "Speed",
-    "stepLabel": "Step",
-    "stepValue": "Step {step} of {total}",
-    "start": "Press ▶ to fill the {count} electrons of {name} one by one.",
-    "rule": {
-      "aufbau": "Electron {index} goes into {sub}: the empty subshell with the lowest energy (Aufbau principle).",
-      "hund": "Electron {index} takes the next empty box in {sub}, with the same spin as the others (Hund's rule).",
-      "pauli": "Electron {index} pairs up, with opposite spin, in a box of {sub} (Pauli principle: at most 2 opposite-spin electrons per box).",
-      "exception": "Exception: measured experimentally, {symbol} has the configuration {config}. The subshell energies here are so close that the filling order no longer holds exactly.",
-      "halfFull": "A half-filled or full d subshell is more stable, so one electron moves from s to d."
-    },
-    "boxes": "Orbital box diagram",
-    "madelung": "Filling order (diagonal arrows)",
-    "madelungLabel": "Electron filling order diagram following the Madelung rule (increasing n + l)",
-    "added": "just added",
-    "removed": "removed",
     "ion": {
       "title": "Ions",
       "pick": "Choose an ion",
@@ -330,23 +335,303 @@
       "anionRule": "Negative ion: the atom gains {count, plural, one {# electron} other {# electrons}}, which go into the next empty subshell in filling order.",
       "none": "This element has no oxidation states in the data."
     },
-    "orbital": {
-      "title": "Orbital shapes",
-      "show": "Show the 3D cloud of {name}",
-      "showHint": "Loads about 150 KB more",
-      "sampling": "Calculating…",
-      "cloudLabel": "Probability cloud of the {name} orbital",
-      "positive": "ψ positive",
-      "negative": "ψ negative",
+    "added": "just added",
+    "removed": "removed",
+    "model": {
+      "label": "3D model of a {name} atom: the nucleus has {protons} protons and {neutrons} neutrons; {electrons} electrons in {shells} shells ({list}).",
+      "notToScale": "Not to scale",
+      "view": "View",
+      "focus": {
+        "atom": "Whole atom",
+        "nucleus": "Close-up of nucleus"
+      },
       "autoRotate": "Auto-rotate",
-      "noWebgl": "Your browser does not support WebGL: showing a 2D projection.",
-      "valence": "Valence subshells of {symbol}",
-      "pickN": "Shell (n)",
-      "pickL": "Subshell (l)",
-      "pickM": "Orbital (m)",
-      "radialNodes": "Spherical nodes (n − l − 1)",
-      "angularNodes": "Angular nodes (l)",
-      "note": "Each dot is a place the electron might be found; dense where it is likely. Shapes follow the hydrogen-atom solution; sizes are only qualitative. Drag to rotate, scroll to zoom."
+      "dragHint": "Drag to rotate; scroll or pinch to zoom.",
+      "noWebgl": "Your browser doesn’t support WebGL: showing a 2D diagram.",
+      "notation": "Nuclide notation: mass number A on top, atomic number Z below.",
+      "notationSr": "Nuclide notation for {symbol}, mass number {a}, atomic number {z}.",
+      "proton": {
+        "name": "Protons",
+        "where": "In the nucleus, positively charged. The number of protons is Z and decides which element this is."
+      },
+      "neutron": {
+        "name": "Neutrons",
+        "where": "In the nucleus, no charge. N = A − Z."
+      },
+      "electron": {
+        "name": "Electrons",
+        "where": "Move around the nucleus, negatively charged. A neutral atom has as many electrons as protons."
+      },
+      "isotopeStable": "Neutrons counted for the most abundant natural isotope, {symbol}-{a}. Other isotopes of {name} have the same protons but a different number of neutrons.",
+      "isotopeRadioactive": "{name} has no stable isotope; neutrons counted for the longest-lived known isotope (mass number {a}).",
+      "shellsTitle": "Electron shells (point at one to highlight it in the model)",
+      "shellItem": "Shell {n} ({letter}): {count} electrons"
     }
+  },
+  "tools": {
+    "hub": {
+      "title": "Tools",
+      "intro": "Molar mass, equation balancing, the solubility table, the metal activity series and periodic trends. Every calculation runs on your device."
+    },
+    "formulaError": {
+      "empty": "Type a formula.",
+      "unexpectedChar": "The character “{detail}” can’t be used in a formula.",
+      "unknownElement": "No element has the symbol “{detail}”. Symbols are one capital letter, optionally followed by one lowercase letter.",
+      "lowercaseElement": "Element symbols start with a capital letter, e.g. “{detail}”.",
+      "unclosedGroup": "This group is missing its closing bracket.",
+      "unexpectedClose": "This closing bracket has no matching opening bracket.",
+      "emptyGroup": "There is no element inside the brackets.",
+      "zeroCount": "Counts must be greater than 0.",
+      "leadingNumber": "A formula can’t start with a number. Coefficients belong in equations (e.g. 2H2O) or after a hydrate dot (CuSO4·5H2O).",
+      "ambiguousCharge": "It’s unclear which digits are the count and which are the charge. Write “{detail}”.",
+      "missingPart": "Part of the formula is missing after the hydrate dot."
+    },
+    "balanceError": {
+      "noArrow": "Add an arrow between the two sides: “->”, “→” or “=”.",
+      "manyArrows": "An equation can only have one arrow.",
+      "emptySide": "One side of the equation is empty.",
+      "emptySpecies": "There is an extra “+” with nothing between it and the next “+”.",
+      "formula": "Invalid formula.",
+      "impossible": "Can’t be balanced: an element (or the charge) appears on one side only. Check the substances.",
+      "multiple": "There are {nullity} independent ways to balance this: it is usually two reactions combined (e.g. two gases formed at once). Split it into separate equations.",
+      "wrongSide": "{species} seems to be on the wrong side.",
+      "notParticipating": "{species} can’t take part in this reaction (its coefficient is 0)."
+    },
+    "molar": {
+      "title": "Molar mass",
+      "intro": "Type a formula to get its molar mass and mass percentages, and convert between grams, moles, particles and gas volume.",
+      "inputLabel": "Chemical formula",
+      "help": "Type it plainly: H2SO4, Ca(OH)2, CuSO4.5H2O, SO4^2-. No need for subscripts.",
+      "result": "Molar mass",
+      "ionNote": "For ions, the mass of the electrons gained or lost is ignored (it is tiny).",
+      "composition": "Composition by mass",
+      "element": "Element",
+      "atoms": "Atoms",
+      "atomicMass": "Atomic mass",
+      "massShare": "Mass (g/mol)",
+      "bar": "Percentage chart",
+      "converter": "Convert",
+      "field": {
+        "mass": "Mass m",
+        "mol": "Amount n",
+        "particles": "Particles N",
+        "volume": "Gas volume V"
+      },
+      "particlesUnit": "particles",
+      "condition": "Gas conditions",
+      "cond": {
+        "standard": "SATP (25 °C, 1 bar): 24.79 L/mol",
+        "stp": "STP (0 °C, 1 atm): 22.4 L/mol"
+      },
+      "converterNote": "n = m / M · N = n × 6.022 × 10²³ · V = n × {vm} L (gases only)."
+    },
+    "balance": {
+      "title": "Balance equations",
+      "intro": "Type an unbalanced equation; the answer comes with an electron-balance solution (for redox reactions) and an algebraic one, plus limiting and excess reagents.",
+      "inputLabel": "Equation",
+      "help": "Separate substances with “ + ”, join the sides with “->”, “→” or “=”. Write ions as Fe3+, SO4^2- and electrons as e-. Coefficients you type are checked.",
+      "sampleCount": "Tested against {count} school-curriculum equations.",
+      "result": "Balanced equation",
+      "openMolar": "Molar mass of this substance",
+      "givenCorrect": "Your coefficients are correct.",
+      "givenWrong": "Your coefficients aren’t right: see the answer above.",
+      "steps": "Solution",
+      "method": {
+        "electron": "Electron balance",
+        "matrix": "Algebraic method"
+      },
+      "noElectron": "No electron-balance solution (not a redox reaction, or an oxidation number couldn’t be assigned with certainty). See the algebraic method.",
+      "reducing": "Reducing agent",
+      "oxidizing": "Oxidizing agent",
+      "oxidation": "Oxidation",
+      "reduction": "Reduction",
+      "electronTotal": "Electrons transferred in the balanced equation: {count}.",
+      "electronNote": "Multiply so the electrons lost equal the electrons gained, put the factors into the equation, then balance the remaining elements. Fractional oxidation numbers (like +8/3 in Fe3O4) are averages.",
+      "chargeRow": "charge",
+      "matrix": {
+        "step1": "Each coefficient is an unknown. Each element (and the charge) gives one conservation equation: left total minus right total equals 0.",
+        "step2": "Row-reduce the matrix to reduced row echelon form (rank {rank}).",
+        "step3": "Set the free unknown to 1 and solve for the rest:",
+        "step4": "Multiply by {k} to get the smallest whole numbers:"
+      },
+      "stoich": {
+        "title": "Reaction calculations",
+        "hint": "Enter amounts of reactants (grams or moles) to find the limiting reagent, what is left over and how much product forms.",
+        "species": "Substance",
+        "given": "Starting amount",
+        "reacted": "Reacted / formed",
+        "mass": "Mass",
+        "left": "Left over",
+        "reactant": "reactant",
+        "product": "product",
+        "amountFor": "Amount of {name}",
+        "unit": "Unit",
+        "used": "Used up",
+        "summary": "Limiting: {names}. The reaction runs {extent} times in the ratio of the equation."
+      },
+      "openCompound": "Open this compound"
+    },
+    "solubility": {
+      "title": "Solubility table",
+      "intro": "Water solubility of acids, bases and salts at room temperature, laid out like the school textbook table.",
+      "caption": "Water solubility of acids, bases and salts",
+      "corner": "Anion \\ Cation",
+      "value": {
+        "t": "soluble",
+        "i": "slightly soluble",
+        "k": "insoluble",
+        "x": "does not exist or decomposes in water",
+        "tb": "soluble, volatile (acid)",
+        "tk": "soluble, non-volatile (acid)",
+        "kk": "insoluble, non-volatile (acid)"
+      },
+      "draft": "Draft: compiled from common chemistry knowledge; check each cell against your textbook’s table."
+    },
+    "activity": {
+      "title": "Metal activity series",
+      "intro": "Metals further left are more reactive than metals to their right. Pick a metal to see what it reacts with.",
+      "label": "Reactivity series of metals",
+      "stronger": "More reactive",
+      "weaker": "Less reactive",
+      "water": "With water",
+      "waterYes": "Yes, at room temperature: forms a soluble base and releases H₂ gas.",
+      "waterNo": "No reaction at room temperature.",
+      "acid": "With dilute HCl or H₂SO₄",
+      "acidYes": "Yes: it is before H, so it displaces hydrogen and releases H₂.",
+      "acidNo": "No: it is after H, so it can’t displace hydrogen.",
+      "salt": "With salt solutions",
+      "saltWater": "It reacts with the water first (forming a base), so it doesn’t simply displace other metals from their salt solutions.",
+      "saltYes": "Displaces the metals after it from their salt solutions: {metals}.",
+      "saltNone": "Can’t displace any metal in the series.",
+      "note": "Applies to the common school reactions. Nitric acid and concentrated sulfuric acid are strong oxidizers and behave differently (they even dissolve Cu and Ag)."
+    },
+    "trends": {
+      "title": "Periodic trends",
+      "intro": "See how properties change with atomic number, and how two properties relate.",
+      "lineTitle": "By atomic number",
+      "property": "Property",
+      "scatterTitle": "Two properties",
+      "xAxis": "Horizontal",
+      "yAxis": "Vertical",
+      "lineLabel": "{property} by atomic number",
+      "zAxis": "Atomic number Z",
+      "nobleHint": "Dashed lines mark the noble gases (Z = 2, 10, 18, 36, 54, 86, 118), where each period ends. Gaps mean missing data.",
+      "showTable": "Show as a table",
+      "points": "{count} elements with data",
+      "scatterLabel": "Scatter plot of {y} against {x}"
+    }
+  },
+  "structure": {
+    "cardTitle": "Structure & compounds",
+    "lightTitle": "Light: line spectrum & flame colour",
+    "elementTitle": "{name} as an element",
+    "compoundsTitle": "Typical compounds",
+    "noStructure": "No 3D structure for this element yet.",
+    "viewerLabel": "3D model of {name}. Drag to rotate, scroll to zoom.",
+    "loading": "Loading 3D model…",
+    "error": "Could not load the structure.",
+    "controls": "Model controls",
+    "style": {
+      "ballStick": "Ball & stick",
+      "stick": "Stick",
+      "sphere": "Space-filling",
+      "line": "Wireframe"
+    },
+    "labels": "Symbols",
+    "spin": "Spin",
+    "supercell": "Show {n}×{n}×{n} unit cells",
+    "measure": {
+      "toggle": "Measure",
+      "clear": "Clear",
+      "hint": "Click 2 atoms to measure a distance, 3 atoms for an angle (the second atom is the vertex).",
+      "distance": "{a}–{b}: {value} Å",
+      "angle": "∠{a}–{b}–{c}: {value}°"
+    },
+    "flat": "PubChem only has a 2D formula for this substance (usually an ionic compound: its ions form a crystal lattice rather than separate molecules).",
+    "crystal": {
+      "lattice": "Lattice",
+      "constant": "Lattice constant",
+      "coordination": "Coordination number",
+      "nearest": "Nearest-neighbour distance"
+    },
+    "lattice": {
+      "bcc": "Body-centred cubic",
+      "fcc": "Face-centred cubic",
+      "hcp": "Hexagonal close-packed",
+      "diamond": "Diamond cubic",
+      "graphite": "Graphite (hexagonal layers)",
+      "rhombohedral": "Rhombohedral",
+      "rocksalt": "Rock salt (NaCl)",
+      "cscl": "Caesium chloride",
+      "zincblende": "Zinc blende (ZnS)",
+      "fluorite": "Fluorite (CaF₂)",
+      "icosahedron": "Icosahedron"
+    },
+    "vsepr": {
+      "title": "Molecular geometry (VSEPR)",
+      "note": "A: central atom, X: bonded atoms, E: lone pairs. Angles are measured on the PubChem 3D structure.",
+      "geometry": {
+        "linear": "linear",
+        "trigonalPlanar": "trigonal planar",
+        "bent": "bent",
+        "tetrahedral": "tetrahedral",
+        "trigonalPyramidal": "trigonal pyramidal",
+        "trigonalBipyramidal": "trigonal bipyramidal",
+        "seesaw": "seesaw",
+        "tShaped": "T-shaped",
+        "octahedral": "octahedral",
+        "squarePyramidal": "square pyramidal",
+        "squarePlanar": "square planar"
+      }
+    },
+    "spectrum": {
+      "title": "Emission line spectrum",
+      "intro": "When heated or excited by electricity, {name} atoms give off light only at certain wavelengths: every element has its own set of lines, like a fingerprint. The top strip is white light for comparison.",
+      "label": "Emission spectrum of {name}: {count} lines in the visible range",
+      "relative": "intensity {value}%",
+      "strongest": "Strongest lines: {list}. Showing the {count} strongest lines from 380 to 750 nm.",
+      "flameLines": "Triangles mark the lines behind the flame colour.",
+      "source": "Source: NIST Atomic Spectra Database (neutral atoms). Intensities are only comparable between lines of the same element.",
+      "none": "NIST lists no visible lines of the neutral atom for this element."
+    },
+    "flame": {
+      "title": "Flame colour",
+      "label": "A flame with a {symbol} salt burns {color}",
+      "color": "Colour",
+      "why": "Heat kicks electrons up to higher energy levels; as they fall back they give off light at the element’s characteristic lines."
+    },
+    "compound": {
+      "crystalTab": "Crystal lattice",
+      "pubchemTab3": "Molecule (PubChem 3D)",
+      "pubchemTab2": "Formula (PubChem 2D)"
+    }
+  },
+  "compound": {
+    "indexTitle": "Compounds",
+    "indexDescription": "{count} common school-chemistry compounds with 3D models, molecular geometry and molar mass: table salt, sulfuric acid, potassium permanganate, limestone…",
+    "indexIntro": "{count} common school-chemistry substances, each with a 3D model. Can’t find one? Look it up on PubChem.",
+    "searchPlaceholder": "Name, formula or symbol: salt, H2SO4, Fe…",
+    "searchLabel": "Filter compounds",
+    "count": "{count} compounds.",
+    "searchPubchem": "Look up “{q}” on PubChem →",
+    "metaTitle": "{name} ({formula}): 3D structure, molar mass",
+    "metaDescription": "{name} ({formula}): 3D model, molar mass {mw} g/mol, made of {elements}. Data from PubChem.",
+    "molarMass": "Molar mass",
+    "openMolar": "Details →",
+    "iupac": "IUPAC name",
+    "elements": "Elements",
+    "related": "Related compounds",
+    "source": "Structure and properties:",
+    "viewerLabel": "3D model of {name}",
+    "lookupTitle": "Look up a compound on PubChem",
+    "lookupIntro": "See the 3D structure and properties of any of the 100+ million substances in PubChem.",
+    "lookupPlaceholder": "Name or CID: caffeine, aspirin, 2244…",
+    "lookupLabel": "Name or CID",
+    "lookupButton": "Look up",
+    "lookupHint": "Data comes straight from PubChem and is cached on your device.",
+    "loading": "Loading from PubChem…",
+    "notFound": "PubChem found nothing for “{q}”. Try another name or a CID.",
+    "networkError": "Could not reach PubChem. Check your connection and try again.",
+    "curatedLink": "This compound has its own page on this site →"
   }
 }

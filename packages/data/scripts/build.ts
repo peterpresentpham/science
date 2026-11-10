@@ -9,6 +9,9 @@ import { pathToFileURL } from 'node:url';
 import { electronConfiguration, isPredicted, isRadioactive, shells, toNotation } from '@chem/core';
 import { z } from 'zod';
 
+import { COMPOUND_CRYSTALS } from '../curated/compound-crystals.ts';
+import { COMPOUNDS } from '../curated/compounds.ts';
+import { FLAME } from '../curated/flame.ts';
 import {
   BODY_MASS_PERCENT,
   BODY_TRACE_GRAMS,
@@ -18,6 +21,8 @@ import {
   SYNTHETIC_FROM_Z,
 } from '../curated/lenses.ts';
 import { ATOMIC_MASS_OVERRIDES, DISCOVERY_YEAR_OVERRIDES, NAMES_VI } from '../curated/names-vi.ts';
+import { STRUCTURES } from '../curated/structures.ts';
+import { Compound } from '../src/compound.ts';
 import { type LensId, normalizeSearch } from '../src/lenses.ts';
 import { PhotoManifest } from '../src/photo.ts';
 import { type Category, ElementFull, ElementLite } from '../src/schema.ts';
@@ -98,6 +103,24 @@ for (const file of (await readdir(STORIES_DIR)).filter((f) => f.endsWith('.ts'))
   }
   stories.set(slug, parsed.data);
 }
+// Phổ vạch NIST (scripts/fetch-spectra.ts) và hợp chất PubChem (scripts/fetch-compounds.ts), đã commit
+const spectra: Record<string, Array<[number, number]>> = await readJson('spectra.json');
+const compounds = z
+  .array(Compound)
+  .parse(
+    (
+      JSON.parse(await readFile(join(ROOT, 'compounds', 'index.json'), 'utf8')) as Array<
+        Omit<Compound, 'crystal'>
+      >
+    ).map((c) => ({ ...c, crystal: (c.query && COMPOUND_CRYSTALS[c.query]) || null }))
+  );
+for (const q of Object.keys(COMPOUND_CRYSTALS))
+  if (!compounds.some((c) => c.query === q))
+    throw new Error(`compound-crystals: không có hợp chất "${q}" trong compounds/index.json`);
+for (const c of COMPOUNDS)
+  if (!compounds.some((x) => (c.cid ? x.cid === c.cid : x.query === c.q)))
+    throw new Error(`curated/compounds: "${c.q ?? c.cid}" chưa được tải, chạy fetch:compounds`);
+
 const lite: ElementLite[] = [];
 const full: ElementFull[] = [];
 
@@ -217,6 +240,13 @@ for (let z = 1; z <= 118; z++) {
     photoCredit: photo?.credit ?? null,
     sources: ['PubChem Periodic Table', 'Bowserinator/Periodic-Table-JSON (CC BY-SA 3.0)'],
     story: story ?? null,
+    spectrum: spectra[sym]?.filter(([, i]) => i > 0) ?? null,
+    flame: FLAME[sym] ?? null,
+    structures: STRUCTURES[sym] ?? [],
+    compounds: compounds
+      .filter((c) => !c.elemental && c.elements.includes(sym))
+      .sort((a, b) => a.elements.length - b.elements.length || a.mw - b.mw)
+      .map((c) => ({ cid: c.cid, formula: c.formula, vi: c.vi, en: c.en })),
   };
 
   lite.push(ElementLite.parse(liteEl));
@@ -235,6 +265,7 @@ await writeFile(join(DIST, 'elements.json'), JSON.stringify(lite));
 await Promise.all(
   full.map((e) => writeFile(join(DIST, 'elements', `${e.slug}.json`), JSON.stringify(e)))
 );
+await writeFile(join(DIST, 'compounds.json'), JSON.stringify(compounds));
 await writeFile(
   join(DIST, 'meta.json'),
   JSON.stringify({ builtAt: new Date().toISOString(), count: lite.length, warnings }, null, 2)

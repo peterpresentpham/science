@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Be_Vietnam_Pro, Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
@@ -9,6 +9,7 @@ import { SiteHeader } from '@/components/layout/SiteHeader';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import { SITE_URL } from '@/lib/elements';
+import { type Locale, SITE_NAME } from '@/lib/seo';
 
 const sans = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],
@@ -40,17 +41,31 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
+  const name = SITE_NAME[locale as Locale];
   return {
-    // metadataBase giúp mọi link trong metadata (hreflang, canonical) thành URL tuyệt đối
+    // metadataBase giúp mọi link trong metadata (hreflang, canonical, ảnh OG) thành URL tuyệt đối
     metadataBase: new URL(`${SITE_URL}/`),
-    title: t('title'),
+    // Trang con chỉ đặt phần đầu; tên site được nối vào sau
+    title: { default: t('title'), template: `%s · ${name}` },
     description: t('description'),
-    alternates: {
-      canonical: `/${locale}/`,
-      languages: { vi: '/vi/', en: '/en/', 'x-default': '/vi/' },
-    },
+    applicationName: name,
+    appleWebApp: { title: name, capable: true, statusBarStyle: 'default' },
+    formatDetection: { telephone: false, address: false, email: false },
+    robots: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
+    category: 'education',
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+      : {}),
   };
 }
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f9f6f2' },
+    { media: '(prefers-color-scheme: dark)', color: '#101219' },
+  ],
+  colorScheme: 'light dark',
+};
 
 export default async function LocaleLayout({ children, params }: LayoutProps<'/[locale]'>) {
   const { locale } = await params;

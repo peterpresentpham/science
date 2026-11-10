@@ -1,15 +1,44 @@
 {
   "meta": {
-    "title": "Nguyên Tố — Bảng tuần hoàn tương tác",
-    "description": "Bảng tuần hoàn hoá học tương tác bằng tiếng Việt: cấu hình electron, mô hình nguyên tử, dữ liệu và tính chất của 118 nguyên tố.",
-    "elementTitle": "{name} ({symbol}) — Nguyên Tố",
-    "elementDescription": "{name} ({nameEn}), số hiệu {z}, khối lượng nguyên tử {mass}. Cấu hình electron {config}."
+    "title": "Nguyên Tố: Bảng tuần hoàn hoá học tương tác, đủ 118 nguyên tố",
+    "description": "Bảng tuần hoàn hoá học tương tác: 118 nguyên tố với cấu hình electron, nguyên tử khối, mô hình nguyên tử 3D. Kèm công cụ cân bằng phương trình, tính khối lượng mol.",
+    "home": "Bảng tuần hoàn",
+    "elementTitle": "{name} ({symbol}): cấu hình electron, nguyên tử khối, tính chất",
+    "elementDescription": "{name} ({symbol}), nguyên tố số {z} ({category}): nguyên tử khối {mass}, cấu hình electron {config}, {protons} proton, {neutrons} nơtron. Ứng dụng, mô hình 3D, tính chất.",
+    "compareDescription": "So sánh trực quan tối đa 3 nguyên tố hoá học: độ âm điện, bán kính nguyên tử, năng lượng ion hoá, nhiệt độ nóng chảy, khối lượng riêng.",
+    "creditsDescription": "Nguồn dữ liệu (PubChem) và ghi công ảnh các nguyên tố hoá học dùng trên site.",
+    "toolsTitle": "Công cụ hoá học online miễn phí",
+    "toolsDescription": "Tính khối lượng mol, cân bằng phương trình hoá học có lời giải, bảng tính tan, dãy hoạt động kim loại, đồ thị xu hướng tuần hoàn. Miễn phí, không cần đăng nhập.",
+    "tool": {
+      "molar": {
+        "title": "Tính khối lượng mol (phân tử khối) online",
+        "description": "Nhập công thức hoá học để tính khối lượng mol, thành phần % khối lượng, đổi gam ↔ mol ↔ số hạt ↔ thể tích khí (đkc 24,79 L, đktc 22,4 L)."
+      },
+      "balance": {
+        "title": "Cân bằng phương trình hoá học online, có lời giải",
+        "description": "Cân bằng phương trình hoá học tự động, có lời giải thăng bằng electron và phương pháp đại số, kèm tính chất hết, chất dư. Hỗ trợ phương trình ion."
+      },
+      "solubility": {
+        "title": "Bảng tính tan của axit, bazơ, muối",
+        "description": "Bảng tính tan trong nước của axit, bazơ và muối theo SGK: tan, ít tan, không tan, không tồn tại. Tra nhanh theo cation và anion."
+      },
+      "activity": {
+        "title": "Dãy hoạt động hoá học của kim loại",
+        "description": "Dãy hoạt động hoá học của kim loại K Na Ba Ca Mg Al Zn Fe Ni Sn Pb H Cu Hg Ag Pt Au: kim loại nào tác dụng với nước, axit, đẩy được kim loại khỏi muối."
+      },
+      "trends": {
+        "title": "Đồ thị xu hướng tuần hoàn của các nguyên tố",
+        "description": "Đồ thị độ âm điện, bán kính nguyên tử, năng lượng ion hoá… theo số hiệu nguyên tử, và đồ thị tán xạ giữa hai tính chất của 118 nguyên tố."
+      }
+    }
   },
   "nav": {
     "table": "Bảng tuần hoàn",
     "language": "Ngôn ngữ",
     "theme": "Đổi giao diện sáng/tối",
-    "compare": "So sánh"
+    "compare": "So sánh",
+    "tools": "Công cụ",
+    "compounds": "Hợp chất"
   },
   "table": {
     "label": "Bảng tuần hoàn các nguyên tố hoá học",
@@ -296,30 +325,6 @@
     "button": "Tìm"
   },
   "atom": {
-    "builder": "Dựng nguyên tử từng electron",
-    "controls": "Điều khiển",
-    "first": "Về đầu",
-    "prev": "Lùi một electron",
-    "play": "Chạy",
-    "pause": "Tạm dừng",
-    "next": "Thêm một electron",
-    "last": "Đến cấu hình cuối",
-    "speed": "Tốc độ",
-    "stepLabel": "Bước",
-    "stepValue": "Bước {step} trên {total}",
-    "start": "Bấm ▶ để điền lần lượt {count} electron của {name}.",
-    "rule": {
-      "aufbau": "Electron thứ {index} vào phân lớp {sub}: phân lớp còn trống có năng lượng thấp nhất (nguyên lý vững bền).",
-      "hund": "Electron thứ {index} vào ô còn trống tiếp theo của {sub}, cùng chiều với các electron trước (quy tắc Hund).",
-      "pauli": "Electron thứ {index} ghép đôi, ngược chiều, vào một ô của {sub} (nguyên lý Pauli: mỗi ô tối đa 2 electron ngược chiều).",
-      "exception": "Ngoại lệ: thực tế đo được, {symbol} có cấu hình {config}. Năng lượng các phân lớp ở đây rất sát nhau nên thứ tự điền không còn đúng hoàn toàn.",
-      "halfFull": "Phân lớp d nửa bão hoà hoặc bão hoà bền hơn, nên một electron chuyển từ phân lớp s sang d."
-    },
-    "boxes": "Sơ đồ ô lượng tử",
-    "madelung": "Thứ tự điền (mũi tên chéo)",
-    "madelungLabel": "Sơ đồ thứ tự điền electron theo quy tắc Klechkowski (n + l tăng dần)",
-    "added": "vừa thêm",
-    "removed": "bị lấy đi",
     "ion": {
       "title": "Ion",
       "pick": "Chọn ion",
@@ -330,23 +335,303 @@
       "anionRule": "Ion âm: nguyên tử nhận thêm {count, plural, other {# electron}}, điền tiếp vào phân lớp còn trống theo thứ tự điền.",
       "none": "Nguyên tố này không có số oxi hoá nào trong dữ liệu."
     },
-    "orbital": {
-      "title": "Hình dạng orbital",
-      "show": "Xem đám mây 3D của {name}",
-      "showHint": "Tải thêm khoảng 150 KB",
-      "sampling": "Đang tính…",
-      "cloudLabel": "Đám mây xác suất của orbital {name}",
-      "positive": "ψ dương",
-      "negative": "ψ âm",
+    "added": "vừa thêm",
+    "removed": "bị lấy đi",
+    "model": {
+      "label": "Mô hình 3D nguyên tử {name}: hạt nhân gồm {protons} proton và {neutrons} nơtron; {electrons} electron xếp trên {shells} lớp ({list}).",
+      "notToScale": "Không theo tỉ lệ thật",
+      "view": "Góc nhìn",
+      "focus": {
+        "atom": "Cả nguyên tử",
+        "nucleus": "Cận hạt nhân"
+      },
       "autoRotate": "Tự xoay",
-      "noWebgl": "Trình duyệt không hỗ trợ WebGL: đang hiện hình chiếu 2D.",
-      "valence": "Phân lớp hoá trị của {symbol}",
-      "pickN": "Lớp (n)",
-      "pickL": "Phân lớp (l)",
-      "pickM": "Orbital (m)",
-      "radialNodes": "Mặt nút hình cầu (n − l − 1)",
-      "angularNodes": "Mặt nút góc (l)",
-      "note": "Mỗi chấm là một vị trí có thể gặp electron, dày ở nơi xác suất cao. Hình dạng theo nghiệm nguyên tử hydro; kích thước chỉ mang tính định tính. Kéo để xoay, cuộn để phóng to."
+      "dragHint": "Kéo để xoay, cuộn hoặc chụm hai ngón để phóng to.",
+      "noWebgl": "Trình duyệt không hỗ trợ WebGL: đang hiện sơ đồ 2D.",
+      "notation": "Ký hiệu nguyên tử: số khối A ở trên, số hiệu nguyên tử Z ở dưới.",
+      "notationSr": "Ký hiệu nguyên tử {symbol}, số khối {a}, số hiệu {z}.",
+      "proton": {
+        "name": "Proton",
+        "where": "Trong hạt nhân, mang điện dương. Số proton = Z, quyết định đây là nguyên tố nào."
+      },
+      "neutron": {
+        "name": "Nơtron",
+        "where": "Trong hạt nhân, không mang điện. N = A − Z."
+      },
+      "electron": {
+        "name": "Electron",
+        "where": "Chuyển động quanh hạt nhân, mang điện âm. Nguyên tử trung hoà có số electron bằng số proton."
+      },
+      "isotopeStable": "Số nơtron tính theo đồng vị phổ biến nhất trong tự nhiên, {symbol}-{a}. Các đồng vị khác của {name} có cùng số proton nhưng số nơtron khác.",
+      "isotopeRadioactive": "{name} không có đồng vị bền; số nơtron tính theo đồng vị sống lâu nhất đã biết (số khối {a}).",
+      "shellsTitle": "Các lớp electron (trỏ vào để làm nổi trên mô hình)",
+      "shellItem": "Lớp {n} ({letter}): {count} electron"
     }
+  },
+  "tools": {
+    "hub": {
+      "title": "Công cụ",
+      "intro": "Tính khối lượng mol, cân bằng phương trình, tra bảng tính tan, dãy hoạt động và xem xu hướng tuần hoàn. Mọi phép tính chạy ngay trên máy bạn."
+    },
+    "formulaError": {
+      "empty": "Hãy nhập một công thức.",
+      "unexpectedChar": "Ký tự “{detail}” không dùng được trong công thức.",
+      "unknownElement": "Không có nguyên tố nào ký hiệu “{detail}”. Ký hiệu gồm một chữ hoa, có thể kèm một chữ thường.",
+      "lowercaseElement": "Ký hiệu nguyên tố phải bắt đầu bằng chữ hoa, ví dụ “{detail}”.",
+      "unclosedGroup": "Thiếu dấu đóng ngoặc cho nhóm này.",
+      "unexpectedClose": "Dấu đóng ngoặc này không có dấu mở tương ứng.",
+      "emptyGroup": "Trong ngoặc chưa có nguyên tố nào.",
+      "zeroCount": "Chỉ số phải lớn hơn 0.",
+      "leadingNumber": "Công thức không bắt đầu bằng số. Hệ số chỉ dùng trong phương trình (vd. 2H2O), hoặc sau dấu chấm của hiđrat (CuSO4·5H2O).",
+      "ambiguousCharge": "Không rõ đâu là chỉ số, đâu là điện tích. Hãy viết “{detail}”.",
+      "missingPart": "Sau dấu chấm hiđrat còn thiếu một phần công thức."
+    },
+    "balanceError": {
+      "noArrow": "Thiếu mũi tên giữa hai vế. Dùng “->”, “→” hoặc “=”.",
+      "manyArrows": "Phương trình chỉ được có một mũi tên.",
+      "emptySide": "Một vế của phương trình đang trống.",
+      "emptySpecies": "Có dấu “+” thừa: giữa hai dấu “+” chưa có chất nào.",
+      "formula": "Công thức sai.",
+      "impossible": "Không cân bằng được: có nguyên tố (hoặc điện tích) chỉ xuất hiện ở một vế. Kiểm tra lại các chất.",
+      "multiple": "Có {nullity} cách cân bằng độc lập: đây thường là hai phản ứng gộp chung (vd. tạo cùng lúc hai khí). Hãy tách thành từng phương trình riêng.",
+      "wrongSide": "Chất {species} có vẻ đặt nhầm vế.",
+      "notParticipating": "Chất {species} không tham gia được vào phản ứng này (hệ số bằng 0)."
+    },
+    "molar": {
+      "title": "Khối lượng mol",
+      "intro": "Nhập công thức để tính khối lượng mol, thành phần phần trăm theo khối lượng, và đổi qua lại giữa gam, mol, số hạt, thể tích khí.",
+      "inputLabel": "Công thức hoá học",
+      "help": "Gõ như bình thường: H2SO4, Ca(OH)2, CuSO4.5H2O, SO4^2-. Chỉ số không cần viết nhỏ.",
+      "result": "Khối lượng mol",
+      "ionNote": "Với ion, khối lượng electron nhận thêm hay mất đi được bỏ qua (rất nhỏ).",
+      "composition": "Thành phần theo khối lượng",
+      "element": "Nguyên tố",
+      "atoms": "Số nguyên tử",
+      "atomicMass": "Nguyên tử khối",
+      "massShare": "Khối lượng (g/mol)",
+      "bar": "Biểu đồ phần trăm",
+      "converter": "Đổi đơn vị",
+      "field": {
+        "mass": "Khối lượng m",
+        "mol": "Số mol n",
+        "particles": "Số hạt N",
+        "volume": "Thể tích khí V"
+      },
+      "particlesUnit": "hạt",
+      "condition": "Điều kiện khí",
+      "cond": {
+        "standard": "Đkc (25 °C, 1 bar): 24,79 L/mol",
+        "stp": "Đktc (0 °C, 1 atm): 22,4 L/mol"
+      },
+      "converterNote": "n = m / M · N = n × 6,022 × 10²³ · V = n × {vm} L (chỉ đúng với chất khí)."
+    },
+    "balance": {
+      "title": "Cân bằng phương trình",
+      "intro": "Nhập phương trình chưa cân bằng; kết quả có lời giải theo phương pháp thăng bằng electron (nếu là phản ứng oxi hoá – khử) và phương pháp đại số, kèm tính chất hết, chất dư.",
+      "inputLabel": "Phương trình",
+      "help": "Các chất cách nhau bởi “ + ”, hai vế nối bằng “->”, “→” hoặc “=”. Ion viết Fe3+, SO4^2-, electron viết e-. Hệ số có sẵn (nếu bạn tự ghi) sẽ được kiểm tra.",
+      "sampleCount": "Đã kiểm tra với {count} phương trình trong chương trình phổ thông.",
+      "result": "Phương trình đã cân bằng",
+      "openMolar": "Tính khối lượng mol của chất này",
+      "givenCorrect": "Hệ số bạn ghi đã đúng.",
+      "givenWrong": "Hệ số bạn ghi chưa đúng: xem kết quả ở trên.",
+      "steps": "Cách giải",
+      "method": {
+        "electron": "Thăng bằng electron",
+        "matrix": "Phương pháp đại số"
+      },
+      "noElectron": "Không trình bày được theo thăng bằng electron (không phải phản ứng oxi hoá – khử, hoặc có chất chưa xác định chắc số oxi hoá). Xem phương pháp đại số.",
+      "reducing": "Chất khử",
+      "oxidizing": "Chất oxi hoá",
+      "oxidation": "Quá trình oxi hoá",
+      "reduction": "Quá trình khử",
+      "electronTotal": "Tổng số electron trao đổi theo phương trình: {count}.",
+      "electronNote": "Nhân hệ số để số electron nhường bằng số electron nhận, rồi điền vào phương trình và cân bằng các nguyên tố còn lại. Số oxi hoá phân số (như +8/3 trong Fe3O4) là giá trị trung bình.",
+      "chargeRow": "điện tích",
+      "matrix": {
+        "step1": "Mỗi hệ số là một ẩn. Mỗi nguyên tố (và điện tích) cho một phương trình bảo toàn: tổng bên trái trừ tổng bên phải bằng 0.",
+        "step2": "Biến đổi hàng để đưa ma trận về dạng bậc thang rút gọn (hạng {rank}).",
+        "step3": "Chọn ẩn tự do bằng 1, suy ra các ẩn còn lại:",
+        "step4": "Nhân với {k} để được các số nguyên nhỏ nhất:"
+      },
+      "stoich": {
+        "title": "Tính theo phương trình",
+        "hint": "Nhập lượng chất tham gia (gam hoặc mol) để biết chất nào hết, chất nào dư và thu được bao nhiêu sản phẩm.",
+        "species": "Chất",
+        "given": "Lượng ban đầu",
+        "reacted": "Phản ứng / tạo thành",
+        "mass": "Khối lượng",
+        "left": "Còn dư",
+        "reactant": "tham gia",
+        "product": "sản phẩm",
+        "amountFor": "Lượng {name}",
+        "unit": "Đơn vị",
+        "used": "Hết",
+        "summary": "Chất hết: {names}. Phản ứng xảy ra {extent} lần theo tỉ lệ của phương trình."
+      },
+      "openCompound": "Xem hợp chất này"
+    },
+    "solubility": {
+      "title": "Bảng tính tan",
+      "intro": "Tính tan trong nước của axit, bazơ và muối ở nhiệt độ phòng, theo dạng bảng trong SGK.",
+      "caption": "Bảng tính tan trong nước của axit, bazơ và muối",
+      "corner": "Anion \\ Cation",
+      "value": {
+        "t": "tan",
+        "i": "ít tan",
+        "k": "không tan",
+        "x": "không tồn tại hoặc bị nước phân huỷ",
+        "tb": "tan, dễ bay hơi (axit)",
+        "tk": "tan, khó bay hơi (axit)",
+        "kk": "không tan, khó bay hơi (axit)"
+      },
+      "draft": "Bản nháp: bảng được biên soạn theo tính chất hoá học phổ biến, cần đối chiếu với bảng in trong SGK đang dùng."
+    },
+    "activity": {
+      "title": "Dãy hoạt động kim loại",
+      "intro": "Kim loại đứng trước hoạt động mạnh hơn kim loại đứng sau. Bấm một kim loại để xem nó phản ứng được với gì.",
+      "label": "Dãy hoạt động hoá học của kim loại",
+      "stronger": "Mạnh hơn",
+      "weaker": "Yếu hơn",
+      "water": "Với nước",
+      "waterYes": "Có, ở nhiệt độ thường: tạo bazơ tan và giải phóng khí H₂.",
+      "waterNo": "Không phản ứng ở nhiệt độ thường.",
+      "acid": "Với axit HCl, H₂SO₄ loãng",
+      "acidYes": "Có: đứng trước H nên đẩy được hiđro, giải phóng khí H₂.",
+      "acidNo": "Không: đứng sau H nên không đẩy được hiđro.",
+      "salt": "Với dung dịch muối",
+      "saltWater": "Phản ứng với nước trước (tạo bazơ), nên không đẩy kim loại khác ra khỏi dung dịch muối theo cách thông thường.",
+      "saltYes": "Đẩy được kim loại đứng sau ra khỏi dung dịch muối của chúng: {metals}.",
+      "saltNone": "Không đẩy được kim loại nào trong dãy.",
+      "note": "Áp dụng cho các phản ứng thường gặp trong chương trình phổ thông. HNO₃ và H₂SO₄ đặc là axit có tính oxi hoá mạnh, phản ứng theo cách khác (cả với Cu, Ag)."
+    },
+    "trends": {
+      "title": "Xu hướng tuần hoàn",
+      "intro": "Xem các thuộc tính thay đổi thế nào theo số hiệu nguyên tử, và hai thuộc tính liên quan với nhau ra sao.",
+      "lineTitle": "Theo số hiệu nguyên tử",
+      "property": "Thuộc tính",
+      "scatterTitle": "Hai thuộc tính",
+      "xAxis": "Trục ngang",
+      "yAxis": "Trục dọc",
+      "lineLabel": "Đồ thị {property} theo số hiệu nguyên tử",
+      "zAxis": "Số hiệu nguyên tử Z",
+      "nobleHint": "Vạch đứt là các khí hiếm (Z = 2, 10, 18, 36, 54, 86, 118): mỗi chu kỳ kết thúc ở đó. Đường bị ngắt ở chỗ thiếu dữ liệu.",
+      "showTable": "Xem dạng bảng",
+      "points": "{count} nguyên tố có đủ dữ liệu",
+      "scatterLabel": "Đồ thị tán xạ {y} theo {x}"
+    }
+  },
+  "structure": {
+    "cardTitle": "Cấu trúc & hợp chất",
+    "lightTitle": "Ánh sáng: phổ vạch & màu ngọn lửa",
+    "elementTitle": "Đơn chất {name}",
+    "compoundsTitle": "Hợp chất tiêu biểu",
+    "noStructure": "Chưa có cấu trúc 3D cho đơn chất này.",
+    "viewerLabel": "Mô hình 3D của {name}. Kéo để xoay, cuộn để phóng to.",
+    "loading": "Đang tải mô hình 3D…",
+    "error": "Không tải được cấu trúc.",
+    "controls": "Điều khiển mô hình",
+    "style": {
+      "ballStick": "Bi – que",
+      "stick": "Que",
+      "sphere": "Đặc (kích thước thật)",
+      "line": "Đường"
+    },
+    "labels": "Ký hiệu",
+    "spin": "Tự xoay",
+    "supercell": "Hiện {n}×{n}×{n} ô mạng",
+    "measure": {
+      "toggle": "Đo",
+      "clear": "Bỏ chọn",
+      "hint": "Bấm 2 nguyên tử để đo khoảng cách, 3 nguyên tử để đo góc (nguyên tử thứ hai là đỉnh góc).",
+      "distance": "{a}–{b}: {value} Å",
+      "angle": "∠{a}–{b}–{c}: {value}°"
+    },
+    "flat": "PubChem chỉ có công thức 2D cho chất này (thường là hợp chất ion: trong thực tế các ion xếp thành mạng tinh thể, không tạo phân tử riêng lẻ).",
+    "crystal": {
+      "lattice": "Kiểu mạng",
+      "constant": "Hằng số mạng",
+      "coordination": "Số phối trí",
+      "nearest": "Khoảng cách gần nhất"
+    },
+    "lattice": {
+      "bcc": "Lập phương tâm khối",
+      "fcc": "Lập phương tâm diện",
+      "hcp": "Lục phương đặc khít",
+      "diamond": "Kiểu kim cương",
+      "graphite": "Than chì (lớp lục giác)",
+      "rhombohedral": "Mặt thoi",
+      "rocksalt": "Kiểu muối ăn (NaCl)",
+      "cscl": "Kiểu CsCl",
+      "zincblende": "Kiểu sphalerit (ZnS)",
+      "fluorite": "Kiểu fluorit (CaF₂)",
+      "icosahedron": "Hình 20 mặt"
+    },
+    "vsepr": {
+      "title": "Hình học phân tử (VSEPR)",
+      "note": "A: nguyên tử trung tâm, X: nguyên tử liên kết, E: cặp electron không liên kết. Góc là giá trị đo trên cấu trúc 3D của PubChem.",
+      "geometry": {
+        "linear": "đường thẳng",
+        "trigonalPlanar": "tam giác phẳng",
+        "bent": "gấp khúc (chữ V)",
+        "tetrahedral": "tứ diện",
+        "trigonalPyramidal": "chóp tam giác",
+        "trigonalBipyramidal": "lưỡng chóp tam giác",
+        "seesaw": "bập bênh",
+        "tShaped": "chữ T",
+        "octahedral": "bát diện",
+        "squarePyramidal": "chóp vuông",
+        "squarePlanar": "vuông phẳng"
+      }
+    },
+    "spectrum": {
+      "title": "Phổ vạch phát xạ",
+      "intro": "Khi bị đốt nóng hoặc phóng điện, nguyên tử {name} chỉ phát ra ánh sáng ở một số bước sóng nhất định: mỗi nguyên tố có một bộ vạch riêng như dấu vân tay. Dải trên cùng là ánh sáng trắng để so sánh.",
+      "label": "Phổ vạch phát xạ của {name}: {count} vạch trong vùng nhìn thấy",
+      "relative": "cường độ {value}%",
+      "strongest": "Vạch mạnh nhất: {list}. Hiển thị {count} vạch mạnh nhất từ 380 đến 750 nm.",
+      "flameLines": "Tam giác đánh dấu các vạch tạo nên màu ngọn lửa.",
+      "source": "Nguồn: NIST Atomic Spectra Database (nguyên tử trung hoà). Cường độ chỉ so sánh được giữa các vạch của cùng nguyên tố.",
+      "none": "NIST không có vạch phổ của nguyên tử trung hoà trong vùng nhìn thấy cho nguyên tố này."
+    },
+    "flame": {
+      "title": "Màu ngọn lửa",
+      "label": "Ngọn lửa khi đốt muối của {symbol} có màu {color}",
+      "color": "Màu",
+      "why": "Nhiệt làm electron nhảy lên mức năng lượng cao hơn; khi rơi về, chúng phát ra ánh sáng ở các vạch phổ đặc trưng."
+    },
+    "compound": {
+      "crystalTab": "Mạng tinh thể",
+      "pubchemTab3": "Phân tử (PubChem 3D)",
+      "pubchemTab2": "Công thức (PubChem 2D)"
+    }
+  },
+  "compound": {
+    "indexTitle": "Hợp chất",
+    "indexDescription": "{count} hợp chất hoá học thường gặp trong SGK, có mô hình 3D, hình học phân tử, khối lượng mol: muối ăn, axit sunfuric, thuốc tím, đá vôi…",
+    "indexIntro": "{count} chất thường gặp trong chương trình phổ thông, mỗi chất có mô hình 3D. Không thấy chất cần tìm? Tra thẳng trên PubChem.",
+    "searchPlaceholder": "Tên, công thức hoặc ký hiệu: muối ăn, H2SO4, Fe…",
+    "searchLabel": "Lọc hợp chất",
+    "count": "{count} chất.",
+    "searchPubchem": "Tra “{q}” trên PubChem →",
+    "metaTitle": "{name} ({formula}): cấu trúc 3D, khối lượng mol",
+    "metaDescription": "{name} ({formula}): mô hình 3D, khối lượng mol {mw} g/mol, gồm các nguyên tố {elements}. Dữ liệu từ PubChem.",
+    "molarMass": "Khối lượng mol",
+    "openMolar": "Tính chi tiết →",
+    "iupac": "Tên IUPAC",
+    "elements": "Gồm các nguyên tố",
+    "related": "Hợp chất liên quan",
+    "source": "Cấu trúc và thuộc tính:",
+    "viewerLabel": "Mô hình 3D của {name}",
+    "lookupTitle": "Tra hợp chất trên PubChem",
+    "lookupIntro": "Xem cấu trúc 3D và thuộc tính của bất kỳ chất nào có trong PubChem (hơn 100 triệu chất).",
+    "lookupPlaceholder": "Tên tiếng Anh hoặc CID: caffeine, aspirin, 2244…",
+    "lookupLabel": "Tên hoặc CID",
+    "lookupButton": "Tra",
+    "lookupHint": "PubChem chỉ hiểu tên tiếng Anh. Dữ liệu tải trực tiếp từ PubChem và được lưu tạm trên máy bạn.",
+    "loading": "Đang tải từ PubChem…",
+    "notFound": "PubChem không tìm thấy “{q}”. Thử tên tiếng Anh (vd. “caffeine”) hoặc số CID.",
+    "networkError": "Không kết nối được PubChem. Kiểm tra mạng rồi thử lại.",
+    "curatedLink": "Chất này có trang riêng trên site →"
   }
 }

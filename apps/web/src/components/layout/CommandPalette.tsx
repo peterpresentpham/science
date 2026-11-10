@@ -1,12 +1,13 @@
 'use client';
 
-import { LENS_IDS } from '@chem/data/lenses';
+import { LENS_IDS, normalizeSearch } from '@chem/data/lenses';
 import * as Dialog from '@radix-ui/react-dialog';
 import { CornerDownLeft, Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useDeferredValue, useMemo, useState } from 'react';
 
+import { compoundName, COMPOUNDS } from '@/lib/compounds';
 import { categoryColor, ELEMENTS } from '@/lib/elements';
 import { cn } from '@/lib/format';
 import { searchElements } from '@/lib/search';
@@ -53,6 +54,21 @@ export default function CommandPalette({
         title: t('compare.title'),
         subtitle: t('palette.page'),
       },
+      ...(['molar-mass', 'balance', 'trends', 'solubility', 'activity'] as const).map((route) => {
+        const id = route === 'molar-mass' ? 'molar' : route;
+        return {
+          id: `p:${route}`,
+          href: `/${locale}/tools/${route}/`,
+          title: t(`tools.${id}.title`),
+          subtitle: t('tools.hub.title'),
+        };
+      }),
+      {
+        id: 'p:compound',
+        href: `/${locale}/compound/`,
+        title: t('compound.indexTitle'),
+        subtitle: t('palette.page'),
+      },
       {
         id: 'p:credits',
         href: `/${locale}/credits/`,
@@ -70,10 +86,26 @@ export default function CommandPalette({
       symbol: e.symbol,
       color: categoryColor(e.category),
     }));
+    // Hợp chất đã tuyển: khớp tên (không dấu) hoặc công thức
+    const nq = normalizeSearch(q);
+    const compoundItems: Item[] = nq
+      ? COMPOUNDS.filter(
+          (c) =>
+            c.formula.toLowerCase() === q.toLowerCase() ||
+            normalizeSearch(`${c.vi ?? ''} ${c.en}`).includes(nq)
+        )
+          .slice(0, 5)
+          .map((c) => ({
+            id: `c:${c.cid}`,
+            href: `/${locale}/compound/${c.cid}/`,
+            title: compoundName(c, locale),
+            subtitle: c.formula,
+          }))
+      : [];
     const pageItems = q
       ? pages.filter((p) => p.title.toLowerCase().includes(q.toLowerCase()))
       : pages;
-    return [...elItems, ...pageItems];
+    return [...elItems, ...compoundItems, ...pageItems];
   }, [deferred, lensNames, locale, t]);
 
   const current = Math.min(active, Math.max(items.length - 1, 0));

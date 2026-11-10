@@ -72,6 +72,55 @@ export const ElementLite = z.object({
 });
 export type ElementLite = z.infer<typeof ElementLite>;
 
+export const LATTICES = [
+  'bcc',
+  'fcc',
+  'hcp',
+  'diamond',
+  'graphite',
+  'rhombohedral',
+  'rocksalt',
+  'cscl',
+  'zincblende',
+  'fluorite',
+  'icosahedron',
+] as const;
+const Label = z.object({ vi: z.string(), en: z.string() });
+
+/** Cấu trúc đơn chất: mạng tinh thể (dựng bằng @chem/core/crystal) hoặc phân tử PubChem */
+export const ElementStructure = z.discriminatedUnion('kind', [
+  z.object({
+    kind: z.literal('crystal'),
+    lattice: z.enum(LATTICES),
+    a: z.number().positive(),
+    c: z.number().positive().optional(),
+    alpha: z.number().positive().optional(),
+    label: Label.optional(),
+  }),
+  z.object({
+    kind: z.literal('molecule'),
+    cid: z.number().int().positive(),
+    label: Label.optional(),
+  }),
+]);
+export type ElementStructure = z.infer<typeof ElementStructure>;
+
+export const CompoundCrystal = z.object({
+  lattice: z.enum(LATTICES),
+  a: z.number().positive(),
+  c: z.number().positive().optional(),
+  /** Ký hiệu nguyên tố ở vị trí 0 (nút fcc) và vị trí 1 */
+  sites: z.tuple([z.string(), z.string()]),
+});
+export type CompoundCrystal = z.infer<typeof CompoundCrystal>;
+
+export const Flame = z.object({
+  hex: z.string().regex(/^#[0-9a-f]{6}$/),
+  name: Label,
+  lines: z.array(z.number()).optional(),
+  note: Label.optional(),
+});
+
 export const ElementFull = ElementLite.extend({
   electronConfiguration: z.string(),
   configurationPredicted: z.boolean(),
@@ -88,5 +137,20 @@ export const ElementFull = ElementLite.extend({
   sources: z.array(z.string()),
   /** Câu chuyện tự biên soạn (stories/<slug>.ts); null nếu chưa có */
   story: Story.nullable(),
+  /** Vạch phổ phát xạ vùng nhìn thấy của nguyên tử trung hoà: [bước sóng nm, cường độ tương đối 0..1] */
+  spectrum: z.array(z.tuple([z.number(), z.number()])).nullable(),
+  /** Màu ngọn lửa (thí nghiệm thử màu ngọn lửa) */
+  flame: Flame.nullable(),
+  /** Cấu trúc đơn chất để xem 3D */
+  structures: z.array(ElementStructure),
+  /** Hợp chất đã tuyển có chứa nguyên tố này (không gồm phân tử đơn chất), dạng rút gọn */
+  compounds: z.array(
+    z.object({
+      cid: z.number().int(),
+      formula: z.string(),
+      vi: z.string().nullable(),
+      en: z.string(),
+    })
+  ),
 });
 export type ElementFull = z.infer<typeof ElementFull>;

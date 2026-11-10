@@ -35,6 +35,18 @@ export function SiteHeader() {
             {t('table')}
           </Link>
           <Link
+            href="/compound"
+            className="hidden rounded-full px-3 py-1.5 text-sm text-muted hover:bg-surface-2 hover:text-fg lg:block"
+          >
+            {t('compounds')}
+          </Link>
+          <Link
+            href="/tools"
+            className="hidden rounded-full px-3 py-1.5 text-sm text-muted hover:bg-surface-2 hover:text-fg md:block"
+          >
+            {t('tools')}
+          </Link>
+          <Link
             href="/compare"
             className="hidden rounded-full px-3 py-1.5 text-sm text-muted hover:bg-surface-2 hover:text-fg md:block"
           >

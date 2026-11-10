@@ -453,18 +453,22 @@ test.describe('M2: tô màu, tìm nhanh, so sánh', () => {
 });
 
 test.describe('M3: mô hình nguyên tử', () => {
-  test('build the atom step by step, with rule captions and the Cr exception', async ({ page }) => {
-    await page.goto('/vi/element/cr/#hoc-hoa');
+  test('atom structure shows protons, neutrons and electrons', async ({ page }) => {
+    await page.goto('/vi/element/fe/#hoc-hoa');
     const card = page.getByRole('region', { name: 'Cấu tạo nguyên tử' });
-    // Mặc định ở cấu hình cuối: Cr là ngoại lệ
-    await expect(card).toContainText('Ngoại lệ');
-    await expect(card).toContainText('nửa bão hoà');
-    await card.getByRole('button', { name: 'Về đầu' }).click();
-    await expect(card).toContainText('Bấm ▶ để điền lần lượt 24 electron');
-    await card.getByRole('button', { name: 'Thêm một electron' }).click();
-    await expect(card).toContainText('Electron thứ 1 vào phân lớp 1s');
-    await card.getByRole('button', { name: 'Thêm một electron' }).click();
-    await expect(card).toContainText('nguyên lý Pauli');
+    await expect(card).toContainText('A = Z + N = 26 + 30 = 56');
+    await expect(card.getByRole('img', { name: /26 proton và 30 nơtron/ })).toBeVisible();
+    await expect(card).toContainText('Fe-56');
+    await card.getByRole('button', { name: 'Cận hạt nhân' }).click();
+    await expect(card.getByRole('button', { name: 'Cận hạt nhân' })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+  });
+
+  test('radioactive element uses its longest-lived isotope', async ({ page }) => {
+    await page.goto('/vi/element/u/#hoc-hoa');
+    await expect(page.getByRole('region', { name: 'Cấu tạo nguyên tử' })).toContainText('146');
   });
 
   test('ion explorer removes 4s before 3d', async ({ page }) => {
@@ -472,14 +476,5 @@ test.describe('M3: mô hình nguyên tử', () => {
     const card = page.getByRole('region', { name: 'Ion' });
     await card.getByRole('button', { name: 'Fe³⁺' }).click();
     await expect(card).toContainText('[Ar] 3d⁵');
-  });
-
-  test('orbital cloud loads on demand', async ({ page }) => {
-    await page.goto('/vi/element/c/#hoc-hoa');
-    const card = page.getByRole('region', { name: 'Hình dạng orbital' });
-    await card.getByRole('button', { name: '2px', exact: true }).click();
-    await card.getByRole('button', { name: /Xem đám mây 3D của 2px/ }).click();
-    await expect(card.getByRole('img', { name: /orbital 2px/ })).toBeVisible();
-    await expect(card.getByText('Đang tính…')).toHaveCount(0);
   });
 });

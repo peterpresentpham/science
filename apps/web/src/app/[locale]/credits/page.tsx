@@ -5,13 +5,20 @@ import { ElementPhoto } from '@/components/ui/ElementPhoto';
 import { Link } from '@/i18n/navigation';
 import { readElement } from '@/lib/element-data.server';
 import { ELEMENTS } from '@/lib/elements';
+import { pageMetadata } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
 }: PageProps<'/[locale]/credits'>): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'credits' });
-  return { title: t('title'), alternates: { canonical: `/${locale}/credits/` } };
+  const m = await getTranslations({ locale, namespace: 'meta' });
+  return pageMetadata({
+    locale,
+    path: '/credits/',
+    title: t('title'),
+    description: m('creditsDescription'),
+  });
 }
 
 /** Ghi công ảnh (yêu cầu của giấy phép CC BY / CC BY-SA) và nguồn dữ liệu. */
@@ -105,6 +112,31 @@ export default async function CreditsPage({ params }: PageProps<'/[locale]/credi
               Chemical Elements – A Virtual Museum (images-of-elements.com)
             </a>{' '}
             (CC BY 3.0)
+          </li>
+          <li>
+            <a href="https://pubchem.ncbi.nlm.nih.gov/" className="hover:underline">
+              PubChem
+            </a>{' '}
+            (NIH, public domain): cấu trúc 2D/3D và thuộc tính hợp chất
+          </li>
+          <li>
+            Kramida, A., Ralchenko, Yu., Reader, J. and NIST ASD Team,{' '}
+            <a href="https://physics.nist.gov/asd" className="hover:underline">
+              NIST Atomic Spectra Database
+            </a>{' '}
+            (NIST, public domain): vạch phổ phát xạ
+          </li>
+          <li>
+            <a href="https://3dmol.org/" className="hover:underline">
+              3Dmol.js
+            </a>{' '}
+            (BSD-3-Clause): trình xem phân tử 3D
+          </li>
+          <li>
+            <a href="https://github.com/bettergui/BeVietnamPro" className="hover:underline">
+              Be Vietnam Pro
+            </a>{' '}
+            (SIL OFL 1.1): font chữ trong ảnh chia sẻ
           </li>
         </ul>
       </section>

@@ -19,7 +19,6 @@ export default defineConfig([
     '**/test-results/**',
     'packages/data/raw/**',
     'apps/web/public/data/**',
-    'apps/web/public/workers/**',
     'apps/web/next-env.d.ts',
   ]),
 

@@ -4,9 +4,10 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useId } from 'react';
 
-import { AtomBuilder } from '@/components/atom/AtomBuilder';
+import { AtomStructure } from '@/components/atom/AtomStructure';
 import { IonExplorer } from '@/components/atom/IonExplorer';
-import { OrbitalSection } from '@/components/atom/OrbitalSection';
+import { ElementLight } from '@/components/structure/ElementLight';
+import { ElementStructure } from '@/components/structure/ElementStructure';
 import { ConfigText } from '@/components/ui/ConfigText';
 import { Link } from '@/i18n/navigation';
 import { BY_Z, categoryColor, categoryInk } from '@/lib/elements';
@@ -92,13 +93,13 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
       <AcademicSection>
         {/* Cấu tạo nguyên tử */}
         <Card index="01" title={t('element.atomicStructure')}>
-          <AtomBuilder
+          <AtomStructure
             key={el.z}
             z={el.z}
             symbol={el.symbol}
             name={locale === 'vi' ? el.name.vi : el.name.en}
+            shells={el.shells}
             color={color}
-            bohrLabel={`${t('prop.shells')}: ${el.shells.join(', ')}`}
           >
             <div className="space-y-4">
               <dl>
@@ -120,12 +121,6 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
               </dl>
               <dl className="flex flex-wrap gap-x-8 gap-y-4">
                 <div>
-                  <dt className="text-xs text-muted">{t('prop.shells')}</dt>
-                  <dd className="tabular mt-1 font-mono text-lg whitespace-nowrap">
-                    {el.shells.join(' · ')}
-                  </dd>
-                </div>
-                <div>
                   <dt className="text-xs text-muted">{t('prop.unpaired')}</dt>
                   <dd className="tabular mt-1 font-mono text-lg whitespace-nowrap">
                     {unpairedElectrons(cfg)}
@@ -133,7 +128,7 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
                 </div>
               </dl>
             </div>
-          </AtomBuilder>
+          </AtomStructure>
         </Card>
 
         <Card index="02" title={t('atom.ion.title')}>
@@ -146,12 +141,16 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
           />
         </Card>
 
-        <Card index="03" title={t('atom.orbital.title')}>
-          <OrbitalSection key={el.z} z={el.z} symbol={el.symbol} />
+        <Card index="03" title={t('structure.cardTitle')}>
+          <ElementStructure key={el.z} el={el} />
+        </Card>
+
+        <Card index="04" title={t('structure.lightTitle')}>
+          <ElementLight el={el} />
         </Card>
 
         {/* Tính chất */}
-        <Card index="04" title={t('element.properties')}>
+        <Card index="05" title={t('element.properties')}>
           <dl className="grid grid-cols-2 gap-2 sm:grid-cols-3">
             {stats.map((s) => (
               <div
@@ -173,7 +172,7 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
         </Card>
 
         {/* Vị trí */}
-        <Card index="05" title={t('element.position')}>
+        <Card index="06" title={t('element.position')}>
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
             <MiniTable z={el.z} />
             <p className="text-sm leading-relaxed">
@@ -184,7 +183,7 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
         </Card>
 
         {el.summary.en && (
-          <Card index="06" title={t('element.summaryEn')}>
+          <Card index="07" title={t('element.summaryEn')}>
             <p className="text-sm leading-relaxed">{el.summary.vi ?? el.summary.en}</p>
             {el.wikipedia && (
               <a

@@ -2,13 +2,20 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { CompareView } from '@/components/compare/CompareView';
+import { pageMetadata } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
 }: PageProps<'/[locale]/compare'>): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'compare' });
-  return { title: t('title'), alternates: { canonical: `/${locale}/compare/` } };
+  const m = await getTranslations({ locale, namespace: 'meta' });
+  return pageMetadata({
+    locale,
+    path: '/compare/',
+    title: t('title'),
+    description: m('compareDescription'),
+  });
 }
 
 /** Trang tĩnh; danh sách nguyên tố nằm trên query string (?z=11,19,37) và được đọc ở client. */
