@@ -114,6 +114,33 @@ export const CompoundCrystal = z.object({
 });
 export type CompoundCrystal = z.infer<typeof CompoundCrystal>;
 
+/** Đồng vị (hạt nhân ở trạng thái cơ bản) theo IAEA LiveChart. */
+export const HALF_LIFE_UNITS = ['as', 'ps', 'ns', 'us', 'ms', 's', 'm', 'h', 'd', 'Y'] as const;
+export const Isotope = z.object({
+  /** Số nơtron; số khối A = Z + N */
+  n: z.number().int().nonnegative(),
+  /** Độ phổ biến tự nhiên (% số nguyên tử), null nếu không có trong tự nhiên */
+  abundance: z.number().nullable(),
+  stable: z.boolean(),
+  halfLife: z
+    .object({
+      /** Giá trị như nguồn ghi (giữ nguyên số chữ số có nghĩa) */
+      text: z.string(),
+      unit: z.enum(HALF_LIFE_UNITS),
+      /** '' chính xác, GT lớn hơn, LT nhỏ hơn, GE ≥, AP ≈ */
+      op: z.enum(['', 'GT', 'LT', 'GE', 'AP']),
+      seconds: z.number().positive(),
+    })
+    .nullable(),
+  /** Các kiểu phân rã, mã IAEA (B-, EC+B+, A, SF, P, N…) kèm phần trăm */
+  decays: z.array(z.object({ mode: z.string(), pct: z.number().nullable() })),
+  /** Spin và độ chẵn lẻ, vd. "1/2+" */
+  jp: z.string().nullable(),
+  /** Năm phát hiện */
+  discovery: z.number().int().nullable(),
+});
+export type Isotope = z.infer<typeof Isotope>;
+
 export const Flame = z.object({
   hex: z.string().regex(/^#[0-9a-f]{6}$/),
   name: Label,
@@ -141,6 +168,8 @@ export const ElementFull = ElementLite.extend({
   spectrum: z.array(z.tuple([z.number(), z.number()])).nullable(),
   /** Màu ngọn lửa (thí nghiệm thử màu ngọn lửa) */
   flame: Flame.nullable(),
+  /** Đồng vị đã biết, xếp theo số nơtron tăng dần */
+  isotopes: z.array(Isotope),
   /** Cấu trúc đơn chất để xem 3D */
   structures: z.array(ElementStructure),
   /** Hợp chất đã tuyển có chứa nguyên tố này (không gồm phân tử đơn chất), dạng rút gọn */

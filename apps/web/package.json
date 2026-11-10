@@ -9,6 +9,7 @@
     "dev": "next dev",
     "prebuild": "pnpm sync-data",
     "build": "next build",
+    "postbuild": "node scripts/build-sw.mjs",
     "serve": "serve out",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
@@ -18,14 +19,19 @@
     "3dmol": "2.5.4",
     "@chem/core": "workspace:*",
     "@chem/data": "workspace:*",
+    "@dnd-kit/core": "^6.3.1",
     "@radix-ui/react-dialog": "^1.3.1",
+    "@rdkit/rdkit": "^2026.9.2",
+    "dexie": "^4.4.7",
     "lucide-react": "^1.70.0",
     "next": "^16.4.5",
     "next-intl": "^4.14.9",
     "next-themes": "^0.4.6",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "three": "^0.180.0"
+    "three": "^0.180.0",
+    "ts-fsrs": "^6.0.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.0",

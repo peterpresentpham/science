@@ -2,15 +2,23 @@
 
 import type { Category, ElementLite } from '@chem/data';
 import type { LensId, PhoneRisk } from '@chem/data/lenses';
+import { Pause, Play } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import { useLocale, useTranslations } from 'next-intl';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { ElementPanel, useElementPanel } from '@/components/element/ElementPanel';
 import {
   type ColorMode,
   DISCOVERY_RANGE,
+  isPropertyMode,
+  knownBy,
   paintCell,
   parseColorMode,
+  PROPERTIES,
+  PROPERTY_KEYS,
+  type PropertyKey,
+  propertyScale,
   ROOM_TEMP_K,
   TEMP_RANGE_K,
 } from '@/lib/color-mode';
@@ -31,6 +39,13 @@ import { ElementPreview } from './ElementPreview';
 import { SeriesConnector, SeriesPlaceholder } from './SeriesPlaceholder';
 import { type View, ViewSwitch } from './ViewSwitch';
 
+// three.js chỉ tải khi bật chế độ 3D
+/** Thời gian chạy hết trục năm khi bấm "Phát" (mili giây) */
+const PLAY_MS = 14_000;
+const frameClock = () => performance.now();
+
+const CityTable = dynamic(() => import('./CityTable'), { ssr: false });
+
 export function PeriodicTable({ elements }: { elements: ElementLite[] }) {
   const t = useTranslations('table');
   const locale = useLocale();
@@ -49,10 +64,63 @@ export function PeriodicTable({ elements }: { elements: ElementLite[] }) {
   const [tempRaw, setTempRaw] = useUrlParam('t');
   const [yearRaw, setYearRaw] = useUrlParam('y');
   const [layoutRaw, setLayoutRaw] = useUrlParam('layout');
+  const [cityRaw, setCityRaw] = useUrlParam('d');
   const mode = parseColorMode(colorRaw);
   const tempK = clampInt(tempRaw, TEMP_RANGE_K.min, TEMP_RANGE_K.max, ROOM_TEMP_K);
-  const year = clampInt(yearRaw, DISCOVERY_RANGE.min - 1, DISCOVERY_RANGE.max, DISCOVERY_RANGE.max);
+  const urlYear = clampInt(
+    yearRaw,
+    DISCOVERY_RANGE.min - 1,
+    DISCOVERY_RANGE.max,
+    DISCOVERY_RANGE.max
+  );
+  // Phát tự động thanh năm: giữ năm đang chạy ở state cục bộ, ghi vào URL một lần khi dừng
+  const [playYear, setPlayYear] = useState<number | null>(null);
+  const playRef = useRef<{ raf: number; year: number } | null>(null);
+  const year = playYear ?? urlYear;
   const wide = layoutRaw === '32';
+  const city = cityRaw === '3';
+  const tcity = useTranslations('city');
+  // Chiều cao toà nhà: mặc định theo thuộc tính đang tô màu (chế độ khác như loại, khối thì dùng độ âm điện),
+  // hoặc người dùng chọn thuộc tính khác / số hiệu nguyên tử / bằng nhau (?h=)
+  const [hRaw, setHRaw] = useUrlParam('h');
+  const heightMode: 'auto' | 'flat' | 'z' | PropertyKey =
+    hRaw === 'flat' || hRaw === 'z'
+      ? hRaw
+      : hRaw && hRaw in PROPERTIES
+        ? (hRaw as PropertyKey)
+        : 'auto';
+  const heightKey: PropertyKey | null =
+    heightMode === 'auto'
+      ? isPropertyMode(mode)
+        ? mode
+        : 'en'
+      : heightMode in PROPERTIES
+        ? (heightMode as PropertyKey)
+        : null;
+  const heightLabel =
+    heightKey !== null
+      ? tc(`property.${heightKey}`)
+      : heightMode === 'z'
+        ? tc('prop.atomicNumber')
+        : tcity('flat');
+  const heightFrac = useMemo(() => {
+    if (heightKey === null) return heightMode === 'z' ? (e: ElementLite) => e.z / 118 : () => 0.35;
+    const scale = propertyScale(heightKey);
+    const def = PROPERTIES[heightKey];
+    return (e: ElementLite) => {
+      const v = def.get(e);
+      return v == null ? null : scale.at(v);
+    };
+  }, [heightKey, heightMode]);
+  const heightValueText = useCallback(
+    (e: ElementLite) => {
+      if (heightKey === null) return heightMode === 'z' ? String(e.z) : null;
+      const def = PROPERTIES[heightKey];
+      const v = def.get(e);
+      return v == null ? '—' : `${formatNumber(def.display(v), locale, def.digits)} ${def.unit}`;
+    },
+    [heightKey, heightMode, locale]
+  );
   // Đổi chế độ thì bỏ tham số slider của chế độ cũ cho URL gọn
   const setMode = useCallback(
     (m: ColorMode) => setUrlParams({ color: m === 'category' ? null : m, t: null, y: null }),
@@ -65,6 +133,39 @@ export function PeriodicTable({ elements }: { elements: ElementLite[] }) {
   const setYear = useCallback(
     (y: number) => setYearRaw(y === DISCOVERY_RANGE.max ? null : String(y)),
     [setYearRaw]
+  );
+  const stopPlay = () => {
+    const run = playRef.current;
+    if (!run) return;
+    cancelAnimationFrame(run.raf);
+    playRef.current = null;
+    setPlayYear(null);
+    setYear(run.year);
+  };
+  const startPlay = () => {
+    const from = DISCOVERY_RANGE.min - 1;
+    const span = DISCOVERY_RANGE.max - from;
+    const t0 = frameClock();
+    const run = { raf: 0, year: from };
+    playRef.current = run;
+    const tick = (now: number) => {
+      const f = Math.min(1, (now - t0) / PLAY_MS);
+      run.year = Math.round(from + span * f);
+      setPlayYear(run.year);
+      if (f < 1) run.raf = requestAnimationFrame(tick);
+      else stopPlay();
+    };
+    run.raf = requestAnimationFrame(tick);
+  };
+  useEffect(() => () => cancelAnimationFrame(playRef.current?.raf ?? 0), []);
+  const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  // Chế độ "Năm phát hiện": nguyên tố chưa được biết ở năm đang chọn thì phẳng xuống, kéo thanh năm để xem bảng "mọc" dần
+  const flatZ = useMemo(
+    () =>
+      mode === 'discovery'
+        ? new Set(elements.filter((e) => !knownBy(e, year)).map((e) => e.z))
+        : null,
+    [mode, year, elements]
   );
   const compared = useCompareList();
 
@@ -135,7 +236,48 @@ export function PeriodicTable({ elements }: { elements: ElementLite[] }) {
   return (
     <section aria-label={t('label')}>
       <div className={cn('space-y-5', tableClass)}>
-        <div className="overflow-x-auto pb-2">
+        {city && (
+          <div className="space-y-2">
+            <CityTable
+              elements={elements}
+              heightFrac={heightFrac}
+              valueText={heightValueText}
+              propertyLabel={heightLabel}
+              paints={paints}
+              flatZ={flatZ}
+              locale={locale}
+              label={tcity('label', { property: heightLabel })}
+              onSelect={(slug) => {
+                flushUrlParams();
+                openPanel(slug);
+              }}
+            />
+            <label className="flex items-center gap-2 text-xs text-muted">
+              {tcity('heightSelect')}
+              <select
+                value={heightMode}
+                onChange={(e) => setHRaw(e.target.value === 'auto' ? null : e.target.value)}
+                className="rounded-lg border border-border bg-surface px-2 py-1 text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <option value="auto">{tcity('heightAuto')}</option>
+                {PROPERTY_KEYS.map((k) => (
+                  <option key={k} value={k}>
+                    {tc(`property.${k}`)}
+                  </option>
+                ))}
+                <option value="z">{tc('prop.atomicNumber')}</option>
+                <option value="flat">{tcity('flat')}</option>
+              </select>
+            </label>
+            <p className="text-xs text-muted">
+              {tcity('heightBy', { property: heightLabel })}
+              {heightKey !== null && PROPERTIES[heightKey].log ? ` ${tc('logScale')}` : ''} ·{' '}
+              {tcity('hint')}
+              {mode === 'discovery' && ` · ${tcity('timelineHint')}`}
+            </p>
+          </div>
+        )}
+        <div className={cn('overflow-x-auto pb-2', city && 'hidden')}>
           <div
             role="group"
             aria-label={t('label')}
@@ -215,7 +357,10 @@ export function PeriodicTable({ elements }: { elements: ElementLite[] }) {
             tempK={tempK}
             onTemp={setTemp}
             year={year}
-            onYear={setYear}
+            onYear={(y) => {
+              stopPlay();
+              setYear(y);
+            }}
             activeCategory={activeCategory}
             onCategory={setActiveCategory}
           />
@@ -228,6 +373,31 @@ export function PeriodicTable({ elements }: { elements: ElementLite[] }) {
               title={tc('wideHint')}
             >
               {tc('wide')}
+            </button>
+            {mode === 'discovery' && !reduceMotion && (
+              <button
+                type="button"
+                aria-pressed={playYear !== null}
+                onClick={() => (playYear === null ? startPlay() : stopPlay())}
+                className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs shadow-card hover:border-fg/40 aria-pressed:border-fg"
+                title={tcity('playHint')}
+              >
+                {playYear === null ? (
+                  <Play className="size-3" aria-hidden />
+                ) : (
+                  <Pause className="size-3" aria-hidden />
+                )}
+                {playYear === null ? tcity('play') : tcity('pause')}
+              </button>
+            )}
+            <button
+              type="button"
+              aria-pressed={city}
+              onClick={() => setCityRaw(city ? null : '3')}
+              className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs shadow-card hover:border-fg/40 aria-pressed:border-fg"
+              title={tcity('toggleHint')}
+            >
+              {tcity('toggle')}
             </button>
             {viewSwitch}
           </div>

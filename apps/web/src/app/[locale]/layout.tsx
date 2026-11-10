@@ -2,9 +2,10 @@ import type { Metadata, Viewport } from 'next';
 import { Be_Vietnam_Pro, Bricolage_Grotesque, JetBrains_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from 'next-themes';
 
+import { ServiceWorker } from '@/components/layout/ServiceWorker';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
@@ -73,6 +74,9 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'footer' });
   const tc = await getTranslations({ locale, namespace: 'credits' });
+  // Không nhúng vào mọi trang những thông điệp chỉ dùng ở một nơi: `meta` chỉ dùng phía máy chủ,
+  // `learn` và `offline` được trang của chúng tự cấp (xem LearnPage, OfflinePage)
+  const { meta: _meta, learn: _learn, offline: _offline, ...messages } = await getMessages();
 
   return (
     <html
@@ -82,14 +86,20 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
     >
       <body className="min-h-dvh">
         <ThemeProvider attribute="data-theme" defaultTheme="light" disableTransitionOnChange>
-          <NextIntlClientProvider>
+          <NextIntlClientProvider messages={messages}>
+            <ServiceWorker />
             <SiteHeader />
             <main className="mx-auto max-w-[92rem] px-4 py-6">{children}</main>
             <footer className="mx-auto flex max-w-[92rem] flex-wrap justify-between gap-2 px-4 py-8 font-mono text-[0.7rem] text-muted">
               <span>{t('data')}</span>
-              <Link href="/credits" className="underline-offset-2 hover:text-fg hover:underline">
-                {tc('link')}
-              </Link>
+              <span className="flex gap-4">
+                <Link href="/offline" className="underline-offset-2 hover:text-fg hover:underline">
+                  {t('offline')}
+                </Link>
+                <Link href="/credits" className="underline-offset-2 hover:text-fg hover:underline">
+                  {tc('link')}
+                </Link>
+              </span>
             </footer>
           </NextIntlClientProvider>
         </ThemeProvider>

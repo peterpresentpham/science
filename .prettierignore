@@ -17,3 +17,4 @@ docs
 apps/web/next-env.d.ts
 packages/data/images
 apps/web/public/images
+apps/web/public/rdkit

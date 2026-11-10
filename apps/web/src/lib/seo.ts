@@ -77,6 +77,8 @@ export const STATIC_PATHS = [
   { path: '/tools/trends/', priority: 0.6 },
   { path: '/compound/', priority: 0.7 },
   { path: '/compare/', priority: 0.5 },
+  { path: '/learn/', priority: 0.6 },
+  { path: '/builder/', priority: 0.6 },
   { path: '/credits/', priority: 0.2 },
 ] as const;
 

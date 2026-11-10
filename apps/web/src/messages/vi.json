@@ -38,7 +38,9 @@
     "theme": "Đổi giao diện sáng/tối",
     "compare": "So sánh",
     "tools": "Công cụ",
-    "compounds": "Hợp chất"
+    "compounds": "Hợp chất",
+    "learn": "Học",
+    "builder": "Dựng phân tử"
   },
   "table": {
     "label": "Bảng tuần hoàn các nguyên tố hoá học",
@@ -109,7 +111,8 @@
     "back": "Về bảng tuần hoàn"
   },
   "footer": {
-    "data": "Dữ liệu: PubChem (NIH) và Bowserinator/Periodic-Table-JSON (CC BY-SA 3.0)."
+    "data": "Dữ liệu: PubChem (NIH) và Bowserinator/Periodic-Table-JSON (CC BY-SA 3.0).",
+    "offline": "Dùng offline"
   },
   "hero": {
     "eyebrow": "Bảng tuần hoàn · 118 nguyên tố",
@@ -633,5 +636,384 @@
     "notFound": "PubChem không tìm thấy “{q}”. Thử tên tiếng Anh (vd. “caffeine”) hoặc số CID.",
     "networkError": "Không kết nối được PubChem. Kiểm tra mạng rồi thử lại.",
     "curatedLink": "Chất này có trang riêng trên site →"
+  },
+  "isotope": {
+    "cardTitle": "Đồng vị",
+    "none": "Chưa có dữ liệu đồng vị.",
+    "summary": "{name} có {total} đồng vị đã biết, trong đó {stable} đồng vị bền.",
+    "summaryNoStable": "{name} không có đồng vị bền: cả {total} đồng vị đã biết đều phóng xạ.",
+    "tableCaption": "Các đồng vị của {name}: số nơtron, độ phổ biến tự nhiên, chu kỳ bán rã và kiểu phân rã",
+    "col": {
+      "isotope": "Đồng vị",
+      "neutrons": "Số nơtron",
+      "abundance": "Độ phổ biến",
+      "halfLife": "Chu kỳ bán rã",
+      "decay": "Phân rã"
+    },
+    "stable": "Bền",
+    "unknownHalfLife": "Chưa đo",
+    "count": "Hiển thị {shown} trên {total} đồng vị",
+    "showAll": "Xem cả {total} đồng vị",
+    "showNotable": "Chỉ đồng vị đáng chú ý",
+    "unit": {
+      "as": "as",
+      "ps": "ps",
+      "ns": "ns",
+      "us": "µs",
+      "ms": "ms",
+      "s": "giây",
+      "m": "phút",
+      "h": "giờ",
+      "d": "ngày",
+      "y": "năm",
+      "yMil": "triệu năm",
+      "yBil": "tỷ năm"
+    },
+    "kind": {
+      "stable": "Bền",
+      "beta-minus": "Phân rã β⁻",
+      "electron-capture": "Bắt electron / β⁺",
+      "alpha": "Phân rã α",
+      "other": "Khác (phân hạch tự phát, phát p hoặc n…)"
+    },
+    "sim": {
+      "title": "Mô phỏng phân rã",
+      "choose": "Chọn đồng vị",
+      "halfLife": "Chu kỳ bán rã",
+      "mode": "Phân rã chính",
+      "gridLabel": "400 hạt nhân, còn {left} hạt chưa phân rã trên {total}",
+      "chartLabel": "Đồ thị phần trăm hạt nhân còn lại theo số chu kỳ bán rã đã trôi qua. Đường đứt nét là lý thuyết: 100% nhân (1/2) mũ số chu kỳ.",
+      "axisX": "số chu kỳ bán rã",
+      "legendLeft": "chưa phân rã",
+      "legendDecayed": "đã phân rã",
+      "legendTheory": "lý thuyết (½)ᵗ",
+      "play": "Phát",
+      "pause": "Dừng",
+      "again": "Gieo lại",
+      "after": "Sau {time}",
+      "remaining": "còn {left}/{total} hạt nhân ({pct})",
+      "slider": "Thời gian trôi qua, tính theo chu kỳ bán rã",
+      "valueText": "{halfLives} chu kỳ bán rã ({time}): còn {pct} hạt nhân",
+      "hint": "Mỗi hạt nhân phân rã vào một thời điểm ngẫu nhiên và không ai đoán trước được hạt nào sẽ đi trước. Nhưng với rất nhiều hạt, cứ sau mỗi chu kỳ bán rã thì một nửa số hạt còn lại phân rã. Bấm “Gieo lại” để thấy mỗi lần chạy lệch nhẹ khỏi đường lý thuyết."
+    },
+    "notes": {
+      "n6_14": "Cacbon-14 hình thành liên tục ở tầng cao khí quyển khi tia vũ trụ va vào nitơ. Sinh vật sống hấp thụ nó cùng với cacbon thường, nên tỉ lệ ¹⁴C trong cơ thể gần bằng trong khí quyển. Khi sinh vật chết, ¹⁴C không được bổ sung nữa mà giảm dần theo từng chu kỳ bán rã. Đo lượng ¹⁴C còn lại cho biết tuổi của xương, gỗ, vải… tới khoảng 50 000 năm. IAEA ghi chu kỳ bán rã là 5 700 năm; nhiều sách giáo khoa dùng 5 730 năm.",
+      "n92_238": "Urani-238 có chu kỳ bán rã 4,47 tỷ năm, xấp xỉ tuổi Trái Đất (khoảng 4,5 tỷ năm). Vì vậy gần một nửa lượng ²³⁸U có từ lúc Trái Đất hình thành vẫn còn đến nay. Nó phân rã qua một chuỗi dài hạt nhân con và kết thúc ở chì-206 bền.",
+      "n19_40": "Kali-40 chiếm khoảng 0,012% kali tự nhiên và có từ khi Trái Đất hình thành. Nó có trong thực phẩm giàu kali như chuối và cả trong cơ thể bạn: mỗi giây có hàng nghìn hạt nhân ⁴⁰K trong người phân rã. Phần lớn phân rã β⁻ thành canxi-40, một phần nhỏ bắt electron thành agon-40 (cơ sở của phương pháp định tuổi K–Ar).",
+      "n53_131": "Tuyến giáp hấp thụ iot-131 như iot thường, nên nó được dùng điều trị cường giáp và ung thư tuyến giáp. Chu kỳ bán rã khoảng 8 ngày: đủ lâu để có tác dụng, nhưng phân rã hết khá nhanh. Đây cũng là một trong các chất phóng xạ phát tán sau sự cố hạt nhân.",
+      "n27_60": "Coban-60 phát tia gamma năng lượng cao khi phân rã, được dùng trong xạ trị ung thư, khử trùng dụng cụ y tế và chiếu xạ bảo quản thực phẩm. Chu kỳ bán rã khoảng 5,3 năm nên nguồn phải thay định kỳ.",
+      "n55_137": "Xesi-137 là sản phẩm phân hạch của urani, nên có trong bụi phóng xạ sau các sự cố hạt nhân. Chu kỳ bán rã khoảng 30 năm: đủ dài để gây ô nhiễm nhiều thập kỷ trong đất."
+    },
+    "map": {
+      "title": "Vị trí trên bản đồ hạt nhân",
+      "intro": "Mỗi ô là một hạt nhân đã biết: sang phải là nhiều nơtron hơn, lên trên là nhiều proton hơn. Hàng nổi bật là các đồng vị của {symbol}.",
+      "label": "Bản đồ {count} hạt nhân, tô theo kiểu phân rã; các đồng vị của {symbol} được viền nổi bật",
+      "loading": "Đang tải bản đồ hạt nhân…",
+      "error": "Không tải được bản đồ hạt nhân.",
+      "hoverHint": "Trỏ hoặc chạm vào một ô để xem hạt nhân đó.",
+      "zn": "Z = {z}, N = {n}",
+      "axes": "Trục ngang: số nơtron N. Trục dọc: số proton Z. Các đường mờ ứng với số magic 2, 8, 20, 28, 50, 82, 126. Hạt nhân bền nằm thành một “thung lũng” hẹp ở giữa."
+    },
+    "source": "Nguồn: IAEA LiveChart of Nuclides (NUBASE/ENSDF). Chu kỳ bán rã là giá trị tham khảo của IAEA, có thể hơi khác số trong sách giáo khoa."
+  },
+  "city": {
+    "toggle": "Bảng 3D",
+    "toggleHint": "Mỗi nguyên tố là một toà nhà, cao theo thuộc tính đang chọn",
+    "label": "Bảng tuần hoàn 3D: mỗi nguyên tố là một toà nhà, chiều cao theo {property}. Kéo để xoay, cuộn để phóng to, bấm vào một toà nhà để mở nguyên tố. Muốn đọc bằng bàn phím hoặc trình đọc màn hình, hãy dùng chế độ bảng 2D hoặc danh sách.",
+    "heightBy": "Chiều cao theo {property}",
+    "hint": "Ô phẳng là chưa có dữ liệu. Đổi thuộc tính ở thanh “Tô màu theo” để đổi chiều cao.",
+    "timelineHint": "Kéo thanh năm: nguyên tố chưa được phát hiện thì nằm phẳng, rồi \"mọc\" lên khi đến năm phát hiện.",
+    "heightSelect": "Chiều cao theo",
+    "heightAuto": "Theo chế độ tô màu",
+    "flat": "Bằng nhau",
+    "play": "Phát",
+    "pause": "Dừng",
+    "playHint": "Tự chạy thanh năm từ đầu đến nay"
+  },
+  "offline": {
+    "title": "Dùng offline",
+    "intro": "Tải dữ liệu về máy để dùng bảng tuần hoàn khi không có mạng, ví dụ trong lớp học hay trên đường đi.",
+    "fallbackTitle": "Bạn đang xem trang này khi không có mạng?",
+    "fallbackText": "Trang bạn định mở chưa được lưu trong máy. Hãy kết nối mạng và tải gói bên dưới, hoặc quay về trang chủ: trang chủ luôn mở được sau lần truy cập đầu tiên.",
+    "packsTitle": "Gói dữ liệu offline",
+    "packsIntro": "Chỉ tải khi bạn bấm. Dữ liệu nằm trong trình duyệt của bạn, không gửi đi đâu, và bạn xoá được bất cứ lúc nào.",
+    "loading": "Đang đọc danh sách gói…",
+    "error": "Không đọc được danh sách gói offline. Trên bản chạy thử (pnpm dev) tính năng này chưa có; hãy dùng bản đã build.",
+    "unsupported": "Trình duyệt này không hỗ trợ lưu trang để dùng offline.",
+    "online": "Đang có mạng",
+    "offlineNow": "Đang mất mạng",
+    "swReady": "Chế độ offline đã sẵn sàng: trang chủ và giao diện đã được lưu.",
+    "swWaiting": "Đang chuẩn bị chế độ offline… Nếu chưa xong, hãy tải lại trang một lần.",
+    "pack": {
+      "pages": {
+        "title": "Trang chính và công cụ",
+        "desc": "{count} trang: công cụ, so sánh, tra cứu hợp chất, ghi công"
+      },
+      "elements": {
+        "title": "118 trang nguyên tố",
+        "desc": "{count} trang nguyên tố, mỗi trang có đồng vị, cấu trúc 3D, phổ"
+      },
+      "compounds": {
+        "title": "Trang hợp chất",
+        "desc": "{count} trang hợp chất đã tuyển"
+      },
+      "data": {
+        "title": "Dữ liệu, ảnh và mô hình 3D",
+        "desc": "{count} file: dữ liệu nguyên tố, cấu trúc phân tử, bản đồ hạt nhân, ảnh"
+      },
+      "rdkit": {
+        "title": "Công cụ dựng phân tử (RDKit)",
+        "desc": "{count} file: RDKit.js và WASM cho trang Dựng phân tử"
+      }
+    },
+    "download": "Tải về",
+    "resume": "Tải tiếp",
+    "downloaded": "Đã tải",
+    "cancel": "Dừng",
+    "remove": "Xoá gói {name} khỏi máy",
+    "downloadAll": "Tải tất cả (khoảng {size})",
+    "progressLabel": "Tiến độ tải gói",
+    "progress": "Đã tải {done}/{total} file ({size})",
+    "failed": "{count} file lỗi, bấm “Tải tiếp” để thử lại",
+    "partial": "Đã có {have}/{total} file",
+    "storage": "Trình duyệt đang dùng {used} trên {quota} cho phép",
+    "howTitle": "Cách hoạt động",
+    "how1": "Lần đầu vào site, trình duyệt tự lưu giao diện và trang chủ (khoảng vài MB). Các trang bạn từng mở cũng được nhớ lại.",
+    "how2": "Gói nguyên tố và hợp chất lưu cả trang lẫn dữ liệu 3D, nên mô hình nguyên tử, phổ, đồng vị và cấu trúc phân tử đều mở được khi không có mạng.",
+    "how3": "Tra cứu chất bất kỳ trên PubChem và tải ảnh Wikipedia vẫn cần mạng. Có bản mới của site thì lần tới có mạng, giao diện tự cập nhật."
+  },
+  "learn": {
+    "title": "Học và luyện tập",
+    "intro": "Thẻ ôn tập lặp lại ngắt quãng, quiz tự sinh và huy hiệu. Tiến độ chỉ lưu trong trình duyệt của bạn, không cần tài khoản.",
+    "loading": "Đang mở dữ liệu học…",
+    "tabs": {
+      "flash": "Thẻ ôn tập",
+      "quiz": "Quiz",
+      "progress": "Tiến độ"
+    },
+    "flash": {
+      "deck": "Bộ thẻ",
+      "decks": {
+        "name2symbol": "Tên → ký hiệu",
+        "symbol2name": "Ký hiệu → tên",
+        "number": "Tên → số hiệu",
+        "category": "Nguyên tố → loại",
+        "group": "Nguyên tố → nhóm",
+        "period": "Nguyên tố → chu kỳ",
+        "valence": "Nguyên tố → electron lớp ngoài cùng"
+      },
+      "queue": "{due} thẻ đến hạn · {fresh} thẻ trong phiên này",
+      "reveal": "Bấm để lật thẻ",
+      "answer": "Đáp án đang hiện",
+      "grade": {
+        "1": "Quên",
+        "2": "Khó",
+        "3": "Nhớ",
+        "4": "Dễ"
+      },
+      "done": "Xong phiên này. Quay lại sau để ôn các thẻ đến hạn, hoặc chọn bộ thẻ khác.",
+      "groupN": "Nhóm {n}",
+      "periodN": "Chu kỳ {n}",
+      "valenceN": "{n} electron lớp ngoài cùng"
+    },
+    "quiz": {
+      "intro": "Mỗi lượt {n} câu. Kỷ lục lưu trên máy bạn.",
+      "modes": {
+        "symbol": "Tên → ký hiệu",
+        "number": "Tên → số hiệu",
+        "category": "Nguyên tố thuộc loại nào",
+        "config": "Viết cấu hình electron",
+        "balance": "Cân bằng phương trình",
+        "sort": "Kéo-thả phân loại nguyên tố",
+        "group": "Nguyên tố thuộc nhóm nào",
+        "compound": "Công thức → tên hợp chất"
+      },
+      "best": "Tốt nhất: {score}/{total}",
+      "noBest": "Chưa chơi",
+      "result": "Kết quả: {score}/{total} câu đúng",
+      "progress": "Câu {i}/{total}",
+      "quit": "Thoát",
+      "q": {
+        "symbol": "Ký hiệu của {name} là gì?",
+        "number": "Số hiệu nguyên tử của {name} ({symbol}) là bao nhiêu?",
+        "category": "{name} ({symbol}) thuộc loại nào?",
+        "config": "Viết cấu hình electron của {name} (Z = {z})",
+        "balance": "Chỉnh hệ số để cân bằng phương trình",
+        "sort": "Xếp mỗi nguyên tố vào đúng nhóm",
+        "group": "{name} ({symbol}) ở nhóm nào (1–18)?",
+        "compound": "Công thức {formula} là chất nào?"
+      },
+      "configHint": "Ví dụ 1s2 2s2 2p4 hoặc [He] 2s2 2p4",
+      "check": "Kiểm tra",
+      "right": "Vế phải",
+      "wrong": "Chưa đúng. Đáp án: {answer}",
+      "next": "Câu tiếp",
+      "finish": "Xem kết quả",
+      "correctMark": "đúng",
+      "wrongMark": "bạn chọn, sai",
+      "decrease": "Giảm hệ số của {formula}",
+      "increase": "Tăng hệ số của {formula}",
+      "atomCount": "Số nguyên tử mỗi vế",
+      "element": "Nguyên tố",
+      "left": "Vế trái",
+      "equal": "bằng nhau",
+      "unequal": "chưa bằng",
+      "sortHint": "Kéo chip vào ô nhóm. Dùng bàn phím: Space để nhấc, phím mũi tên để di chuyển, Space để thả. Hoặc bấm chip rồi bấm ô nhóm.",
+      "allPlaced": "Đã xếp hết",
+      "sortResult": "Đúng {score}/{total} nguyên tố"
+    },
+    "progress": {
+      "stats": {
+        "streak": "Chuỗi ngày hiện tại",
+        "best": "Chuỗi dài nhất",
+        "learned": "Thẻ đã thuộc",
+        "reviews": "Lượt ôn"
+      },
+      "badges": "Huy hiệu",
+      "earned": "đã đạt",
+      "locked": "chưa đạt",
+      "backup": "Sao lưu",
+      "backupHint": "Tiến độ nằm trong trình duyệt này. Xuất ra file để chuyển sang máy khác hoặc phòng khi xoá dữ liệu trình duyệt.",
+      "export": "Xuất tiến độ",
+      "import": "Nhập từ file",
+      "clear": "Xoá hết",
+      "importBad": "File không đúng định dạng tiến độ của trang này.",
+      "importOk": "Đã nhập tiến độ.",
+      "importConfirm": "Nhập sẽ thay toàn bộ tiến độ hiện có. Tiếp tục?",
+      "clearConfirm": "Xoá toàn bộ tiến độ học trên máy này?",
+      "noStorage": "Trình duyệt đang chặn lưu trữ (chế độ riêng tư?). Tiến độ chỉ giữ đến khi bạn đóng trang; hãy xuất file nếu muốn giữ."
+    },
+    "badges": {
+      "firstReview": {
+        "title": "Bước đầu",
+        "desc": "Ôn thẻ đầu tiên"
+      },
+      "reviews100": {
+        "title": "Chăm chỉ",
+        "desc": "100 lượt ôn"
+      },
+      "reviews500": {
+        "title": "Bền bỉ",
+        "desc": "500 lượt ôn"
+      },
+      "learned25": {
+        "title": "Quen mặt",
+        "desc": "25 thẻ đã thuộc"
+      },
+      "learned100": {
+        "title": "Thuộc lòng",
+        "desc": "100 thẻ đã thuộc"
+      },
+      "allSymbols": {
+        "title": "Đủ 118 ký hiệu",
+        "desc": "Thuộc ký hiệu của cả 118 nguyên tố"
+      },
+      "streak3": {
+        "title": "3 ngày liền",
+        "desc": "Học 3 ngày liên tiếp"
+      },
+      "streak7": {
+        "title": "Một tuần",
+        "desc": "Học 7 ngày liên tiếp"
+      },
+      "streak30": {
+        "title": "Một tháng",
+        "desc": "Học 30 ngày liên tiếp"
+      },
+      "firstQuiz": {
+        "title": "Thử sức",
+        "desc": "Làm xong một lượt quiz"
+      },
+      "perfectQuiz": {
+        "title": "Điểm tuyệt đối",
+        "desc": "Đúng hết một lượt quiz"
+      },
+      "allModes": {
+        "title": "Đủ mọi chế độ",
+        "desc": "Chơi tất cả chế độ quiz"
+      }
+    }
+  },
+  "builder": {
+    "title": "Dựng phân tử 2D",
+    "intro": "Vẽ nguyên tử và liên kết, RDKit sẽ kiểm tra hoá trị, tự thêm hiđro và cho công thức, khối lượng mol, SMILES. Chạy hoàn toàn trên máy bạn.",
+    "toolbar": "Công cụ vẽ",
+    "tool": "Chế độ",
+    "element": "Nguyên tố",
+    "order": "Bậc liên kết",
+    "orders": {
+      "1": "Liên kết đơn",
+      "2": "Liên kết đôi",
+      "3": "Liên kết ba"
+    },
+    "tools": {
+      "atom": "Nguyên tử",
+      "bond": "Liên kết",
+      "move": "Di chuyển",
+      "erase": "Xoá",
+      "charge": "Điện tích"
+    },
+    "hint": {
+      "atom": "Bấm vào chỗ trống để thêm nguyên tử, bấm vào nguyên tử để đổi nguyên tố.",
+      "bond": "Bấm một nguyên tử rồi bấm nguyên tử khác để nối, hoặc bấm chỗ trống để kéo dài mạch. Bấm vào liên kết để đổi bậc.",
+      "move": "Kéo nguyên tử để đổi vị trí.",
+      "erase": "Bấm vào nguyên tử hoặc liên kết để xoá.",
+      "charge": "Bấm vào nguyên tử để thêm điện tích (+ hoặc −, tối đa ±2)."
+    },
+    "canvas": "Khung vẽ phân tử",
+    "atomLabel": "Nguyên tử {el}",
+    "empty": "Chọn nguyên tố rồi bấm vào khung để bắt đầu, hoặc nhập SMILES ở dưới.",
+    "undo": "Hoàn tác",
+    "redo": "Làm lại",
+    "tidy": "Làm đẹp",
+    "clear": "Xoá hết",
+    "result": "Kết quả",
+    "rdkitLoading": "Đang tải RDKit (khoảng 7,5 MB, chỉ tải một lần)…",
+    "rdkitError": "Không tải được RDKit. Kiểm tra kết nối mạng.",
+    "retry": "Thử lại",
+    "resultEmpty": "Vẽ ít nhất một nguyên tử để xem kết quả.",
+    "invalid": "Hoá trị chưa hợp lệ, ví dụ cacbon có quá 4 liên kết hoặc oxi quá 2. Hãy bớt liên kết hoặc đổi nguyên tố.",
+    "formula": "Công thức phân tử (đã tính cả hiđro)",
+    "mass": "Khối lượng mol",
+    "copy": "Chép",
+    "copied": "Đã chép",
+    "counts": "{atoms} nguyên tử nặng, {bonds} liên kết. Hiđro không vẽ được RDKit tự thêm cho đủ hoá trị.",
+    "fromSmiles": "Vẽ từ SMILES",
+    "fromSmilesHint": "SMILES là cách viết phân tử thành một dòng chữ. Nhập rồi bấm Vẽ, hoặc chọn ví dụ. Đây cũng là cách dựng phân tử bằng bàn phím.",
+    "draw": "Vẽ",
+    "badSmiles": "SMILES không hợp lệ.",
+    "tooMany": "Tối đa {n} nguyên tử.",
+    "cannotTidy": "Không thể làm đẹp vì hoá trị chưa hợp lệ.",
+    "examples": {
+      "ethanol": "Etanol",
+      "acetic": "Axit axetic",
+      "benzene": "Benzen",
+      "glycine": "Glyxin",
+      "aspirin": "Aspirin",
+      "caffeine": "Caffeine"
+    },
+    "chargeDirection": "Chiều đổi điện tích",
+    "chargePlus": "Thêm điện tích dương",
+    "chargeMinus": "Thêm điện tích âm",
+    "view3d": "Xem 3D trên PubChem",
+    "lookingUp": "Đang tra PubChem…",
+    "notOnPubchem": "PubChem không có chất khớp cấu trúc này.",
+    "pubchemError": "Không tra được PubChem.",
+    "view3dHint": "Nút xem 3D gửi SMILES tới PubChem khi bạn bấm.",
+    "templates": "Khuôn có sẵn",
+    "rings": {
+      "benzene": "Vòng benzen",
+      "cyclohexane": "Xiclohexan",
+      "cyclopentane": "Xiclopentan"
+    },
+    "groupsHint": "Chọn một nguyên tử bằng công cụ Liên kết, rồi bấm nhóm chức để gắn vào.",
+    "groups": {
+      "oh": "–OH",
+      "ch3": "–CH₃",
+      "nh2": "–NH₂",
+      "carbonyl": "=O",
+      "cooh": "–COOH",
+      "nitro": "–NO₂"
+    }
   }
 }

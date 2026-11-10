@@ -40,7 +40,14 @@ function splitSide(side: string, offset: number): Array<{ text: string; index: n
     while (side[j] === ' ') j++;
     const next = side[j];
     const before = side.slice(start, i).trim();
-    if (next !== undefined && next !== '+' && SPECIES_START.test(next) && before) {
+    // "+" sau khoảng trắng luôn là dấu nối (điện tích viết liền chất: "Fe3+"), nên "H2 + + O2" có chất rỗng ở giữa
+    const spaced = next === '+' && side[i - 1] === ' ';
+    const spacedStart = side[i - 1] === ' ' && next !== undefined && SPECIES_START.test(next);
+    if (
+      spaced ||
+      spacedStart ||
+      (next !== undefined && next !== '+' && SPECIES_START.test(next) && before)
+    ) {
       out.push({ text: side.slice(start, i), index: offset + start });
       start = i + 1;
     }

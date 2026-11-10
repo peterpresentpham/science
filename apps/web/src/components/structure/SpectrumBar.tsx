@@ -102,13 +102,15 @@ export function SpectrumBar({
               strokeOpacity={0.25 + 0.75 * Math.sqrt(i)}
             />
           ))}
-          {highlight.map((nm) => (
-            <path
-              key={nm}
-              d={`M${x(nm) - 5},${H + 9} L${x(nm) + 5},${H + 9} L${x(nm)},${H + 2} Z`}
-              fill="currentColor"
-            />
-          ))}
+          {highlight
+            .filter((nm) => nm >= LOW && nm <= HIGH)
+            .map((nm) => (
+              <path
+                key={nm}
+                d={`M${x(nm) - 5},${H + 9} L${x(nm) + 5},${H + 9} L${x(nm)},${H + 2} Z`}
+                fill="currentColor"
+              />
+            ))}
           {[400, 450, 500, 550, 600, 650, 700].map((nm) => (
             <g key={nm} className="fill-muted text-[11px]">
               <line

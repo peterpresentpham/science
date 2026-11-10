@@ -15,6 +15,18 @@ const HIGH = 750;
 /** Giữ tối đa bấy nhiêu vạch mạnh nhất mỗi nguyên tố (đủ để thấy "dấu vân tay", file vẫn nhẹ) */
 const MAX_LINES = 60;
 
+/**
+ * Vạch chính mà NIST có bước sóng nhưng để trống cột cường độ (nên bị bỏ ở bước lọc dưới đây).
+ * Cường độ tương đối ước lượng từ xác suất chuyển Aki của NIST (cùng mức dưới 6S nên so sánh được).
+ * - Cs I 455,528 nm (Aki 1,836e6) và 459,317 nm (Aki 7,94e5): hai vạch xanh lam đặt tên cho caesium.
+ */
+const SUPPLEMENT: Record<string, Array<[number, number]>> = {
+  Cs: [
+    [455.53, 1],
+    [459.32, 0.43],
+  ],
+};
+
 const elements: { Symbol: string }[] = JSON.parse(
   await readFile(join(ROOT, 'raw', 'pubchem-periodic.json'), 'utf8')
 ).Table.Row.map((r: { Cell: string[] }) => ({ Symbol: r.Cell[1] }));
@@ -59,6 +71,8 @@ for (const { Symbol: sym } of elements.slice(0, 99)) {
     lines.sort((a, b) => b[1] - a[1]);
     const top = lines.slice(0, MAX_LINES);
     const max = top[0]![1];
+    // Vạch bổ sung có cường độ tương đối riêng (0..1), quy về cùng thang với các vạch NIST
+    for (const [w, rel] of SUPPLEMENT[sym] ?? []) top.push([w, rel * max]);
     // Cường độ tương đối 0..1 (thang của NIST không đồng nhất giữa các nguồn: chỉ so trong cùng nguyên tố)
     out[sym] = top
       .map(([w, i]): [number, number] => [w, Math.round((i / max) * 1000) / 1000])

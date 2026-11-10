@@ -6,6 +6,7 @@ import { useId } from 'react';
 
 import { AtomStructure } from '@/components/atom/AtomStructure';
 import { IonExplorer } from '@/components/atom/IonExplorer';
+import { ElementIsotopes } from '@/components/isotope/ElementIsotopes';
 import { ElementLight } from '@/components/structure/ElementLight';
 import { ElementStructure } from '@/components/structure/ElementStructure';
 import { ConfigText } from '@/components/ui/ConfigText';
@@ -141,16 +142,20 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
           />
         </Card>
 
-        <Card index="03" title={t('structure.cardTitle')}>
+        <Card index="03" title={t('isotope.cardTitle')}>
+          <ElementIsotopes el={el} />
+        </Card>
+
+        <Card index="04" title={t('structure.cardTitle')}>
           <ElementStructure key={el.z} el={el} />
         </Card>
 
-        <Card index="04" title={t('structure.lightTitle')}>
+        <Card index="05" title={t('structure.lightTitle')}>
           <ElementLight el={el} />
         </Card>
 
         {/* Tính chất */}
-        <Card index="05" title={t('element.properties')}>
+        <Card index="06" title={t('element.properties')}>
           <dl className="grid grid-cols-2 gap-2 sm:grid-cols-3">
             {stats.map((s) => (
               <div
@@ -172,7 +177,7 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
         </Card>
 
         {/* Vị trí */}
-        <Card index="06" title={t('element.position')}>
+        <Card index="07" title={t('element.position')}>
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
             <MiniTable z={el.z} />
             <p className="text-sm leading-relaxed">
@@ -183,7 +188,7 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
         </Card>
 
         {el.summary.en && (
-          <Card index="07" title={t('element.summaryEn')}>
+          <Card index="08" title={t('element.summaryEn')}>
             <p className="text-sm leading-relaxed">{el.summary.vi ?? el.summary.en}</p>
             {el.wikipedia && (
               <a

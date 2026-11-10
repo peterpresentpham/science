@@ -145,6 +145,17 @@ const merge = (groups: TopGroup[]) => {
   return m;
 };
 
+/** Gộp các mục cùng nguyên tố và cùng số oxi hoá (vd. H của C2H5 và H của OH trong C2H5OH). */
+function mergeEntries(entries: OxEntry[]): OxEntry[] {
+  const out: OxEntry[] = [];
+  for (const e of entries) {
+    const same = out.find((o) => o.element === e.element && o.ox.toString() === e.ox.toString());
+    if (same) same.atoms += e.atoms;
+    else out.push({ ...e });
+  }
+  return out;
+}
+
 /** Thử tách một ion đa nguyên tử quen thuộc ở đầu hoặc cuối dãy nhóm (vd. FeSO4, NH4Cl, NH4NO3). */
 function solveWithIons(groups: TopGroup[], charge: number): OxEntry[] | null {
   // Thử tách ion quen thuộc trước (NH4NO3 → N −3 và +5 như SGK, thay vì trung bình +1), rồi mới giải cả khối
@@ -172,7 +183,10 @@ function solveWithIons(groups: TopGroup[], charge: number): OxEntry[] | null {
         ? []
         : null;
     if (!restEntries) continue;
-    return [...restEntries, ...ionEntries.map((e) => ({ ...e, atoms: e.atoms * unit }))];
+    return mergeEntries([
+      ...restEntries,
+      ...ionEntries.map((e) => ({ ...e, atoms: e.atoms * unit })),
+    ]);
   }
   return solveBlock(merge(groups), charge);
 }

@@ -76,16 +76,16 @@ export const COMPOUNDS: CuratedCompound[] = [
   { q: 'lithium fluoride', f: 'LiF', vi: 'Liti florua' },
   // Bo
   { q: 'boric acid', f: 'H3BO3', vi: 'Axit boric' },
-  { q: 'boron trioxide', f: 'B2O3', vi: 'Bo trioxit' },
+  { q: 'boron trioxide', f: 'B2O3', vi: 'Điboron trioxit (bo oxit)' },
   { q: 'boron trifluoride', f: 'BF3', vi: 'Bo triflorua' },
-  { q: 'sodium borohydride', f: 'NaBH4', vi: 'Natri bohiđrua' },
+  { q: 'sodium borohydride', f: 'NaBH4', vi: 'Natri borohiđrua' },
   { q: 'borax', f: 'Na2B4O7·10H2O', vi: 'Hàn the (borax)' },
   // Flo
   { q: 'hydrogen fluoride', f: 'HF', vi: 'Hiđro florua' },
   { q: 'sodium fluoride', f: 'NaF', vi: 'Natri florua' },
   { q: 'calcium fluoride', f: 'CaF2', vi: 'Canxi florua (fluorit)' },
   { q: 'sulfur hexafluoride', f: 'SF6', vi: 'Lưu huỳnh hexaflorua' },
-  { q: 'tetrafluoromethane', f: 'CF4', vi: 'Tetraflometan' },
+  { q: 'tetrafluoromethane', f: 'CF4', vi: 'Cacbon tetraflorua (tetraflometan)' },
   // Natri
   { q: 'sodium chloride', f: 'NaCl', vi: 'Natri clorua (muối ăn)' },
   { q: 'sodium hydroxide', f: 'NaOH', vi: 'Natri hiđroxit (xút)' },
@@ -114,7 +114,7 @@ export const COMPOUNDS: CuratedCompound[] = [
   { q: 'silicon tetrachloride', f: 'SiCl4', vi: 'Silic tetraclorua' },
   // Photpho
   { q: 'phosphoric acid', f: 'H3PO4', vi: 'Axit photphoric' },
-  { q: 'tetraphosphorus decaoxide', f: 'P4O10', vi: 'Điphotpho pentaoxit' },
+  { q: 'tetraphosphorus decaoxide', f: 'P4O10', vi: 'Photpho(V) oxit (P₄O₁₀, thường viết P₂O₅)' },
   { q: 'phosphine', f: 'PH3', vi: 'Photphin' },
   { q: 'tricalcium phosphate', f: 'Ca3(PO4)2', vi: 'Canxi photphat' },
   { q: 'phosphorus pentachloride', f: 'PCl5', vi: 'Photpho pentaclorua' },

@@ -10,7 +10,9 @@ test.describe('M5 tools', () => {
   test('molar mass shows an understandable error', async ({ page }) => {
     await page.goto('/vi/tools/molar-mass/');
     await page.getByRole('textbox', { name: 'Công thức hoá học' }).fill('co2');
-    await expect(page.getByRole('alert')).toContainText('chữ hoa');
+    await expect(page.locator('[role=alert]:not(#__next-route-announcer__)')).toContainText(
+      'chữ hoa'
+    );
   });
 
   test('converter: 36 g of water is 2 mol', async ({ page }) => {
@@ -38,7 +40,7 @@ test.describe('M5 tools', () => {
 
   test('balance reports a species that cannot react', async ({ page }) => {
     await page.goto(`/vi/tools/balance/?eq=${encodeURIComponent('H2 + O2 + N2 -> H2O')}`);
-    await expect(page.getByRole('alert')).toContainText('N2');
+    await expect(page.locator('[role=alert]:not(#__next-route-announcer__)')).toContainText('N2');
   });
 
   test('activity series explains a metal', async ({ page }) => {

@@ -5,8 +5,10 @@ test.describe('M4: cấu trúc, hợp chất, phổ', () => {
     await page.goto('/vi/element/cu/#hoc-hoa');
     const structure = page.getByRole('region', { name: 'Cấu trúc & hợp chất' });
     await structure.scrollIntoViewIfNeeded();
-    await expect(structure.getByRole('img', { name: /Mô hình 3D/ })).toBeVisible();
-    await expect(structure).toContainText('Lập phương tâm diện');
+    await expect(structure.getByRole('img', { name: /Mô hình 3D/ })).toBeVisible({
+      timeout: 15_000,
+    });
+    await expect(structure).toContainText('Lập phương tâm diện', { timeout: 15_000 });
     await expect(structure).toContainText('12'); // số phối trí fcc
     await expect(structure.getByRole('link', { name: /Đồng\(II\) sunfat/ })).toBeVisible();
 

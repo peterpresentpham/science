@@ -6,7 +6,14 @@ import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-import { electronConfiguration, isPredicted, isRadioactive, shells, toNotation } from '@chem/core';
+import {
+  decayKind,
+  electronConfiguration,
+  isPredicted,
+  isRadioactive,
+  shells,
+  toNotation,
+} from '@chem/core';
 import { z } from 'zod';
 
 import { COMPOUND_CRYSTALS } from '../curated/compound-crystals.ts';
@@ -25,7 +32,7 @@ import { STRUCTURES } from '../curated/structures.ts';
 import { Compound } from '../src/compound.ts';
 import { type LensId, normalizeSearch } from '../src/lenses.ts';
 import { PhotoManifest } from '../src/photo.ts';
-import { type Category, ElementFull, ElementLite } from '../src/schema.ts';
+import { type Category, ElementFull, ElementLite, Isotope } from '../src/schema.ts';
 import { Story } from '../src/story.ts';
 
 const ROOT = join(import.meta.dirname, '..');
@@ -120,6 +127,36 @@ for (const q of Object.keys(COMPOUND_CRYSTALS))
 for (const c of COMPOUNDS)
   if (!compounds.some((x) => (c.cid ? x.cid === c.cid : x.query === c.q)))
     throw new Error(`curated/compounds: "${c.q ?? c.cid}" chưa được tải, chạy fetch:compounds`);
+
+// Đồng vị IAEA (scripts/fetch-isotopes.ts), đã commit
+type RawIsotope = [
+  number,
+  number,
+  number | null,
+  [string, string, string, number] | 'S' | null,
+  Array<[string, number | null]>,
+  string | null,
+  number | null,
+];
+const isotopesByZ = new Map<number, Isotope[]>();
+/** Bản đồ hạt nhân gọn: [Z, N, mã]; mã S bền, B β⁻, E bắt electron/β⁺, A α, O khác (SF, p, n…) */
+const nuclides: Array<[number, number, string]> = [];
+const KIND_CODE = { 'beta-minus': 'B', 'electron-capture': 'E', alpha: 'A', other: 'O' } as const;
+for (const [z, n, abundance, hl, decays, jp, discovery] of await readJson<RawIsotope[]>(
+  'isotopes.json'
+)) {
+  const iso = Isotope.parse({
+    n,
+    abundance,
+    stable: hl === 'S',
+    halfLife: hl && hl !== 'S' ? { text: hl[0], unit: hl[1], op: hl[2], seconds: hl[3] } : null,
+    decays: decays.map(([mode, pct]) => ({ mode, pct })),
+    jp,
+    discovery,
+  });
+  isotopesByZ.set(z, [...(isotopesByZ.get(z) ?? []), iso]);
+  nuclides.push([z, n, iso.stable ? 'S' : decays[0] ? KIND_CODE[decayKind(decays[0][0])] : 'O']);
+}
 
 const lite: ElementLite[] = [];
 const full: ElementFull[] = [];
@@ -242,6 +279,7 @@ for (let z = 1; z <= 118; z++) {
     story: story ?? null,
     spectrum: spectra[sym]?.filter(([, i]) => i > 0) ?? null,
     flame: FLAME[sym] ?? null,
+    isotopes: isotopesByZ.get(z) ?? [],
     structures: STRUCTURES[sym] ?? [],
     compounds: compounds
       .filter((c) => !c.elemental && c.elements.includes(sym))
@@ -266,6 +304,7 @@ await Promise.all(
   full.map((e) => writeFile(join(DIST, 'elements', `${e.slug}.json`), JSON.stringify(e)))
 );
 await writeFile(join(DIST, 'compounds.json'), JSON.stringify(compounds));
+await writeFile(join(DIST, 'nuclides.json'), JSON.stringify(nuclides));
 await writeFile(
   join(DIST, 'meta.json'),
   JSON.stringify({ builtAt: new Date().toISOString(), count: lite.length, warnings }, null, 2)

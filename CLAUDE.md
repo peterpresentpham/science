@@ -9,7 +9,7 @@
   - Lighthouse, dưới mọi hình thức
 - Được chạy mà không cần hỏi: `pnpm lint`, `pnpm lint:fix`, `pnpm format`, `pnpm format:check`, `pnpm typecheck`, `pnpm build`, `pnpm data:build`.
 - Khi đã sửa code mà chưa chạy test, nói rõ điều đó trong phần báo cáo. Có thể đề xuất lệnh test nên chạy.
-- Chỉ commit khi người dùng yêu cầu.
+- **Không commit.** Người dùng tự commit thủ công. Không chạy `git commit`, không hỏi hay nhắc "có muốn commit không".
 
 ## Dự án
 

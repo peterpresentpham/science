@@ -91,7 +91,7 @@ export const STRUCTURES: Record<string, ElementStructure[]> = {
   Cs: [bcc(6.141)],
   Ba: [bcc(5.028)],
   V: [bcc(3.03)],
-  Cr: [bcc(2.91)],
+  Cr: [bcc(2.884)],
   Fe: [{ ...bcc(2.8665), label: { vi: 'Sắt α', en: 'α-iron' } }],
   Nb: [bcc(3.3)],
   Mo: [bcc(3.147)],

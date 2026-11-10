@@ -12,3 +12,4 @@ test-results
 # Sinh ra bởi apps/web/scripts/sync-data.mjs
 apps/web/public/data
 apps/web/public/images/elements
+apps/web/public/rdkit

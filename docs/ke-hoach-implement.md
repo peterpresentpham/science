@@ -14,7 +14,7 @@
   - Hiệu ứng ô → header làm bằng **View Transitions API** thay cho Motion: không thêm thư viện, trình duyệt không hỗ trợ hoặc bật giảm chuyển động thì bỏ qua. Panel hiện ngay phần đầu từ dữ liệu lite, phần còn lại tải sau.
   - Chế độ **Danh sách** (mặc định dưới 768px, chuyển qua lại được): tìm theo tên không dấu, ký hiệu, số hiệu; bấm chú giải để lọc theo loại.
   - **Lighthouse** (mobile/desktop): Performance 90–93/100, Accessibility, Best Practices, SEO đều 100. Đã sửa: tương phản chữ màu loại nguyên tố (`categoryInk`), cấu trúc `<dl>`, hreflang/canonical tuyệt đối (`metadataBase`), favicon, bỏ preload 6 file font chữ thân (LCP mobile 3,9 s → 3,1 s).
-  - **Deploy:** job `deploy` trong CI đưa lên GitHub Pages khi push lên `main`; đã thử bản build với basePath `/chemistry`.
+  - **Deploy:** chưa dựng CI/CD. Site là thư mục tĩnh `apps/web/out`, đưa lên host nào cũng được; cần đặt `NEXT_PUBLIC_SITE_URL` (và `NEXT_PUBLIC_BASE_PATH` nếu host dưới đường dẫn con) khi build.
 - **M1.5 "Thân thiện": xong nội dung bước 1–7**, chưa chạy test các bước 5–7 (chi tiết trong `ke-hoach-than-thien.md`).
 - **M2: xong** (2026-11-09). Test pass: unit 172 + 26 + 38, e2e 42/42. **Chưa đo Lighthouse/INP, chưa xem trên trình duyệt.**
   - **Tô màu theo**: loại, khối, trạng thái (slider 0–6000 K), năm tìm ra (slider), 7 thuộc tính số (độ âm điện, bán kính, IE1, ái lực e, khối lượng riêng, nhiệt độ nóng chảy, sôi). Chế độ và slider nằm trên URL (`?color=phase&t=310`), ghi URL trễ 250 ms để kéo slider không gọi `replaceState` liên tục. Không dùng nuqs: tự viết `lib/url-state.ts` (khoảng 70 dòng) bằng `useSyncExternalStore`, `useLens` chuyển sang dùng chung.
@@ -95,26 +95,44 @@
 
 ### M6: Mở rộng hình ảnh hoá (≈ 2 tuần)
 
-- [ ] Tab Đồng vị (IAEA) + mô phỏng phân rã + bản đồ hạt nhân mini (canvas 2D)
-- [ ] Tab Lịch sử: MDX cho 30 nguyên tố + trang `/timeline` (trục thời gian zoom được)
-- [ ] Bảng 3D "thành phố"
-- [ ] PWA offline (Serwist), trang tải gói offline
-- **DoD:** chế độ máy bay vẫn mở được trang chủ, 118 trang nguyên tố và các cấu trúc đã precache.
+> Trạng thái (2026-11-10): **xong code phần không phụ thuộc nội dung của GPT** (Đồng vị, bảng 3D, offline). Lint, typecheck, build qua; **chưa chạy test mới, chưa xem trên trình duyệt**. Còn lại: tab Lịch sử và trang `/timeline` (chờ dữ liệu từ GPT).
 
-### M7: Học tập, không cần tài khoản (≈ 2.5 tuần)
+- [x] Thẻ **Đồng vị** (số 03 trong "Góc học hoá"), dữ liệu IAEA LiveChart (`scripts/fetch-isotopes.ts` → `raw/isotopes.json`, 3 353 hạt nhân, 244 bền):
+  - bảng đồng vị (mặc định chỉ đồng vị đáng chú ý, bấm để xem hết);
+  - **mô phỏng phân rã**: 400 hạt nhân, thanh trượt theo chu kỳ bán rã, đồ thị so với đường lý thuyết, hạt nhân con; có ghi chú cho C-14, U-238, K-40, I-131, Co-60, Cs-137;
+  - **bản đồ hạt nhân** (canvas 2D, `dist/nuclides.json` 41 KB, chỉ tải khi cuộn tới), hàng của nguyên tố được làm nổi, trỏ vào ô để xem hạt nhân.
+  - Hàm `decayKind` và `decayDaughter` trong `@chem/core/nuclear`.
+- [x] **Bảng 3D "thành phố"** (nút "Bảng 3D", URL `?d=3`): mỗi nguyên tố là một toà nhà ở đúng vị trí trên bảng, cao theo thuộc tính đang tô màu (mặc định độ âm điện, thang log với khối lượng riêng); xoay, phóng to, trỏ để xem số liệu, bấm để mở nguyên tố. three.js chỉ tải khi bật; chỉ vẽ lại khi có thay đổi. Ở chế độ tô màu "Năm phát hiện", nguyên tố chưa được biết ở năm đang chọn nằm phẳng và "mọc" lên khi kéo thanh năm.
+- [x] **Offline** (không dùng Serwist vì site xuất tĩnh và Turbopack): `scripts/build-sw.mjs` chạy sau `next build`, sinh `out/sw.js` và `out/offline-manifest.json`.
+  - Tự lưu "vỏ" ứng dụng (JS, CSS, font, biểu tượng, hai trang chủ, trang `/offline`): khoảng 3,5 MB. Trang đã mở cũng được nhớ (tối đa 120 trang).
+  - **Gói offline do người dùng bấm tải** ở trang `/offline`: nguyên tố (≈ 31 MB mỗi ngôn ngữ), hợp chất (≈ 13 MB), trang công cụ (≈ 1 MB), dữ liệu + ảnh + cấu trúc 3D (≈ 4 MB, dùng chung). Có tiến độ, tiếp tục, xoá.
+  - Lý do không tự precache hết: mỗi trang nguyên tố nặng ≈ 270 KB HTML (nhúng toàn bộ thông điệp dịch), tổng cả hai ngôn ngữ ≈ 100 MB chưa nén.
+  - Service worker chỉ đăng ký ở bản production và bỏ qua khi trình duyệt do máy điều khiển (Playwright).
+- [ ] Tab Lịch sử: MDX cho 30 nguyên tố + trang `/timeline` (trục thời gian zoom được): chờ dữ liệu.
+- **DoD:** chế độ máy bay mở được trang chủ (vỏ ứng dụng tự lưu) và 118 trang nguyên tố cùng cấu trúc (sau khi tải gói): **cần kiểm tra thủ công**, xem hướng dẫn trong báo cáo M6.
 
-- [ ] Lớp lưu trữ `lib/storage/`: Dexie (IndexedDB) với các bảng `progress`, `srsCards`, `quizAttempts`, `favorites`, `settings`, có version để migrate schema; luôn có fallback khi IndexedDB bị chặn (chế độ ẩn danh)
-- [ ] **Xuất/nhập tiến độ** ra file JSON (có version, kiểm tra bằng Zod khi nhập) để chuyển máy thủ công
-- [ ] Quiz đặt nguyên tố vào bảng (drag & drop bằng `@dnd-kit`), đoán nguyên tố, thử thách cấu hình e, thử thách cân bằng
-- [ ] Kỷ lục cá nhân (lưu cục bộ) thay cho bảng xếp hạng chung
-- [ ] Flashcard dùng **FSRS** (`ts-fsrs`)
-- [ ] Huy hiệu, chuỗi ngày học, thẻ sưu tầm (lưu cục bộ)
-- [ ] Lộ trình bài học theo SGK (MDX + component tương tác)
-- [ ] Chế độ giáo viên **không cần server**:
-  - Trình soạn bộ câu hỏi; bộ câu hỏi được nén (`lz-string`) vào **link chia sẻ** (`/learn/quiz#q=…`), hoặc xuất ra file `.json` hay mã QR.
-  - Học sinh mở link là làm bài được ngay, có màn hình kết quả để chụp hoặc gửi cho giáo viên.
-  - Chế độ trình chiếu toàn màn hình.
-- **DoD:** học sinh làm quiz, tải lại trang vẫn còn tiến độ; xuất file trên máy A và nhập trên máy B thì tiến độ khớp; link bộ câu hỏi mở được ở trình duyệt khác.
+### M7: Học và luyện tập (phần hạ tầng)
+
+> Trạng thái (2026-11-10): **xong phần hạ tầng không cần nội dung của GPT**, ở trang `/learn`. Lint, typecheck, build qua; **chưa chạy test, chưa xem trên trình duyệt**.
+
+- [x] Lưu tiến độ trên máy bằng IndexedDB (Dexie, có version để nâng cấp cấu trúc); nếu trình duyệt chặn thì dùng bản trong bộ nhớ và báo người dùng.
+- [x] Xuất/nhập tiến độ ra file JSON (kiểm bằng zod), xoá hết.
+- [x] Thẻ ôn tập FSRS (`ts-fsrs`), 4 bộ thẻ tự sinh từ dữ liệu nguyên tố: tên → ký hiệu, ký hiệu → tên, tên → số hiệu, nguyên tố → loại.
+- [x] Quiz 10 câu, 4 chế độ (ký hiệu, số hiệu, loại, viết cấu hình electron), cộng 2 chế độ ở dòng dưới. Kỷ lục lưu cục bộ, thay cho bảng xếp hạng chung.
+- [x] Chuỗi ngày học và 12 huy hiệu.
+- [x] Quiz **cân bằng phương trình** (tăng/giảm hệ số, bảng đếm nguyên tử hai vế cập nhật tức thì) và quiz **kéo-thả** phân loại nguyên tố (`@dnd-kit/core`; có bàn phím và cách bấm-chọn thay thế).
+- [ ] Quiz và thẻ từ nội dung của GPT (học hoá, phòng thí nghiệm ảo).
+
+### M8 (phần đã làm): Trình dựng phân tử 2D
+
+> Trạng thái (2026-11-10): **xong bản đầu** ở trang `/builder`. Lint, typecheck, build qua; logic RDKit đã chạy thử bằng Node (etanol → C₂H₆O, aspirin → C₉H₈O₄, hoá trị sai bị từ chối); **chưa xem trên trình duyệt, chưa có test**.
+
+- RDKit.js (`@rdkit/rdkit`, BSD-3) chép vào `public/rdkit` (≈ 7,1 MB, không commit), nạp bằng thẻ script khi vào trang, không nằm trong bundle.
+- Vẽ nguyên tử (C H O N S P F Cl Br I), liên kết đơn/đôi/ba, di chuyển, xoá, hoàn tác/làm lại, "Làm đẹp" (RDKit sắp lại toạ độ).
+- RDKit kiểm hoá trị, tự thêm H ngầm định, cho SMILES chuẩn, công thức Hill, khối lượng mol (dùng nguyên tử khối của site).
+- Nhập SMILES để vẽ (cũng là cách dựng bằng bàn phím) và 6 ví dụ.
+- Gói offline riêng `rdkit` (WASM nặng), service worker dùng cache-first cho `/rdkit/`.
+- Chưa có: điện tích, vòng thơm vẽ tay có sẵn khuôn, xuất ảnh, đồng bộ sang trình xem 3D.
 
 ### M8: Trình dựng phân tử, phòng thí nghiệm ảo (≈ 3.5 tuần)
 

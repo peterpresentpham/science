@@ -13,7 +13,8 @@
     "./images/*": "./images/*",
     "./lenses": "./src/lenses.ts",
     "./story": "./src/story.ts",
-    "./compounds.json": "./dist/compounds.json"
+    "./compounds.json": "./dist/compounds.json",
+    "./nuclides.json": "./dist/nuclides.json"
   },
   "scripts": {
     "fetch": "tsx scripts/fetch.ts",
@@ -22,7 +23,8 @@
     "typecheck": "tsc --noEmit",
     "images": "tsx scripts/images.ts",
     "fetch:spectra": "tsx scripts/fetch-spectra.ts",
-    "fetch:compounds": "tsx scripts/fetch-compounds.ts"
+    "fetch:compounds": "tsx scripts/fetch-compounds.ts",
+    "fetch:isotopes": "tsx scripts/fetch-isotopes.ts"
   },
   "dependencies": {
     "@chem/core": "workspace:*",

@@ -43,3 +43,49 @@ export function nucleonCounts(z: number): {
   const massNumber = representativeMassNumber(z);
   return { protons: z, neutrons: massNumber - z, electrons: z, massNumber };
 }
+
+/** Nhóm kiểu phân rã dùng để tô màu bản đồ hạt nhân. */
+export type DecayKind = 'beta-minus' | 'electron-capture' | 'alpha' | 'other';
+
+/**
+ * Phân loại kiểu phân rã chính theo ký hiệu của IAEA/NUBASE:
+ * B- (β⁻, gồm B-N, 2B-…), EC / B+ / EC+B+ (bắt electron hoặc β⁺), A (α);
+ * còn lại (SF phân hạch tự phát, P/N phát proton/nơtron, IT…) là "other".
+ */
+export function decayKind(mode: string): DecayKind {
+  if (mode === 'A') return 'alpha';
+  if (mode.startsWith('B-') || mode === '2B-') return 'beta-minus';
+  if (mode === 'ECSF') return 'other';
+  if (/^(EC|B\+|2EC|2B\+)/.test(mode)) return 'electron-capture';
+  return 'other';
+}
+
+/** Độ thay đổi (Z, N) của hạt nhân sau một lần phân rã. Kiểu không xác định được hạt nhân con thì không có. */
+const DECAY_SHIFT: Record<string, [number, number]> = {
+  'B-': [1, -1],
+  '2B-': [2, -2],
+  'B-N': [1, -2],
+  'B-2N': [1, -3],
+  'B-A': [-1, -3],
+  EC: [-1, 1],
+  'EC+B+': [-1, 1],
+  'B+': [-1, 1],
+  '2EC': [-2, 2],
+  '2B+': [-2, 2],
+  A: [-2, -2],
+  P: [-1, 0],
+  '2P': [-2, 0],
+  N: [0, -1],
+  '2N': [0, -2],
+  ECP: [-2, 1],
+  'B+P': [-2, 1],
+};
+
+/** Hạt nhân con (Z, N) sau phân rã `mode`; null nếu là phân hạch tự phát, IT… hoặc kiểu chưa có. */
+export function decayDaughter(z: number, n: number, mode: string): { z: number; n: number } | null {
+  const s = DECAY_SHIFT[mode];
+  if (!s) return null;
+  const dz = z + s[0];
+  const dn = n + s[1];
+  return dz >= 1 && dn >= 0 ? { z: dz, n: dn } : null;
+}

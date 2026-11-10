@@ -38,7 +38,9 @@
     "theme": "Toggle light/dark theme",
     "compare": "Compare",
     "tools": "Tools",
-    "compounds": "Compounds"
+    "compounds": "Compounds",
+    "learn": "Learn",
+    "builder": "Builder"
   },
   "table": {
     "label": "Periodic table of the chemical elements",
@@ -109,7 +111,8 @@
     "back": "Back to the table"
   },
   "footer": {
-    "data": "Data: PubChem (NIH) and Bowserinator/Periodic-Table-JSON (CC BY-SA 3.0)."
+    "data": "Data: PubChem (NIH) and Bowserinator/Periodic-Table-JSON (CC BY-SA 3.0).",
+    "offline": "Use offline"
   },
   "hero": {
     "eyebrow": "Periodic table · 118 elements",
@@ -633,5 +636,384 @@
     "notFound": "PubChem found nothing for “{q}”. Try another name or a CID.",
     "networkError": "Could not reach PubChem. Check your connection and try again.",
     "curatedLink": "This compound has its own page on this site →"
+  },
+  "isotope": {
+    "cardTitle": "Isotopes",
+    "none": "No isotope data yet.",
+    "summary": "{name} has {total} known isotopes, {stable, plural, =1 {1 of them stable} other {# of them stable}}.",
+    "summaryNoStable": "{name} has no stable isotope: all {total} known isotopes are radioactive.",
+    "tableCaption": "Isotopes of {name}: neutron count, natural abundance, half-life and decay mode",
+    "col": {
+      "isotope": "Isotope",
+      "neutrons": "Neutrons",
+      "abundance": "Abundance",
+      "halfLife": "Half-life",
+      "decay": "Decay"
+    },
+    "stable": "Stable",
+    "unknownHalfLife": "Not measured",
+    "count": "Showing {shown} of {total} isotopes",
+    "showAll": "Show all {total} isotopes",
+    "showNotable": "Notable isotopes only",
+    "unit": {
+      "as": "as",
+      "ps": "ps",
+      "ns": "ns",
+      "us": "µs",
+      "ms": "ms",
+      "s": "s",
+      "m": "min",
+      "h": "h",
+      "d": "days",
+      "y": "years",
+      "yMil": "million years",
+      "yBil": "billion years"
+    },
+    "kind": {
+      "stable": "Stable",
+      "beta-minus": "β⁻ decay",
+      "electron-capture": "Electron capture / β⁺",
+      "alpha": "α decay",
+      "other": "Other (spontaneous fission, p or n emission…)"
+    },
+    "sim": {
+      "title": "Decay simulation",
+      "choose": "Choose an isotope",
+      "halfLife": "Half-life",
+      "mode": "Main decay",
+      "gridLabel": "400 nuclei, {left} of {total} not yet decayed",
+      "chartLabel": "Chart of the percentage of nuclei left against the number of half-lives elapsed. The dashed line is theory: 100% times (1/2) to the power of the number of half-lives.",
+      "axisX": "half-lives",
+      "legendLeft": "not yet decayed",
+      "legendDecayed": "decayed",
+      "legendTheory": "theory (½)ᵗ",
+      "play": "Play",
+      "pause": "Pause",
+      "again": "Re-roll",
+      "after": "After {time}",
+      "remaining": "{left}/{total} nuclei left ({pct})",
+      "slider": "Elapsed time, in half-lives",
+      "valueText": "{halfLives} half-lives ({time}): {pct} of the nuclei left",
+      "hint": "Each nucleus decays at a random moment, and nobody can predict which one goes first. But with many nuclei, half of those left decay in every half-life. Press “Re-roll” to see each run deviate slightly from the theoretical line."
+    },
+    "notes": {
+      "n6_14": "Carbon-14 is formed continuously in the upper atmosphere when cosmic rays hit nitrogen. Living things take it in along with ordinary carbon, so the ¹⁴C share in their bodies matches the atmosphere. After death no more ¹⁴C is added and it decays away, half-life by half-life. Measuring what is left dates bones, wood or cloth up to about 50,000 years old. IAEA lists the half-life as 5,700 years; many textbooks use 5,730.",
+      "n92_238": "Uranium-238 has a half-life of 4.47 billion years, close to the age of the Earth (about 4.5 billion years). So nearly half of the ²³⁸U present when the Earth formed is still here. It decays through a long chain of daughters and ends at stable lead-206.",
+      "n19_40": "Potassium-40 makes up about 0.012% of natural potassium and dates from the Earth's formation. It is in potassium-rich food such as bananas and in your own body: thousands of ⁴⁰K nuclei in you decay every second. Most decay by β⁻ to calcium-40; a small share capture an electron to become argon-40 (the basis of K–Ar dating).",
+      "n53_131": "The thyroid absorbs iodine-131 like ordinary iodine, so it is used to treat an overactive thyroid and thyroid cancer. Its half-life is about 8 days: long enough to work, short enough to fade quickly. It is also one of the radioactive substances released in nuclear accidents.",
+      "n27_60": "Cobalt-60 emits high-energy gamma rays as it decays and is used in cancer radiotherapy, sterilising medical equipment and irradiating food to preserve it. Its half-life is about 5.3 years, so sources must be replaced regularly.",
+      "n55_137": "Caesium-137 is a fission product of uranium, so it is found in fallout after nuclear accidents. Its half-life is about 30 years, long enough to contaminate soil for decades."
+    },
+    "map": {
+      "title": "Place on the chart of nuclides",
+      "intro": "Each cell is a known nucleus: further right means more neutrons, further up means more protons. The highlighted row holds the isotopes of {symbol}.",
+      "label": "Chart of {count} nuclei coloured by decay mode; the isotopes of {symbol} are outlined",
+      "loading": "Loading the chart of nuclides…",
+      "error": "Could not load the chart of nuclides.",
+      "hoverHint": "Hover or tap a cell to see that nucleus.",
+      "zn": "Z = {z}, N = {n}",
+      "axes": "Horizontal axis: neutron number N. Vertical axis: proton number Z. The faint lines mark the magic numbers 2, 8, 20, 28, 50, 82, 126. Stable nuclei form a narrow “valley” in the middle."
+    },
+    "source": "Source: IAEA LiveChart of Nuclides (NUBASE/ENSDF). Half-lives are IAEA reference values and may differ slightly from textbook figures."
+  },
+  "city": {
+    "toggle": "3D table",
+    "toggleHint": "Each element is a building, as tall as the selected property",
+    "label": "3D periodic table: each element is a building, with height showing {property}. Drag to rotate, scroll to zoom, click a building to open the element. For keyboard or screen-reader use, switch to the 2D table or list.",
+    "heightBy": "Height shows {property}",
+    "hint": "Flat tiles have no data. Change the property in the “Colour by” bar to change the height.",
+    "timelineHint": "Drag the year slider: undiscovered elements lie flat and rise when their discovery year arrives.",
+    "heightSelect": "Height by",
+    "heightAuto": "Follow colour mode",
+    "flat": "All equal",
+    "play": "Play",
+    "pause": "Pause",
+    "playHint": "Run the year slider automatically from the start to today"
+  },
+  "offline": {
+    "title": "Use offline",
+    "intro": "Save the data to your device so the periodic table works without internet, for example in a classroom or on the road.",
+    "fallbackTitle": "Did you land here while offline?",
+    "fallbackText": "The page you tried to open is not saved on this device. Reconnect and download a pack below, or go back to the home page, which always opens after your first visit.",
+    "packsTitle": "Offline data packs",
+    "packsIntro": "Nothing downloads until you press a button. The data stays in your browser, goes nowhere, and you can delete it at any time.",
+    "loading": "Reading the pack list…",
+    "error": "Could not read the offline pack list. This is not available in the dev server (pnpm dev); use a built copy.",
+    "unsupported": "This browser cannot save pages for offline use.",
+    "online": "Online",
+    "offlineNow": "Offline",
+    "swReady": "Offline mode is ready: the home page and interface are saved.",
+    "swWaiting": "Getting offline mode ready… If it does not finish, reload the page once.",
+    "pack": {
+      "pages": {
+        "title": "Main pages and tools",
+        "desc": "{count} pages: tools, compare, compound lookup, credits"
+      },
+      "elements": {
+        "title": "118 element pages",
+        "desc": "{count} element pages, each with isotopes, 3D structure and spectrum"
+      },
+      "compounds": {
+        "title": "Compound pages",
+        "desc": "{count} curated compound pages"
+      },
+      "data": {
+        "title": "Data, photos and 3D models",
+        "desc": "{count} files: element data, molecular structures, nuclide chart, photos"
+      },
+      "rdkit": {
+        "title": "Molecule builder engine (RDKit)",
+        "desc": "{count} files: RDKit.js and WASM for the molecule builder"
+      }
+    },
+    "download": "Download",
+    "resume": "Continue",
+    "downloaded": "Downloaded",
+    "cancel": "Stop",
+    "remove": "Remove the {name} pack from this device",
+    "downloadAll": "Download everything (about {size})",
+    "progressLabel": "Pack download progress",
+    "progress": "Downloaded {done}/{total} files ({size})",
+    "failed": "{count} files failed, press “Continue” to retry",
+    "partial": "{have}/{total} files saved",
+    "storage": "Your browser is using {used} of the {quota} it allows",
+    "howTitle": "How it works",
+    "how1": "On your first visit the browser saves the interface and the home page (a few MB). Pages you have opened are remembered too.",
+    "how2": "The element and compound packs save the pages and the 3D data, so atom models, spectra, isotopes and molecular structures open without internet.",
+    "how3": "Looking up any substance on PubChem and loading Wikipedia photos still need internet. When a new version of the site is published, the interface updates itself the next time you are online."
+  },
+  "learn": {
+    "title": "Learn and practise",
+    "intro": "Spaced-repetition flashcards, auto-generated quizzes and badges. Progress stays in your browser; no account needed.",
+    "loading": "Opening your study data…",
+    "tabs": {
+      "flash": "Flashcards",
+      "quiz": "Quiz",
+      "progress": "Progress"
+    },
+    "flash": {
+      "deck": "Deck",
+      "decks": {
+        "name2symbol": "Name → symbol",
+        "symbol2name": "Symbol → name",
+        "number": "Name → atomic number",
+        "category": "Element → category",
+        "group": "Element → group",
+        "period": "Element → period",
+        "valence": "Element → valence electrons"
+      },
+      "queue": "{due} cards due · {fresh} cards this session",
+      "reveal": "Click to flip the card",
+      "answer": "Answer showing",
+      "grade": {
+        "1": "Again",
+        "2": "Hard",
+        "3": "Good",
+        "4": "Easy"
+      },
+      "done": "Session finished. Come back later for due cards, or pick another deck.",
+      "groupN": "Group {n}",
+      "periodN": "Period {n}",
+      "valenceN": "{n} valence electrons"
+    },
+    "quiz": {
+      "intro": "{n} questions per round. Records are saved on your device.",
+      "modes": {
+        "symbol": "Name → symbol",
+        "number": "Name → atomic number",
+        "category": "Which category?",
+        "config": "Write the electron configuration",
+        "balance": "Balance equations",
+        "sort": "Drag and drop: sort elements",
+        "group": "Which group?",
+        "compound": "Formula → compound name"
+      },
+      "best": "Best: {score}/{total}",
+      "noBest": "Not played yet",
+      "result": "Result: {score}/{total} correct",
+      "progress": "Question {i}/{total}",
+      "quit": "Quit",
+      "q": {
+        "symbol": "What is the symbol of {name}?",
+        "number": "What is the atomic number of {name} ({symbol})?",
+        "category": "Which category is {name} ({symbol}) in?",
+        "config": "Write the electron configuration of {name} (Z = {z})",
+        "balance": "Adjust the coefficients to balance the equation",
+        "sort": "Put each element in its group",
+        "group": "Which group (1–18) is {name} ({symbol}) in?",
+        "compound": "Which compound has the formula {formula}?"
+      },
+      "configHint": "For example 1s2 2s2 2p4 or [He] 2s2 2p4",
+      "check": "Check",
+      "right": "Right",
+      "wrong": "Not quite. Answer: {answer}",
+      "next": "Next question",
+      "finish": "See result",
+      "correctMark": "correct",
+      "wrongMark": "your choice, wrong",
+      "decrease": "Decrease coefficient of {formula}",
+      "increase": "Increase coefficient of {formula}",
+      "atomCount": "Atoms on each side",
+      "element": "Element",
+      "left": "Left",
+      "equal": "equal",
+      "unequal": "not equal",
+      "sortHint": "Drag chips into a group box. Keyboard: Space to pick up, arrow keys to move, Space to drop. Or click a chip, then click a group box.",
+      "allPlaced": "All placed",
+      "sortResult": "{score}/{total} elements correct"
+    },
+    "progress": {
+      "stats": {
+        "streak": "Current streak",
+        "best": "Longest streak",
+        "learned": "Cards learned",
+        "reviews": "Reviews"
+      },
+      "badges": "Badges",
+      "earned": "earned",
+      "locked": "not yet",
+      "backup": "Backup",
+      "backupHint": "Progress lives in this browser. Export it to move to another device or to guard against clearing browser data.",
+      "export": "Export progress",
+      "import": "Import from file",
+      "clear": "Delete all",
+      "importBad": "That file is not a progress file from this site.",
+      "importOk": "Progress imported.",
+      "importConfirm": "Importing replaces all current progress. Continue?",
+      "clearConfirm": "Delete all study progress on this device?",
+      "noStorage": "Your browser blocks storage (private mode?). Progress lasts only until you close the page; export a file to keep it."
+    },
+    "badges": {
+      "firstReview": {
+        "title": "First step",
+        "desc": "Review your first card"
+      },
+      "reviews100": {
+        "title": "Diligent",
+        "desc": "100 reviews"
+      },
+      "reviews500": {
+        "title": "Persistent",
+        "desc": "500 reviews"
+      },
+      "learned25": {
+        "title": "Getting familiar",
+        "desc": "25 cards learned"
+      },
+      "learned100": {
+        "title": "By heart",
+        "desc": "100 cards learned"
+      },
+      "allSymbols": {
+        "title": "All 118 symbols",
+        "desc": "Know the symbol of all 118 elements"
+      },
+      "streak3": {
+        "title": "3 days running",
+        "desc": "Study 3 days in a row"
+      },
+      "streak7": {
+        "title": "A week",
+        "desc": "Study 7 days in a row"
+      },
+      "streak30": {
+        "title": "A month",
+        "desc": "Study 30 days in a row"
+      },
+      "firstQuiz": {
+        "title": "Give it a try",
+        "desc": "Finish a quiz round"
+      },
+      "perfectQuiz": {
+        "title": "Perfect score",
+        "desc": "Get every question right in a round"
+      },
+      "allModes": {
+        "title": "Every mode",
+        "desc": "Play every quiz mode"
+      }
+    }
+  },
+  "builder": {
+    "title": "2D molecule builder",
+    "intro": "Draw atoms and bonds; RDKit checks valence, adds hydrogens and gives the formula, molar mass and SMILES. Everything runs on your device.",
+    "toolbar": "Drawing tools",
+    "tool": "Mode",
+    "element": "Element",
+    "order": "Bond order",
+    "orders": {
+      "1": "Single bond",
+      "2": "Double bond",
+      "3": "Triple bond"
+    },
+    "tools": {
+      "atom": "Atom",
+      "bond": "Bond",
+      "move": "Move",
+      "erase": "Erase",
+      "charge": "Charge"
+    },
+    "hint": {
+      "atom": "Click empty space to add an atom, click an atom to change its element.",
+      "bond": "Click one atom then another to connect them, or click empty space to extend the chain. Click a bond to change its order.",
+      "move": "Drag an atom to move it.",
+      "erase": "Click an atom or bond to delete it.",
+      "charge": "Click an atom to add charge (+ or −, up to ±2)."
+    },
+    "canvas": "Molecule canvas",
+    "atomLabel": "Atom {el}",
+    "empty": "Pick an element and click the canvas to start, or enter a SMILES below.",
+    "undo": "Undo",
+    "redo": "Redo",
+    "tidy": "Tidy up",
+    "clear": "Clear all",
+    "result": "Result",
+    "rdkitLoading": "Loading RDKit (about 7.5 MB, downloaded once)…",
+    "rdkitError": "Could not load RDKit. Check your connection.",
+    "retry": "Retry",
+    "resultEmpty": "Draw at least one atom to see a result.",
+    "invalid": "Invalid valence, for example carbon with more than 4 bonds or oxygen with more than 2. Remove a bond or change the element.",
+    "formula": "Molecular formula (hydrogens included)",
+    "mass": "Molar mass",
+    "copy": "Copy",
+    "copied": "Copied",
+    "counts": "{atoms} heavy atoms, {bonds} bonds. Hydrogens are not drawn; RDKit adds them to fill the valence.",
+    "fromSmiles": "Draw from SMILES",
+    "fromSmilesHint": "SMILES writes a molecule as one line of text. Enter one and press Draw, or pick an example. It is also the keyboard way to build a molecule.",
+    "draw": "Draw",
+    "badSmiles": "Invalid SMILES.",
+    "tooMany": "At most {n} atoms.",
+    "cannotTidy": "Cannot tidy up while the valence is invalid.",
+    "examples": {
+      "ethanol": "Ethanol",
+      "acetic": "Acetic acid",
+      "benzene": "Benzene",
+      "glycine": "Glycine",
+      "aspirin": "Aspirin",
+      "caffeine": "Caffeine"
+    },
+    "chargeDirection": "Charge direction",
+    "chargePlus": "Add positive charge",
+    "chargeMinus": "Add negative charge",
+    "view3d": "View 3D on PubChem",
+    "lookingUp": "Looking up PubChem…",
+    "notOnPubchem": "PubChem has no compound matching this structure.",
+    "pubchemError": "Could not reach PubChem.",
+    "view3dHint": "The 3D button sends the SMILES to PubChem when you press it.",
+    "templates": "Templates",
+    "rings": {
+      "benzene": "Benzene ring",
+      "cyclohexane": "Cyclohexane",
+      "cyclopentane": "Cyclopentane"
+    },
+    "groupsHint": "Select an atom with the Bond tool, then press a functional group to attach it.",
+    "groups": {
+      "oh": "–OH",
+      "ch3": "–CH₃",
+      "nh2": "–NH₂",
+      "carbonyl": "=O",
+      "cooh": "–COOH",
+      "nitro": "–NO₂"
+    }
   }
 }

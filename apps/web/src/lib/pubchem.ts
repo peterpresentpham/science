@@ -109,6 +109,18 @@ export async function findCid(query: string): Promise<number | null> {
   }
 }
 
+/** Tìm CID theo SMILES (khớp đúng cấu trúc). Chỉ gọi khi người dùng bấm: SMILES được gửi tới PubChem. */
+export async function findCidBySmiles(smiles: string): Promise<number | null> {
+  try {
+    const j = JSON.parse(await getText(`/compound/smiles/${encodeURIComponent(smiles)}/cids/JSON`));
+    const cid = j.IdentifierList?.CID?.[0];
+    return cid && cid > 0 ? cid : null;
+  } catch (e) {
+    if (e instanceof PubChemError && (e.status === 404 || e.status === 400)) return null;
+    throw e;
+  }
+}
+
 export async function getCompound(cid: number): Promise<PubChemCompound> {
   const props = 'Title,MolecularFormula,MolecularWeight,IUPACName,SMILES,Charge';
   const j = JSON.parse(await getText(`/compound/cid/${cid}/property/${props}/JSON`));

@@ -242,7 +242,9 @@ export function buildCrystal(spec: CrystalSpec, n = 1): Crystal {
   ).a;
   const ds = probe.filter((a) => a !== center).map((a) => dist(a.pos, center.pos));
   const nearest = Math.min(...ds);
-  const coordination = ds.filter((d) => d < nearest * 1.02).length;
+  // Lớp láng giềng thứ nhất: tới 1,12 × khoảng cách gần nhất. hcp méo (Zn, Cd, Be, Ru...) có 6 + 6 láng giềng
+  // cách nhau tới ~10% mà SGK vẫn tính là 12; lớp thứ hai của bcc (1,155 ×) thì không tính.
+  const coordination = ds.filter((d) => d < nearest * 1.12).length;
   const atomsPerCell = b.length;
   return { atoms, edges, nearest, coordination, atomsPerCell };
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { nucleonCounts, representativeMassNumber } from '../src/nuclear';
+import { decayDaughter, decayKind, nucleonCounts, representativeMassNumber } from '../src/nuclear';
 
 describe('representativeMassNumber', () => {
   it.each([
@@ -35,4 +35,23 @@ describe('nucleonCounts', () => {
       electrons: 26,
       massNumber: 56,
     }));
+});
+
+describe('decayKind / decayDaughter', () => {
+  it.each([
+    ['B-', 'beta-minus'],
+    ['B-N', 'beta-minus'],
+    ['EC+B+', 'electron-capture'],
+    ['EC', 'electron-capture'],
+    ['A', 'alpha'],
+    ['SF', 'other'],
+    ['P', 'other'],
+  ] as const)('%s → %s', (mode, kind) => expect(decayKind(mode)).toBe(kind));
+
+  it('C-14 β⁻ → N-14, U-238 α → Th-234, K-40 EC → Ar-40', () => {
+    expect(decayDaughter(6, 8, 'B-')).toEqual({ z: 7, n: 7 });
+    expect(decayDaughter(92, 146, 'A')).toEqual({ z: 90, n: 144 });
+    expect(decayDaughter(19, 21, 'EC+B+')).toEqual({ z: 18, n: 22 });
+    expect(decayDaughter(92, 146, 'SF')).toBeNull();
+  });
 });
