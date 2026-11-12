@@ -29,6 +29,7 @@ export default async function CreditsPage({ params }: PageProps<'/[locale]/credi
   const full = await Promise.all(ELEMENTS.map((e) => readElement(e.slug)));
   const withPhoto = full.filter((e) => e.photoCredit);
   const without = full.filter((e) => !e.photoCredit);
+  const withGallery = full.filter((e) => e.gallery.length > 0);
   const name = (e: (typeof full)[number]) => (locale === 'vi' ? e.name.vi : e.name.en);
 
   return (
@@ -58,7 +59,10 @@ export default async function CreditsPage({ params }: PageProps<'/[locale]/credi
                 >
                   {e.z}. {name(e)}
                 </Link>
-                <span className="min-w-0 flex-1 truncate text-muted" title={c.title}>
+                <span
+                  className="min-w-0 flex-1 [overflow-wrap:anywhere] text-muted"
+                  title={c.title}
+                >
                   <a
                     href={c.sourceUrl}
                     target="_blank"
@@ -87,6 +91,47 @@ export default async function CreditsPage({ params }: PageProps<'/[locale]/credi
         <p className="text-sm text-muted">
           {t('noPhoto')} {without.map((e) => e.symbol).join(', ')}
         </p>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="font-display text-xl font-semibold">{t('gallery')}</h2>
+        <p className="text-sm text-muted">{t('galleryIntro')}</p>
+        <ul className="divide-y divide-border rounded-2xl border border-border bg-surface text-sm shadow-card">
+          {withGallery.flatMap((e) =>
+            e.gallery.map((g, i) => (
+              <li key={`${e.z}-${i}`} className="flex flex-wrap items-baseline gap-x-3 px-3 py-2">
+                <Link
+                  href={`/element/${e.slug}`}
+                  className="w-32 shrink-0 font-medium hover:underline"
+                >
+                  {e.z}. {name(e)}
+                </Link>
+                <span className="min-w-0 flex-1 [overflow-wrap:anywhere] text-muted">
+                  <a
+                    href={g.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:underline"
+                  >
+                    {g.author}
+                  </a>
+                </span>
+                {g.licenseUrl ? (
+                  <a
+                    href={g.licenseUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="shrink-0 font-mono text-xs hover:underline"
+                  >
+                    {g.license}
+                  </a>
+                ) : (
+                  <span className="shrink-0 font-mono text-xs">{g.license}</span>
+                )}
+              </li>
+            ))
+          )}
+        </ul>
       </section>
 
       <section className="space-y-2 text-sm">

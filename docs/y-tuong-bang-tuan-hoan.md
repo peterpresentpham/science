@@ -1,4 +1,4 @@
-# Ý tưởng sản phẩm: Bảng Tuần Hoàn Tương Tác (tên tạm: **Nguyên Tố**)
+# Ý tưởng sản phẩm: Bảng Tuần Hoàn Tương Tác (tên tạm: **Nguyên tố**)
 
 > Phiên bản: 0.1 · Ngày: 2026-11-09 · Trạng thái: ý tưởng / đề xuất
 

@@ -91,7 +91,7 @@ export function ElementList({
               type="button"
               onClick={() => setQuery('')}
               aria-label={t('search.clear')}
-              className="absolute top-1/2 right-2 -translate-y-1/2 rounded-full p-1 text-muted hover:text-fg"
+              className="absolute top-1/2 right-1 -translate-y-1/2 rounded-full p-2 text-muted hover:text-fg"
             >
               <X className="size-4" />
             </button>
@@ -116,11 +116,11 @@ export function ElementList({
       {results.length === 0 ? (
         <p className="py-10 text-center text-sm text-muted">{t('search.empty')}</p>
       ) : (
-        <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((el) => {
             const color = categoryColor(el.category);
             return (
-              <li key={el.z}>
+              <li key={el.z} className="min-w-0">
                 <a
                   href={hrefFor(el.slug)}
                   data-row-z={el.z}

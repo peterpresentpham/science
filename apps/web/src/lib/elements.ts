@@ -21,7 +21,7 @@ export const categoryTint = (c: Category, percent: number) =>
 export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 /** URL gốc của site (có cả basePath), dùng cho link tuyệt đối trong metadata (hreflang, OG). */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000') + BASE_PATH;
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3011') + BASE_PATH;
 
 export const elementDataUrl = (slug: string) => `${BASE_PATH}/data/elements/${slug}.json`;
 

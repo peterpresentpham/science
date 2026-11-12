@@ -6,7 +6,7 @@
   "scripts": {
     "sync-data": "pnpm --filter @chem/data build && node scripts/sync-data.mjs",
     "predev": "pnpm sync-data",
-    "dev": "next dev",
+    "dev": "next dev -p 3011",
     "prebuild": "pnpm sync-data",
     "build": "next build",
     "postbuild": "node scripts/build-sw.mjs",

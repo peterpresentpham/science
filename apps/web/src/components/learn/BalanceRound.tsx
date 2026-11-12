@@ -153,7 +153,7 @@ export function BalanceRound({
       {checked ? (
         <div className="space-y-3" role="status">
           <p className="text-sm">
-            {correct ? t('quiz.right') : t('quiz.wrong', { answer: expected.join(', ') })}
+            {correct ? t('quiz.correct') : t('quiz.wrong', { answer: expected.join(', ') })}
           </p>
           <button
             type="button"

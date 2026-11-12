@@ -4,6 +4,18 @@ type SpeciesInput = Omit<Species, 'cid'> & { cid?: number };
 
 /** CID các chất đã có trong `curated/compounds.ts` (kiểm bằng scripts/check-reactions.ts). */
 const CID: Record<string, number> = {
+  CuCl2: 24014,
+  MnSO4: 24580,
+  'Fe(OH)2': 10129897,
+  'Fe(OH)3': 73964,
+  'Fe2(SO4)3': 24826,
+  'Fe(SCN)3': 165185,
+  KSCN: 516872,
+  K2SO4: 24507,
+  K2MnO4: 160931,
+  NaAlO2: 14766,
+  H2CO3: 767,
+  'Ba(OH)2*8H2O': 17749109,
   AgNO3: 24470,
   AgCl: 24561,
   AgBr: 66199,

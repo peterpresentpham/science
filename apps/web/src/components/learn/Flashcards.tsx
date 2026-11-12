@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
 import { BY_Z } from '@/lib/elements';
+import { contentDeckKey, useLearning } from '@/lib/learn/content';
 import {
   type Deck,
   deckCards,
@@ -37,14 +38,19 @@ export function Flashcards({
   const t = useTranslations('learn');
   const tc = useTranslations();
   const locale = useLocale();
-  const [deck, setDeck] = useState<Deck>('name2symbol');
+  const [deck, setDeck] = useState<string>('name2symbol');
+  const content = useLearning('decks');
+  const contentDecks = Array.isArray(content) ? content : [];
+  const contentDeck = contentDecks.find((d) => contentDeckKey(d.id) === deck);
   const [flipped, setFlipped] = useState(false);
   const [skipped, setSkipped] = useState<string[]>([]);
   const [now] = useState(() => Date.now());
 
   const byId = useMemo(() => new Map(cards.map((c) => [c.id, c])), [cards]);
   const queue = useMemo(() => {
-    const all = deckCards(deck);
+    const all: Array<{ id: string }> = contentDeck
+      ? contentDeck.cards.map((c) => ({ id: c.id }))
+      : deckCards(deck as Deck);
     const due = all
       .map((d) => byId.get(d.id))
       .filter((c): c is CardRow => !!c && c.due <= now + 60_000)
@@ -55,10 +61,12 @@ export function Flashcards({
       .slice(0, NEW_PER_SESSION)
       .map((d) => newRow(d.id, deck, now));
     return [...due, ...fresh].filter((c) => !skipped.includes(c.id));
-  }, [deck, byId, now, skipped]);
+  }, [deck, contentDeck, byId, now, skipped]);
 
   const current = queue[0];
-  const el = current ? BY_Z.get(Number(current.id.split(':')[1])) : undefined;
+  const contentCard = contentDeck?.cards.find((c) => c.id === current?.id);
+  const el = current && !contentDeck ? BY_Z.get(Number(current.id.split(':')[1])) : undefined;
+  const lang = locale === 'vi' ? 'vi' : 'en';
   const name = (z: number) => {
     const e = BY_Z.get(z);
     return e ? (locale === 'vi' ? e.name.vi : e.name.en) : '';
@@ -74,19 +82,27 @@ export function Flashcards({
     onChange();
   };
 
-  const front = el && (
-    <>
-      {deck === 'symbol2name' ? (
-        <span className="font-display text-6xl font-bold">{el.symbol}</span>
-      ) : (
-        <span className="font-display text-4xl font-semibold">{name(el.z)}</span>
-      )}
-      {(deck === 'category' || deck === 'group' || deck === 'period' || deck === 'valence') && (
-        <span className="text-2xl text-muted">{el.symbol}</span>
-      )}
-    </>
+  const front = contentCard ? (
+    <span className="font-display text-2xl leading-snug font-semibold">
+      {contentCard.front[lang]}
+    </span>
+  ) : (
+    el && (
+      <>
+        {deck === 'symbol2name' ? (
+          <span className="font-display text-6xl font-bold">{el.symbol}</span>
+        ) : (
+          <span className="font-display text-4xl font-semibold">{name(el.z)}</span>
+        )}
+        {(deck === 'category' || deck === 'group' || deck === 'period' || deck === 'valence') && (
+          <span className="text-2xl text-muted">{el.symbol}</span>
+        )}
+      </>
+    )
   );
-  const back =
+  const back = contentCard ? (
+    <span className="text-lg leading-snug">{contentCard.back[lang]}</span>
+  ) : (
     el &&
     {
       name2symbol: <span className="font-display text-6xl font-bold">{el.symbol}</span>,
@@ -102,7 +118,8 @@ export function Flashcards({
           {t('flash.valenceN', { n: valenceElectrons(el) ?? 0 })}
         </span>
       ),
-    }[deck];
+    }[deck as Deck]
+  );
 
   const times = current ? preview(current, now) : null;
   const due = cards.filter((c) => c.deck === deck && c.due <= now).length;
@@ -125,10 +142,29 @@ export function Flashcards({
             {t(`flash.decks.${d}`)}
           </button>
         ))}
+        {contentDecks.map((d) => {
+          const key = contentDeckKey(d.id);
+          return (
+            <button
+              key={key}
+              type="button"
+              aria-pressed={deck === key}
+              onClick={() => {
+                setDeck(key);
+                setFlipped(false);
+                setSkipped([]);
+              }}
+              className="rounded-full border border-border px-3.5 py-1.5 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring aria-pressed:border-fg aria-pressed:bg-fg aria-pressed:text-bg"
+            >
+              {d.title[lang]}
+            </button>
+          );
+        })}
       </div>
+      {content === 'error' && <p className="text-xs text-muted">{t('flash.contentError')}</p>}
       <p className="text-sm text-muted">{t('flash.queue', { due, fresh: queue.length })}</p>
 
-      {current && el ? (
+      {current && (el || contentCard) ? (
         <div className="space-y-4">
           <button
             type="button"

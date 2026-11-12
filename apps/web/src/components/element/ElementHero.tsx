@@ -112,8 +112,8 @@ export function ElementHero({ el, compact, tileTransitionName, credit, priority 
       </span>
 
       {el.photo ? (
-        <div className="relative grid items-end gap-x-6 gap-y-4 sm:grid-cols-[minmax(0,16rem)_1fr]">
-          <figure className="space-y-1">
+        <div className="relative grid grid-cols-1 items-end gap-x-6 gap-y-4 sm:grid-cols-[minmax(0,16rem)_minmax(0,1fr)]">
+          <figure className="min-w-0 space-y-1">
             <div className="relative overflow-hidden rounded-2xl border border-border bg-surface-2">
               <ElementPhoto
                 el={el}
@@ -141,7 +141,7 @@ export function ElementHero({ el, compact, tileTransitionName, credit, priority 
 function PhotoCaption({ credit }: { credit: PhotoCredit }) {
   const t = useTranslations('photo');
   return (
-    <figcaption className="truncate text-[0.7rem] text-muted">
+    <figcaption className="text-[0.7rem] leading-snug [overflow-wrap:anywhere] text-muted">
       {t('credit')}{' '}
       <a href={credit.sourceUrl} target="_blank" rel="noreferrer" className="hover:underline">
         {credit.author}

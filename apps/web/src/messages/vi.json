@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Nguyên Tố: Bảng tuần hoàn hoá học tương tác, đủ 118 nguyên tố",
+    "title": "Nguyên tố: Bảng tuần hoàn hoá học tương tác, đủ 118 nguyên tố",
     "description": "Bảng tuần hoàn hoá học tương tác: 118 nguyên tố với cấu hình electron, nguyên tử khối, mô hình nguyên tử 3D. Kèm công cụ cân bằng phương trình, tính khối lượng mol.",
     "home": "Bảng tuần hoàn",
     "elementTitle": "{name} ({symbol}): cấu hình electron, nguyên tử khối, tính chất",
@@ -30,7 +30,10 @@
         "title": "Đồ thị xu hướng tuần hoàn của các nguyên tố",
         "description": "Đồ thị độ âm điện, bán kính nguyên tử, năng lượng ion hoá… theo số hiệu nguyên tử, và đồ thị tán xạ giữa hai tính chất của 118 nguyên tố."
       }
-    }
+    },
+    "timelineDescription": "Dòng thời gian hoá học: các mốc lý thuyết, mô hình nguyên tử, bảng tuần hoàn và năm phát hiện từng nguyên tố.",
+    "lessonsDescription": "Sáu bài học Hoá học 10: cấu tạo nguyên tử, bảng tuần hoàn, liên kết, oxi hoá khử, năng lượng, tốc độ phản ứng.",
+    "labDescription": "Phòng thí nghiệm hoá học ảo: 50 phản ứng kết tủa, khí, oxi hoá khử, cháy, phân huỷ, với hoạt cảnh màu sắc, bọt khí, nhiệt và ánh sáng."
   },
   "nav": {
     "table": "Bảng tuần hoàn",
@@ -40,7 +43,11 @@
     "tools": "Công cụ",
     "compounds": "Hợp chất",
     "learn": "Học",
-    "builder": "Dựng phân tử"
+    "builder": "Dựng phân tử",
+    "timeline": "Dòng thời gian",
+    "lessons": "Bài học",
+    "lab": "Phòng thí nghiệm",
+    "menu": "Menu"
   },
   "table": {
     "label": "Bảng tuần hoàn các nguyên tố hoá học",
@@ -164,7 +171,9 @@
     "author": "Tác giả",
     "license": "Giấy phép",
     "noPhoto": "Chưa có ảnh dùng được:",
-    "link": "Ghi công"
+    "link": "Ghi công",
+    "gallery": "Ảnh thư viện",
+    "galleryIntro": "Ảnh trong thư viện của trang nguyên tố, lấy từ Wikimedia Commons. Bấm tên tác giả để xem ảnh gốc và giấy phép."
   },
   "friendly": {
     "roomTemp": "{phase} ở nhiệt độ phòng",
@@ -838,7 +847,8 @@
       "done": "Xong phiên này. Quay lại sau để ôn các thẻ đến hạn, hoặc chọn bộ thẻ khác.",
       "groupN": "Nhóm {n}",
       "periodN": "Chu kỳ {n}",
-      "valenceN": "{n} electron lớp ngoài cùng"
+      "valenceN": "{n} electron lớp ngoài cùng",
+      "contentError": "Không tải được các bộ thẻ nội dung (cần mạng hoặc gói dữ liệu offline)."
     },
     "quiz": {
       "intro": "Mỗi lượt {n} câu. Kỷ lục lưu trên máy bạn.",
@@ -884,7 +894,15 @@
       "unequal": "chưa bằng",
       "sortHint": "Kéo chip vào ô nhóm. Dùng bàn phím: Space để nhấc, phím mũi tên để di chuyển, Space để thả. Hoặc bấm chip rồi bấm ô nhóm.",
       "allPlaced": "Đã xếp hết",
-      "sortResult": "Đúng {score}/{total} nguyên tố"
+      "sortResult": "Đúng {score}/{total} nguyên tố",
+      "topics": "Theo chủ đề",
+      "topicsIntro": "Ngân hàng câu hỏi theo chương trình lớp 10–12: trắc nghiệm, chọn nhiều đáp án, tính toán, đoán nguyên tố. Mỗi lượt 10 câu ngẫu nhiên.",
+      "topicCount": "{count} câu",
+      "backToModes": "Về danh sách",
+      "multiHint": "Chọn tất cả đáp án đúng.",
+      "numberHint": "Nhập số (dấu . hoặc , đều được) {unit}",
+      "elementHint": "Nhập ký hiệu hoặc tên nguyên tố",
+      "correct": "Chính xác!"
     },
     "progress": {
       "stats": {
@@ -1038,6 +1056,144 @@
       "carbonyl": "=O",
       "cooh": "–COOH",
       "nitro": "–NO₂"
+    }
+  },
+  "history": {
+    "title": "Lịch sử",
+    "discoveredIn": "Phát hiện",
+    "discoveredBy": "Người phát hiện",
+    "ancient": "Từ thời cổ đại",
+    "naming": "Tên gọi",
+    "milestones": "Các mốc chính",
+    "source": "Nguồn",
+    "toTimeline": "Xem dòng thời gian hoá học"
+  },
+  "timeline": {
+    "title": "Dòng thời gian hoá học",
+    "intro": "Từ Lavoisier đến nay: các mốc lý thuyết, mô hình nguyên tử, bảng tuần hoàn và năm phát hiện từng nguyên tố.",
+    "filter": "Lọc theo loại",
+    "count": "{count} mốc",
+    "century": "Thế kỷ {n}",
+    "source": "Nguồn",
+    "kind": {
+      "all": "Tất cả",
+      "element": "Phát hiện nguyên tố",
+      "theory": "Lý thuyết",
+      "discovery-method": "Phương pháp phát hiện",
+      "table": "Bảng tuần hoàn",
+      "atom-model": "Mô hình nguyên tử",
+      "industry": "Công nghiệp",
+      "naming": "Đặt tên"
+    }
+  },
+  "lesson": {
+    "title": "Bài học",
+    "intro": "Sáu bài đọc ngắn (5–10 phút) bám theo chương trình Hoá học 10, có mô hình tương tác và câu hỏi luyện tập.",
+    "minutes": "{n} phút đọc",
+    "grade": "Lớp {n}",
+    "goals": "Sau bài này bạn sẽ",
+    "sources": "Nguồn",
+    "source": "Nguồn",
+    "breadcrumb": "Đường dẫn",
+    "tip": "Mẹo",
+    "practice": "Luyện tập",
+    "shellsLine": "Số electron theo lớp: {list} ({count} lớp)",
+    "tableElements": "Tô sáng: {list}",
+    "tableGroup": "Tô sáng nhóm {n}",
+    "tablePeriod": "Tô sáng chu kỳ {n}",
+    "trend": {
+      "electronegativity": "Độ âm điện theo số hiệu nguyên tử",
+      "atomicRadius": "Bán kính nguyên tử theo số hiệu nguyên tử",
+      "ionizationEnergy": "Năng lượng ion hoá thứ nhất theo số hiệu nguyên tử"
+    },
+    "trendNote": "vạch mờ: khí hiếm",
+    "trendTool": "Mở công cụ Xu hướng",
+    "show3d": "Xem mô hình 3D: {name}",
+    "loading": "Đang tải…",
+    "yields": "tạo thành",
+    "showCoefficients": "Hiện hệ số cân bằng",
+    "hideCoefficients": "Ẩn hệ số",
+    "molarElement": "Nguyên tố",
+    "molarCount": "Số nguyên tử",
+    "molarAtomic": "Nguyên tử khối",
+    "molarSubtotal": "Khối lượng (g/mol)"
+  },
+  "lab": {
+    "title": "Phòng thí nghiệm ảo",
+    "intro": "Làm thí nghiệm hoá học an toàn trên màn hình: chọn một thí nghiệm có sẵn hoặc tự chọn hoá chất, dự đoán hiện tượng rồi trộn để xem màu, kết tủa, bọt khí, nhiệt và ánh sáng.",
+    "loading": "Đang tải thí nghiệm…",
+    "loadError": "Không tải được dữ liệu thí nghiệm (cần mạng hoặc gói dữ liệu offline).",
+    "modeLabel": "Chế độ",
+    "mode": {
+      "guided": "Thí nghiệm có sẵn",
+      "free": "Tự chọn hoá chất"
+    },
+    "search": "Tìm thí nghiệm hoặc phương trình",
+    "grade": "Lọc theo lớp",
+    "allGrades": "Mọi lớp",
+    "gradeN": "Lớp {n}",
+    "categoryLabel": "Lọc theo loại phản ứng",
+    "count": "{count} thí nghiệm",
+    "chooseOne": "Chọn một thí nghiệm ở bên trái để bắt đầu.",
+    "freeIntro": "Chọn 1–3 hoá chất trên kệ rồi bấm Trộn. Có những phản ứng cần đun nóng hoặc xúc tác.",
+    "emptyTube": "Ống nghiệm trống",
+    "group": {
+      "solution": "Dung dịch",
+      "solid": "Chất rắn",
+      "liquid": "Chất lỏng",
+      "gas": "Chất khí"
+    },
+    "category": {
+      "all": "Tất cả",
+      "precipitate": "Kết tủa",
+      "gas": "Tạo khí",
+      "color-change": "Đổi màu",
+      "displacement": "Thế",
+      "redox": "Oxi hoá khử",
+      "neutralization": "Trung hoà",
+      "exothermic": "Toả nhiệt",
+      "endothermic": "Thu nhiệt",
+      "combustion": "Cháy",
+      "decomposition": "Phân huỷ",
+      "indicator": "Chỉ thị"
+    },
+    "state": {
+      "s": "rắn",
+      "l": "lỏng",
+      "g": "khí",
+      "aq": "dung dịch"
+    },
+    "reagents": "Hoá chất",
+    "heat": "Đun nóng",
+    "catalyst": "Xúc tác",
+    "none": "Không",
+    "addCatalyst": "Thêm xúc tác {name}",
+    "needsHeat": "Phản ứng này cần đun nóng. Hãy bật \"Đun nóng\" rồi trộn lại.",
+    "needsCatalyst": "Phản ứng này xảy ra rất chậm nếu không có xúc tác. Hãy thêm {name}.",
+    "needsHeatFree": "Chưa thấy phản ứng. Thử đun nóng hỗn hợp xem sao.",
+    "needsCatalystFree": "Phản ứng xảy ra rất chậm. Thử thêm một chất xúc tác.",
+    "noMatch": "Không thấy phản ứng nào trong phòng thí nghiệm này với bộ hoá chất đó. Thử đổi hoá chất.",
+    "pickSomething": "Hãy chọn ít nhất một hoá chất.",
+    "predict": "Bạn đoán sẽ thấy gì? (không bắt buộc)",
+    "sign": {
+      "precipitate": "Kết tủa",
+      "gas": "Khí thoát ra",
+      "color": "Đổi màu dung dịch",
+      "heat": "Toả hoặc thu nhiệt",
+      "light": "Phát sáng"
+    },
+    "mix": "Trộn",
+    "again": "Làm lại",
+    "reset": "Đặt lại",
+    "observed": "Hiện tượng",
+    "ionic": "Phương trình ion rút gọn",
+    "why": "Vì sao",
+    "predictResult": "Bạn đoán đúng {right}/{total} mục hiện tượng.",
+    "source": "Nguồn tham khảo",
+    "safety": {
+      "safe": "An toàn",
+      "care": "Cần cẩn thận",
+      "danger": "Nguy hiểm: chỉ làm ở phòng thí nghiệm có giáo viên"
     }
   }
 }

@@ -7,11 +7,13 @@ import { useRef, useState } from 'react';
 import { BY_CID, compoundName, COMPOUNDS } from '@/lib/compounds';
 import { BY_Z, ELEMENTS } from '@/lib/elements';
 import { isCorrectConfig } from '@/lib/learn/config-parse';
+import { useLearning } from '@/lib/learn/content';
 import { QUIZ_MODES, type QuizMode, recordActivity, records } from '@/lib/learn/stats';
 import type { AttemptRow, LearnStore } from '@/lib/storage';
 
 import { BalanceRound } from './BalanceRound';
 import { SortRound } from './SortRound';
+import { TopicQuiz } from './TopicQuiz';
 
 const ROUND = 10;
 const clock = () => Date.now();
@@ -125,6 +127,8 @@ export function Quiz({
   const [picked, setPicked] = useState<string | null>(null);
   const [typed, setTyped] = useState('');
   const [finished, setFinished] = useState(false);
+  const [topic, setTopic] = useState<string | null>(null);
+  const quizzes = useLearning('quizzes');
   const [total, setTotal] = useState(ROUND);
   const started = useRef(0);
   const recs = records(attempts);
@@ -189,6 +193,19 @@ export function Quiz({
     onChange();
   };
 
+  const topicQuiz = Array.isArray(quizzes) ? quizzes.find((x) => x.id === topic) : undefined;
+  if (topicQuiz) {
+    return (
+      <TopicQuiz
+        key={topicQuiz.id}
+        quiz={topicQuiz}
+        store={store}
+        onExit={() => setTopic(null)}
+        onChange={onChange}
+      />
+    );
+  }
+
   if (!mode || finished) {
     return (
       <div className="space-y-4">
@@ -216,6 +233,30 @@ export function Quiz({
             </li>
           ))}
         </ul>
+        {Array.isArray(quizzes) && quizzes.length > 0 && (
+          <div className="space-y-2 pt-2">
+            <h3 className="font-display text-lg font-semibold">{t('quiz.topics')}</h3>
+            <p className="text-sm text-muted">{t('quiz.topicsIntro')}</p>
+            <ul className="grid gap-2 sm:grid-cols-2">
+              {quizzes.map((x) => (
+                <li key={x.id}>
+                  <button
+                    type="button"
+                    onClick={() => setTopic(x.id)}
+                    className="w-full rounded-2xl border border-border bg-surface p-4 text-left shadow-card outline-none hover:border-fg/40 focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <span className="block font-display font-semibold">
+                      {x.title[locale === 'vi' ? 'vi' : 'en']}
+                    </span>
+                    <span className="tabular text-xs text-muted">
+                      {t('quiz.topicCount', { count: x.questions.length })}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     );
   }
@@ -325,7 +366,7 @@ export function Quiz({
       {answered && (
         <div className="space-y-3" role="status">
           <p className="text-sm">
-            {correct ? t('quiz.right') : t('quiz.wrong', { answer: show(mode, q.answer) })}
+            {correct ? t('quiz.correct') : t('quiz.wrong', { answer: show(mode, q.answer) })}
           </p>
           <button
             type="button"

@@ -225,4 +225,15 @@ export const COMPOUNDS: CuratedCompound[] = [
   { q: 'lead(II) chloride', f: 'PbCl2', vi: 'Chì(II) clorua' },
   { q: 'lead(II) iodide', f: 'PbI2', vi: 'Chì(II) iotua' },
   { q: 'lead dioxide', f: 'PbO2', vi: 'Chì(IV) oxit' },
+  // Bổ sung cho phòng thí nghiệm ảo (curated/reactions)
+  { q: 'ferrous hydroxide', f: 'Fe(OH)2', vi: 'Sắt(II) hiđroxit' },
+  { q: 'ferric hydroxide', f: 'Fe(OH)3', vi: 'Sắt(III) hiđroxit' },
+  { q: 'ferric sulfate', f: 'Fe2(SO4)3', vi: 'Sắt(III) sunfat' },
+  { q: 'ferric thiocyanate', f: 'Fe(SCN)3', vi: 'Sắt(III) thioxianat' },
+  { q: 'potassium thiocyanate', f: 'KSCN', vi: 'Kali thioxianat' },
+  { q: 'potassium sulfate', f: 'K2SO4', vi: 'Kali sunfat' },
+  { q: 'potassium manganate', f: 'K2MnO4', vi: 'Kali manganat' },
+  { q: 'sodium aluminate', f: 'NaAlO2', vi: 'Natri aluminat' },
+  { q: 'carbonic acid', f: 'H2CO3', vi: 'Axit cacbonic' },
+  { q: 'barium hydroxide octahydrate', f: 'Ba(OH)2*8H2O', vi: 'Bari hiđroxit ngậm 8 nước' },
 ];

@@ -17,6 +17,7 @@ import { cn, formatNumber, formatOxidationStates } from '@/lib/format';
 import { AcademicSection } from './AcademicSection';
 import { ElementGallery } from './ElementGallery';
 import { ElementHero } from './ElementHero';
+import { HistorySection } from './HistorySection';
 import { HumanScale } from './HumanScale';
 import { MiniTable } from './MiniTable';
 import { FactsSection, SafetyNote, UsesSection } from './StorySections';
@@ -89,6 +90,7 @@ export function ElementDetail({ element: el, onSelect, compact, withHeader = tru
       <UsesSection el={el} />
       <FactsSection el={el} />
       <ElementGallery slug={el.slug} gallery={el.gallery} />
+      <HistorySection el={el} />
       <HumanScale el={el} />
       <SafetyNote el={el} />
 

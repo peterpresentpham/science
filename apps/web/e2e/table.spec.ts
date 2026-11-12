@@ -75,7 +75,7 @@ test('element page is statically rendered with data', async ({ page }) => {
 
 test('locale switch keeps the path', async ({ page }) => {
   await page.goto('/vi/element/na/');
-  await page.getByRole('button', { name: 'en' }).click();
+  await page.getByRole('button', { name: 'en', exact: true }).click();
   await expect(page).toHaveURL(/\/en\/element\/na\/$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Sodium');
 });

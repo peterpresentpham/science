@@ -7,7 +7,7 @@ import { BASE_PATH, SITE_URL } from './elements';
 export type Locale = (typeof routing.locales)[number];
 
 /** Tên hiển thị của site. Đổi tên thì sửa ở đây (và trong manifest.ts). */
-export const SITE_NAME: Record<Locale, string> = { vi: 'Nguyên Tố', en: 'Nguyên Tố' };
+export const SITE_NAME: Record<Locale, string> = { vi: 'Nguyên tố', en: 'Nguyên tố' };
 export const THEME_COLOR = '#4b3fc4';
 const OG_LOCALE: Record<Locale, string> = { vi: 'vi_VN', en: 'en_US' };
 
@@ -70,6 +70,9 @@ export function pageMetadata({
 export const STATIC_PATHS = [
   { path: '/', priority: 1 },
   { path: '/tools/', priority: 0.8 },
+  { path: '/timeline/', priority: 0.6 },
+  { path: '/lessons/', priority: 0.7 },
+  { path: '/lab/', priority: 0.8 },
   { path: '/tools/molar-mass/', priority: 0.8 },
   { path: '/tools/balance/', priority: 0.8 },
   { path: '/tools/solubility/', priority: 0.7 },

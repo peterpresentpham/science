@@ -40,7 +40,7 @@
   - **Ion** (`IonExplorer`): giữ nguyên. Chọn trong các số oxi hoá có trong dữ liệu; electron bị lấy đi hiện mờ, gạch ngang; electron nhận thêm được làm nổi bật.
   - Đã xoá: `AtomBuilder`, `MadelungDiagram`, `OrbitalSection`, `OrbitalCloud`, worker orbital và script esbuild (`build-worker`). Module `@chem/core/orbital` và test của nó vẫn còn trong core nhưng web không dùng nữa.
 - **SEO** (2026-11-10). Lint, typecheck, build qua; chưa chạy Lighthouse.
-  - Metadata dùng chung `pageMetadata()` (`apps/web/src/lib/seo.ts`): title (template "… · Nguyên Tố"), description riêng cho từng trang, canonical, hreflang vi/en/x-default, Open Graph, Twitter card. Chuỗi trong `meta.*` của messages.
+  - Metadata dùng chung `pageMetadata()` (`apps/web/src/lib/seo.ts`): title (template "… · Nguyên tố"), description riêng cho từng trang, canonical, hreflang vi/en/x-default, Open Graph, Twitter card. Chuỗi trong `meta.*` của messages.
   - Ảnh OG 1200×630 sinh lúc build bằng `next/og` qua route `app/og/[locale]/[file]` → file `.png` thật (`/og/vi/fe.png`, `/og/vi/site.png`); 238 ảnh. Không dùng `opengraph-image.tsx` vì khi export tĩnh Next ghi ra file không có đuôi. Font Be Vietnam Pro (OFL) dạng TTF ở `src/assets/fonts`.
   - `sitemap.xml` (254 URL, có hreflang), `robots.txt`, `manifest.webmanifest`, favicon mới (mô hình Bohr của C, không chứa chữ nên đổi tên không ảnh hưởng): `icon.svg`, `favicon.ico` 16/32/48, `apple-icon.png`, icon 192/512 + maskable.
   - JSON-LD: `WebSite` (trang chủ), `BreadcrumbList` (trang nguyên tố, công cụ), `WebApplication` (từng công cụ). Trang 404 có `noindex`.
@@ -198,3 +198,21 @@ Bản hiện tại là **web tĩnh 100%**: không backend, không database, khô
 - Mọi truy cập dữ liệu cá nhân đều đi qua interface `ProgressStore` (`lib/storage/`). Sau này chỉ cần thêm `RemoteProgressStore` mà không phải sửa UI.
 - Logic tính toán nằm trong `@chem/core`, có thể dùng lại làm "tool" cho trợ lý AI.
 - Format file xuất tiến độ có `version`, có thể dùng luôn làm format import khi có tài khoản.
+
+## Học liệu của GPT đã có giao diện
+
+- Dữ liệu: `scripts/build.ts` đọc `curated/{history,lessons,quiz,flashcards,timeline}` (lỗi schema thì build dừng), gắn `history` vào JSON nguyên tố và ghi `dist/learning/{timeline,lessons,quizzes,decks}.json`; `sync-data.mjs` chép sang `public/data/learning/`.
+- Trang nguyên tố: mục **Lịch sử** (`HistorySection`: phát hiện, đặt tên, câu chuyện, mốc chính, mỗi đoạn có nguồn), chỉ 30 nguyên tố ưu tiên có.
+- `/timeline`: 42 mốc của GPT cộng năm phát hiện của các nguyên tố, lọc theo loại, nhóm theo thế kỷ.
+- `/lessons` và `/lessons/[id]`: 6 bài (Hoá học 10). Widget: mô hình nguyên tử, cấu hình electron, tô bảng, xu hướng, cấu trúc 3D (tải khi bấm), cân bằng, khối lượng mol; cuối bài có câu hỏi luyện tập (`TopicQuiz` ở chế độ không lưu).
+- `/learn`: tab Quiz thêm mục **Theo chủ đề** (10 chủ đề, 200 câu: một đáp án, nhiều đáp án, tính toán, đoán nguyên tố, có lời giải thích); tab Thẻ thêm 6 bộ thẻ nội dung (112 thẻ) dùng chung lịch FSRS.
+- Ghi công ảnh thư viện nằm ở trang `/credits`. Chưa có test e2e cho các phần này.
+
+## Phòng thí nghiệm ảo (M8)
+
+- Dữ liệu: 50 phản ứng (`curated/reactions/`), build thành `dist/learning/reactions.json` (đã qua schema `Reaction`); `check-reactions.ts` kiểm cân bằng, cid, nhất quán hiện tượng. Đã thêm 10 hợp chất còn thiếu vào `compounds.ts` (Fe(OH)₂, Fe(OH)₃, Fe₂(SO₄)₃, Fe(SCN)₃, KSCN, K₂SO₄, K₂MnO₄, NaAlO₂, H₂CO₃, Ba(OH)₂·8H₂O); CuCl₂ và MnSO₄ vốn đã có. Hợp chất: 161 → 171.
+- Trang `/lab` (`LabApp`): hai chế độ. **Thí nghiệm có sẵn**: lọc theo lớp, loại phản ứng, tìm kiếm. **Tự chọn hoá chất**: kệ 1–3 chất, tuỳ chọn đun nóng/xúc tác, ghép đúng phản ứng theo tập chất; thiếu đun nóng hoặc xúc tác thì gợi ý, không ghép được thì báo chưa có.
+- `TestTube` (SVG): màu dung dịch chuyển dần, kết tủa lắng/lơ lửng theo kết cấu, bọt khí theo tốc độ, toả/thu nhiệt, ánh sáng, đèn cồn; giảm chuyển động thì không có bọt và nhấp nháy. Thời gian hoạt cảnh theo `durationSec` (3–12 giây).
+- Có bước dự đoán (5 hiện tượng) rồi chấm điểm sau khi trộn; khung an toàn hiện trước khi trộn; link sang trang hợp chất/nguyên tố; phương trình ion rút gọn và lời giải thích.
+- Logic thuần ở `lib/lab/{color,match,observe}.ts`. Chưa có test (unit/e2e) và chưa kiểm tra bằng mắt.
+

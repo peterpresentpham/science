@@ -150,6 +150,21 @@
     "elemental": false
   },
   {
+    "cid": 767,
+    "query": "carbonic acid",
+    "vi": "Axit cacbonic",
+    "en": "Carbonic Acid",
+    "formula": "H2CO3",
+    "pubchemFormula": "CH2O3",
+    "iupac": "carbonic acid",
+    "mw": 62.025,
+    "smiles": "C(=O)(O)O",
+    "charge": 0,
+    "elements": ["C", "H", "O"],
+    "dim": 3,
+    "elemental": false
+  },
+  {
     "cid": 783,
     "query": null,
     "vi": null,
@@ -557,7 +572,7 @@
   {
     "cid": 6393,
     "query": "tetrafluoromethane",
-    "vi": "Tetraflometan",
+    "vi": "Cacbon tetraflorua (tetraflometan)",
     "en": "Carbon tetrafluoride",
     "formula": "CF4",
     "pubchemFormula": "CF4",
@@ -705,6 +720,21 @@
     "elemental": false
   },
   {
+    "cid": 14766,
+    "query": "sodium aluminate",
+    "vi": "Natri aluminat",
+    "en": "Sodium aluminate",
+    "formula": "NaAlO2",
+    "pubchemFormula": "AlNaO2",
+    "iupac": "sodium dioxoalumanuide",
+    "mw": 81.97,
+    "smiles": "O=[Al-]=O.[Na+]",
+    "charge": 0,
+    "elements": ["Al", "Na", "O"],
+    "dim": 2,
+    "elemental": false
+  },
+  {
     "cid": 14778,
     "query": "calcium oxide",
     "vi": "Canxi oxit (vôi sống)",
@@ -812,7 +842,7 @@
   {
     "cid": 14812,
     "query": "tetraphosphorus decaoxide",
-    "vi": "Điphotpho pentaoxit",
+    "vi": "Photpho(V) oxit (P₄O₁₀, thường viết P₂O₅)",
     "en": "Phosphorus oxide (P4O10)",
     "formula": "P4O10",
     "pubchemFormula": "O10P4",
@@ -1365,6 +1395,21 @@
     "elemental": false
   },
   {
+    "cid": 24507,
+    "query": "potassium sulfate",
+    "vi": "Kali sunfat",
+    "en": "Potassium Sulfate",
+    "formula": "K2SO4",
+    "pubchemFormula": "K2O4S",
+    "iupac": "dipotassium;sulfate",
+    "mw": 174.26,
+    "smiles": "[O-]S(=O)(=O)[O-].[K+].[K+]",
+    "charge": 0,
+    "elements": ["K", "O", "S"],
+    "dim": 2,
+    "elemental": false
+  },
+  {
     "cid": 24524,
     "query": null,
     "vi": null,
@@ -1558,6 +1603,21 @@
     "elements": ["O"],
     "dim": 3,
     "elemental": true
+  },
+  {
+    "cid": 24826,
+    "query": "ferric sulfate",
+    "vi": "Sắt(III) sunfat",
+    "en": "Ferric Sulfate",
+    "formula": "Fe2(SO4)3",
+    "pubchemFormula": "Fe2O12S3",
+    "iupac": "bis(iron(3+));trisulfate",
+    "mw": 399.9,
+    "smiles": "[O-]S(=O)(=O)[O-].[O-]S(=O)(=O)[O-].[O-]S(=O)(=O)[O-].[Fe+3].[Fe+3]",
+    "charge": 0,
+    "elements": ["Fe", "O", "S"],
+    "dim": 2,
+    "elemental": false
   },
   {
     "cid": 24841,
@@ -1785,6 +1845,21 @@
     "elemental": true
   },
   {
+    "cid": 73964,
+    "query": "ferric hydroxide",
+    "vi": "Sắt(III) hiđroxit",
+    "en": "Ferric Hydroxide",
+    "formula": "Fe(OH)3",
+    "pubchemFormula": "FeH3O3",
+    "iupac": "iron(3+) trihydroxide",
+    "mw": 106.87,
+    "smiles": "[OH-].[OH-].[OH-].[Fe+3]",
+    "charge": 0,
+    "elements": ["Fe", "H", "O"],
+    "dim": 2,
+    "elemental": false
+  },
+  {
     "cid": 73981,
     "query": "magnesium hydroxide",
     "vi": "Magie hiđroxit",
@@ -1875,6 +1950,21 @@
     "elemental": false
   },
   {
+    "cid": 160931,
+    "query": "potassium manganate",
+    "vi": "Kali manganat",
+    "en": "Potassium manganate",
+    "formula": "K2MnO4",
+    "pubchemFormula": "K2MnO4",
+    "iupac": "dipotassium;dioxido(dioxo)manganese",
+    "mw": 197.132,
+    "smiles": "[O-][Mn](=O)(=O)[O-].[K+].[K+]",
+    "charge": 0,
+    "elements": ["K", "Mn", "O"],
+    "dim": 2,
+    "elemental": false
+  },
+  {
     "cid": 164805,
     "query": "gold(III) oxide",
     "vi": "Vàng(III) oxit",
@@ -1916,6 +2006,21 @@
     "smiles": "[O-2].[Cu+2]",
     "charge": 0,
     "elements": ["Cu", "O"],
+    "dim": 2,
+    "elemental": false
+  },
+  {
+    "cid": 165185,
+    "query": "ferric thiocyanate",
+    "vi": "Sắt(III) thioxianat",
+    "en": "Ferric thiocyanate",
+    "formula": "Fe(SCN)3",
+    "pubchemFormula": "C3FeN3S3",
+    "iupac": "iron(3+) trithiocyanate",
+    "mw": 230.1,
+    "smiles": "C(#N)[S-].C(#N)[S-].C(#N)[S-].[Fe+3]",
+    "charge": 0,
+    "elements": ["C", "Fe", "N", "S"],
     "dim": 2,
     "elemental": false
   },
@@ -2025,6 +2130,21 @@
     "elemental": false
   },
   {
+    "cid": 516872,
+    "query": "potassium thiocyanate",
+    "vi": "Kali thioxianat",
+    "en": "Potassium thiocyanate",
+    "formula": "KSCN",
+    "pubchemFormula": "CKNS",
+    "iupac": "potassium thiocyanate",
+    "mw": 97.18,
+    "smiles": "C(#N)[S-].[K+]",
+    "charge": 0,
+    "elements": ["C", "K", "N", "S"],
+    "dim": 2,
+    "elemental": false
+  },
+  {
     "cid": 516875,
     "query": "potassium permanganate",
     "vi": "Kali pemanganat (thuốc tím)",
@@ -2072,7 +2192,7 @@
   {
     "cid": 518682,
     "query": "boron trioxide",
-    "vi": "Bo trioxit",
+    "vi": "Điboron trioxit (bo oxit)",
     "en": "Boron trioxide",
     "formula": "B2O3",
     "pubchemFormula": "B2O3",
@@ -2132,7 +2252,7 @@
   {
     "cid": 4311764,
     "query": "sodium borohydride",
-    "vi": "Natri bohiđrua",
+    "vi": "Natri borohiđrua",
     "en": "Sodium borohydride",
     "formula": "NaBH4",
     "pubchemFormula": "BH4Na",
@@ -2295,6 +2415,21 @@
     "elemental": false
   },
   {
+    "cid": 10129897,
+    "query": "ferrous hydroxide",
+    "vi": "Sắt(II) hiđroxit",
+    "en": "Ferrous hydroxide",
+    "formula": "Fe(OH)2",
+    "pubchemFormula": "FeH2O2",
+    "iupac": "iron(2+) dihydroxide",
+    "mw": 89.86,
+    "smiles": "[OH-].[OH-].[Fe+2]",
+    "charge": 0,
+    "elements": ["Fe", "H", "O"],
+    "dim": 2,
+    "elemental": false
+  },
+  {
     "cid": 10176082,
     "query": "aluminum hydroxide",
     "vi": "Nhôm hiđroxit",
@@ -2381,6 +2516,21 @@
     "smiles": "[O-2].[O-2].[Sn+4]",
     "charge": 0,
     "elements": ["O", "Sn"],
+    "dim": 2,
+    "elemental": false
+  },
+  {
+    "cid": 17749109,
+    "query": "barium hydroxide octahydrate",
+    "vi": "Bari hiđroxit ngậm 8 nước",
+    "en": "Barium hydroxide, octahydrate",
+    "formula": "Ba(OH)2*8H2O",
+    "pubchemFormula": "BaH18O10",
+    "iupac": "barium(2+);dihydroxide;octahydrate",
+    "mw": 315.46,
+    "smiles": "O.O.O.O.O.O.O.O.[OH-].[OH-].[Ba+2]",
+    "charge": 0,
+    "elements": ["Ba", "H", "O"],
     "dim": 2,
     "elemental": false
   },

@@ -2,6 +2,7 @@
 // - dist/elements/*.json → public/data/elements (panel tải bằng fetch)
 // - images/*.webp        → public/images/elements (ảnh nguyên tố, đã nén sẵn và commit trong @chem/data)
 // - compounds/sdf/*.sdf  → public/data/compounds (cấu trúc hợp chất từ PubChem, trình xem 3D tải khi cần)
+// - dist/learning/*.json → public/data/learning (bài học, quiz, bộ thẻ của GPT; /learn tải khi cần)
 // - dist/nuclides.json   → public/data/nuclides.json (bản đồ hạt nhân, tải khi cuộn tới)
 // - @rdkit/rdkit/dist    → public/rdkit (RDKit.js + WASM ≈ 7,5 MB, chỉ tải ở trang Dựng phân tử)
 import { copyFile, cp, mkdir, rm } from 'node:fs/promises';
@@ -21,6 +22,7 @@ async function sync(src, dest, filter) {
 
 await sync(join(data, 'dist', 'elements'), join(pub, 'data', 'elements'));
 await sync(join(data, 'images'), join(pub, 'images', 'elements'), (f) => !f.endsWith('.json'));
+await sync(join(data, 'dist', 'learning'), join(pub, 'data', 'learning'));
 await sync(join(data, 'compounds', 'sdf'), join(pub, 'data', 'compounds'));
 await copyFile(join(data, 'dist', 'nuclides.json'), join(pub, 'data', 'nuclides.json'));
 // RDKit: tìm gói qua Node resolution (pnpm đặt trong node_modules/.pnpm), chỉ chép .js và .wasm

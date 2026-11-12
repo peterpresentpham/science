@@ -29,13 +29,22 @@ import {
   SYNTHETIC_FROM_Z,
 } from '../curated/lenses.ts';
 import { ATOMIC_MASS_OVERRIDES, DISCOVERY_YEAR_OVERRIDES, NAMES_VI } from '../curated/names-vi.ts';
+import { REACTIONS } from '../curated/reactions.ts';
 import { STRUCTURES } from '../curated/structures.ts';
+import timelineData from '../curated/timeline.ts';
 import { Compound } from '../src/compound.ts';
+import { Deck } from '../src/flashcard.ts';
 import { GalleryManifest, galleryPageUrl } from '../src/gallery.ts';
+import { History } from '../src/history.ts';
 import { type LensId, normalizeSearch } from '../src/lenses.ts';
+import { Lesson } from '../src/lesson.ts';
 import { PHOTO_LICENSES, PhotoManifest } from '../src/photo.ts';
+import { Quiz } from '../src/quiz.ts';
+import { Reaction } from '../src/reaction.ts';
 import { type Category, ElementFull, ElementLite, Isotope } from '../src/schema.ts';
 import { Story } from '../src/story.ts';
+import { Timeline } from '../src/timeline.ts';
+import { loadCurated } from './learning-utils.ts';
 
 const ROOT = join(import.meta.dirname, '..');
 const DIST = join(ROOT, 'dist');
@@ -66,6 +75,18 @@ interface Bow {
   source: string;
   block: 's' | 'p' | 'd' | 'f';
 }
+
+// Học liệu do GPT biên soạn (curated/{history,lessons,quiz,flashcards,timeline}); lỗi schema thì build dừng.
+const histories = new Map(
+  (await loadCurated('history', History)).map((h) => [h.file.replace(/\.ts$/, ''), h.data])
+);
+const lessons = (await loadCurated('lessons', Lesson))
+  .map((l) => l.data)
+  .sort((a, b) => a.order - b.order);
+const quizzes = (await loadCurated('quiz', Quiz)).map((q) => q.data);
+const decks = (await loadCurated('flashcards', Deck)).map((d) => d.data);
+const reactions = REACTIONS.map((r) => Reaction.parse(r));
+const timeline = Timeline.parse(timelineData).sort((a, b) => a.year - b.year);
 
 // Ảnh thư viện do scripts/gallery-images.ts sinh ra; chưa có thì nguyên tố không có thư viện.
 const galleryManifest = GalleryManifest.parse(
@@ -284,6 +305,7 @@ for (let z = 1; z <= 118; z++) {
     summary: { en: b.summary, vi: null },
     wikipedia: b.source?.startsWith('http') ? b.source : null,
     photoCredit: photo?.credit ?? null,
+    history: histories.get(sym.toLowerCase()) ?? null,
     gallery: (GALLERY[sym] ?? []).flatMap((g, i) => {
       const made = galleryManifest[sym]?.[i];
       if (made?.file !== g.file) return []; // chưa tải: bỏ để chỉ số vẫn khớp tên file nén
@@ -329,6 +351,9 @@ await Promise.all(
   full.map((e) => writeFile(join(DIST, 'elements', `${e.slug}.json`), JSON.stringify(e)))
 );
 await writeFile(join(DIST, 'compounds.json'), JSON.stringify(compounds));
+await mkdir(join(DIST, 'learning'), { recursive: true });
+for (const [name, value] of Object.entries({ timeline, lessons, quizzes, decks, reactions }))
+  await writeFile(join(DIST, 'learning', `${name}.json`), JSON.stringify(value));
 await writeFile(join(DIST, 'nuclides.json'), JSON.stringify(nuclides));
 await writeFile(
   join(DIST, 'meta.json'),

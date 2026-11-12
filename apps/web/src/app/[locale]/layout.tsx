@@ -75,8 +75,15 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
   const t = await getTranslations({ locale, namespace: 'footer' });
   const tc = await getTranslations({ locale, namespace: 'credits' });
   // Không nhúng vào mọi trang những thông điệp chỉ dùng ở một nơi: `meta` chỉ dùng phía máy chủ,
-  // `learn` và `offline` được trang của chúng tự cấp (xem LearnPage, OfflinePage)
-  const { meta: _meta, learn: _learn, offline: _offline, ...messages } = await getMessages();
+  // `learn`, `offline`, `timeline` và `lab` được trang của chúng tự cấp (xem LearnPage, OfflinePage, TimelinePage, LabPage)
+  const {
+    meta: _meta,
+    learn: _learn,
+    offline: _offline,
+    timeline: _timeline,
+    lab: _lab,
+    ...messages
+  } = await getMessages();
 
   return (
     <html

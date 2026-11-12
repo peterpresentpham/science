@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Nguyên Tố: Interactive periodic table of all 118 elements",
+    "title": "Nguyên tố: Interactive periodic table of all 118 elements",
     "description": "Interactive periodic table: all 118 elements with electron configurations, atomic masses and 3D atom models, plus an equation balancer and molar mass calculator.",
     "home": "Periodic table",
     "elementTitle": "{name} ({symbol}): electron configuration, atomic mass, properties",
@@ -30,7 +30,10 @@
         "title": "Periodic trends charts",
         "description": "Charts of electronegativity, atomic radius, ionization energy and more against atomic number, plus scatter plots of any two properties for 118 elements."
       }
-    }
+    },
+    "timelineDescription": "Chemistry timeline: milestones in theory, atomic models, the periodic table and the discovery year of each element.",
+    "lessonsDescription": "Six Chemistry 10 lessons: atomic structure, the periodic table, bonding, redox, energy and reaction rate.",
+    "labDescription": "Virtual chemistry lab: 50 reactions (precipitation, gas, redox, combustion, decomposition) with animated colours, bubbles, heat and light."
   },
   "nav": {
     "table": "Periodic table",
@@ -40,7 +43,11 @@
     "tools": "Tools",
     "compounds": "Compounds",
     "learn": "Learn",
-    "builder": "Builder"
+    "builder": "Builder",
+    "timeline": "Timeline",
+    "lessons": "Lessons",
+    "lab": "Virtual lab",
+    "menu": "Menu"
   },
   "table": {
     "label": "Periodic table of the chemical elements",
@@ -164,7 +171,9 @@
     "author": "Author",
     "license": "License",
     "noPhoto": "No usable photo yet:",
-    "link": "Credits"
+    "link": "Credits",
+    "gallery": "Gallery photos",
+    "galleryIntro": "Photos in each element page's gallery, from Wikimedia Commons. Click the author's name to see the original and its licence."
   },
   "friendly": {
     "roomTemp": "{phase} at room temperature",
@@ -838,7 +847,8 @@
       "done": "Session finished. Come back later for due cards, or pick another deck.",
       "groupN": "Group {n}",
       "periodN": "Period {n}",
-      "valenceN": "{n} valence electrons"
+      "valenceN": "{n} valence electrons",
+      "contentError": "Couldn't load the content decks (needs a connection or the offline data pack)."
     },
     "quiz": {
       "intro": "{n} questions per round. Records are saved on your device.",
@@ -884,7 +894,15 @@
       "unequal": "not equal",
       "sortHint": "Drag chips into a group box. Keyboard: Space to pick up, arrow keys to move, Space to drop. Or click a chip, then click a group box.",
       "allPlaced": "All placed",
-      "sortResult": "{score}/{total} elements correct"
+      "sortResult": "{score}/{total} elements correct",
+      "topics": "By topic",
+      "topicsIntro": "A question bank for grades 10–12: multiple choice, select-all, calculations, name the element. 10 random questions per round.",
+      "topicCount": "{count} questions",
+      "backToModes": "Back to list",
+      "multiHint": "Select all correct answers.",
+      "numberHint": "Enter a number (. or , both work) {unit}",
+      "elementHint": "Enter the element's symbol or name",
+      "correct": "Correct!"
     },
     "progress": {
       "stats": {
@@ -1038,6 +1056,144 @@
       "carbonyl": "=O",
       "cooh": "–COOH",
       "nitro": "–NO₂"
+    }
+  },
+  "history": {
+    "title": "History",
+    "discoveredIn": "Discovered",
+    "discoveredBy": "Discovered by",
+    "ancient": "Known since antiquity",
+    "naming": "Naming",
+    "milestones": "Key milestones",
+    "source": "Source",
+    "toTimeline": "See the chemistry timeline"
+  },
+  "timeline": {
+    "title": "Chemistry timeline",
+    "intro": "From Lavoisier to today: milestones in theory, atomic models, the periodic table, and the year each element was discovered.",
+    "filter": "Filter by type",
+    "count": "{count} events",
+    "century": "Century {n}",
+    "source": "Source",
+    "kind": {
+      "all": "All",
+      "element": "Element discovery",
+      "theory": "Theory",
+      "discovery-method": "Discovery methods",
+      "table": "Periodic table",
+      "atom-model": "Atomic models",
+      "industry": "Industry",
+      "naming": "Naming"
+    }
+  },
+  "lesson": {
+    "title": "Lessons",
+    "intro": "Six short readings (5–10 minutes) following the Chemistry 10 curriculum, with interactive models and practice questions.",
+    "minutes": "{n} min read",
+    "grade": "Grade {n}",
+    "goals": "After this lesson you can",
+    "sources": "Sources",
+    "source": "Source",
+    "breadcrumb": "Breadcrumb",
+    "tip": "Tip",
+    "practice": "Practice",
+    "shellsLine": "Electrons per shell: {list} ({count} shells)",
+    "tableElements": "Highlighted: {list}",
+    "tableGroup": "Group {n} highlighted",
+    "tablePeriod": "Period {n} highlighted",
+    "trend": {
+      "electronegativity": "Electronegativity by atomic number",
+      "atomicRadius": "Atomic radius by atomic number",
+      "ionizationEnergy": "First ionization energy by atomic number"
+    },
+    "trendNote": "dashed lines: noble gases",
+    "trendTool": "Open the Trends tool",
+    "show3d": "View 3D model: {name}",
+    "loading": "Loading…",
+    "yields": "yields",
+    "showCoefficients": "Show balancing coefficients",
+    "hideCoefficients": "Hide coefficients",
+    "molarElement": "Element",
+    "molarCount": "Atoms",
+    "molarAtomic": "Atomic mass",
+    "molarSubtotal": "Mass (g/mol)"
+  },
+  "lab": {
+    "title": "Virtual lab",
+    "intro": "Do chemistry experiments safely on screen: pick a ready-made experiment or choose your own reagents, predict what you'll see, then mix to watch colours, precipitates, bubbles, heat and light.",
+    "loading": "Loading experiments…",
+    "loadError": "Couldn't load the experiment data (needs a connection or the offline data pack).",
+    "modeLabel": "Mode",
+    "mode": {
+      "guided": "Ready-made experiments",
+      "free": "Choose reagents"
+    },
+    "search": "Search experiments or equations",
+    "grade": "Filter by grade",
+    "allGrades": "All grades",
+    "gradeN": "Grade {n}",
+    "categoryLabel": "Filter by reaction type",
+    "count": "{count} experiments",
+    "chooseOne": "Pick an experiment on the left to begin.",
+    "freeIntro": "Pick 1–3 reagents from the shelf, then press Mix. Some reactions need heat or a catalyst.",
+    "emptyTube": "Empty test tube",
+    "group": {
+      "solution": "Solutions",
+      "solid": "Solids",
+      "liquid": "Liquids",
+      "gas": "Gases"
+    },
+    "category": {
+      "all": "All",
+      "precipitate": "Precipitate",
+      "gas": "Gas evolution",
+      "color-change": "Colour change",
+      "displacement": "Displacement",
+      "redox": "Redox",
+      "neutralization": "Neutralisation",
+      "exothermic": "Exothermic",
+      "endothermic": "Endothermic",
+      "combustion": "Combustion",
+      "decomposition": "Decomposition",
+      "indicator": "Indicator"
+    },
+    "state": {
+      "s": "solid",
+      "l": "liquid",
+      "g": "gas",
+      "aq": "solution"
+    },
+    "reagents": "Reagents",
+    "heat": "Heat",
+    "catalyst": "Catalyst",
+    "none": "None",
+    "addCatalyst": "Add catalyst {name}",
+    "needsHeat": "This reaction needs heating. Turn on \"Heat\" and mix again.",
+    "needsCatalyst": "This reaction is very slow without a catalyst. Add {name}.",
+    "needsHeatFree": "No reaction yet. Try heating the mixture.",
+    "needsCatalystFree": "The reaction is very slow. Try adding a catalyst.",
+    "noMatch": "No reaction in this lab for that set of reagents. Try different ones.",
+    "pickSomething": "Pick at least one reagent.",
+    "predict": "What do you expect to see? (optional)",
+    "sign": {
+      "precipitate": "Precipitate",
+      "gas": "Gas given off",
+      "color": "Solution changes colour",
+      "heat": "Heat released or absorbed",
+      "light": "Light emitted"
+    },
+    "mix": "Mix",
+    "again": "Run again",
+    "reset": "Reset",
+    "observed": "Observations",
+    "ionic": "Net ionic equation",
+    "why": "Why",
+    "predictResult": "You got {right} of {total} observations right.",
+    "source": "Reference",
+    "safety": {
+      "safe": "Safe",
+      "care": "Handle with care",
+      "danger": "Dangerous: only in a lab with a teacher"
     }
   }
 }

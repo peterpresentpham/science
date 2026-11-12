@@ -49,3 +49,8 @@ export function formatBig(n: number, locale: string): string {
   const unit = units.find(([size]) => n >= size);
   return unit ? `${fmt(n / unit[0])} ${unit[1]}` : fmt(n);
 }
+
+/** Năm lịch sử: số âm là trước Công nguyên ("500 TCN" / "500 BCE"); không có dấu phân cách hàng nghìn. */
+export function formatYear(year: number, locale: string): string {
+  return year < 0 ? `${-year} ${locale === 'vi' ? 'TCN' : 'BCE'}` : String(year);
+}

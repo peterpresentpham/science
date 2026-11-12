@@ -1,4 +1,4 @@
-# Nguyên Tố: Bảng tuần hoàn tương tác
+# Nguyên tố: Bảng tuần hoàn tương tác
 
 Web **hoàn toàn tĩnh** (Next.js static export), không có backend và không cần tài khoản.
 Xem ý tưởng ở [`docs/y-tuong-bang-tuan-hoan.md`](docs/y-tuong-bang-tuan-hoan.md) và kế hoạch ở [`docs/ke-hoach-implement.md`](docs/ke-hoach-implement.md).
@@ -15,7 +15,7 @@ packages/data    @chem/data: pipeline dữ liệu (PubChem + Bowserinator → Zo
 
 ```bash
 pnpm install
-pnpm dev               # build dữ liệu rồi chạy http://localhost:3000/vi/
+pnpm dev               # build dữ liệu rồi chạy http://localhost:3011/vi/
 pnpm build             # build dữ liệu + web; trang tĩnh nằm ở apps/web/out
 pnpm check             # lint + typecheck + test + build + e2e (giống CI)
 pnpm test              # unit test (core, data, web)

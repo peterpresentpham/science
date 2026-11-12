@@ -329,7 +329,7 @@ export function MoleculeBuilder() {
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center gap-2" role="toolbar" aria-label={t('toolbar')}>
-        <div className="flex gap-1" role="group" aria-label={t('tool')}>
+        <div className="flex max-w-full flex-wrap gap-1" role="group" aria-label={t('tool')}>
           {tools.map(([k, label]) => (
             <button
               key={k}
@@ -347,7 +347,7 @@ export function MoleculeBuilder() {
             </button>
           ))}
         </div>
-        <div className="flex gap-1" role="group" aria-label={t('element')}>
+        <div className="flex max-w-full flex-wrap gap-1" role="group" aria-label={t('element')}>
           {PALETTE.map((s) => (
             <button
               key={s}
@@ -365,7 +365,11 @@ export function MoleculeBuilder() {
           ))}
         </div>
         {tool === 'charge' && (
-          <div className="flex gap-1" role="group" aria-label={t('chargeDirection')}>
+          <div
+            className="flex max-w-full flex-wrap gap-1"
+            role="group"
+            aria-label={t('chargeDirection')}
+          >
             {([1, -1] as const).map((d) => (
               <button
                 key={d}
@@ -380,7 +384,7 @@ export function MoleculeBuilder() {
             ))}
           </div>
         )}
-        <div className="flex gap-1" role="group" aria-label={t('order')}>
+        <div className="flex max-w-full flex-wrap gap-1" role="group" aria-label={t('order')}>
           {([1, 2, 3] as const).map((o) => (
             <button
               key={o}

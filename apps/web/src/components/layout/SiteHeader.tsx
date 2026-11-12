@@ -1,8 +1,7 @@
-import { useTranslations } from 'next-intl';
-
 import { Link } from '@/i18n/navigation';
 
 import { LocaleSwitcher } from './LocaleSwitcher';
+import { NavLinks } from './NavLinks';
 import { SearchButton } from './SearchButton';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -19,51 +18,17 @@ function Logo() {
 }
 
 export function SiteHeader() {
-  const t = useTranslations('nav');
   return (
     <header className="sticky top-0 z-30 px-3 pt-3">
-      <div className="mx-auto flex h-14 max-w-[92rem] items-center justify-between gap-4 rounded-2xl border border-border bg-surface/80 px-3 shadow-card backdrop-blur-md">
+      <div className="relative mx-auto flex h-14 max-w-[92rem] items-center justify-between gap-4 rounded-2xl border border-border bg-surface/80 px-3 shadow-card backdrop-blur-md">
         <Link href="/" className="flex items-center gap-2.5">
           <Logo />
-          <span className="font-display text-lg font-semibold tracking-tight">Nguyên Tố</span>
+          <span className="font-display text-lg font-semibold tracking-tight whitespace-nowrap max-[419px]:sr-only">
+            Nguyên tố
+          </span>
         </Link>
         <nav className="flex items-center gap-1.5">
-          <Link
-            href="/"
-            className="hidden rounded-full px-3 py-1.5 text-sm text-muted hover:bg-surface-2 hover:text-fg sm:block"
-          >
-            {t('table')}
-          </Link>
-          <Link
-            href="/compound"
-            className="hidden rounded-full px-3 py-1.5 text-sm text-muted hover:bg-surface-2 hover:text-fg lg:block"
-          >
-            {t('compounds')}
-          </Link>
-          <Link
-            href="/tools"
-            className="hidden rounded-full px-3 py-1.5 text-sm text-muted hover:bg-surface-2 hover:text-fg md:block"
-          >
-            {t('tools')}
-          </Link>
-          <Link
-            href="/compare"
-            className="hidden rounded-full px-3 py-1.5 text-sm text-muted hover:bg-surface-2 hover:text-fg md:block"
-          >
-            {t('compare')}
-          </Link>
-          <Link
-            href="/learn"
-            className="hidden rounded-full px-3 py-1.5 text-sm text-muted hover:bg-surface-2 hover:text-fg md:block"
-          >
-            {t('learn')}
-          </Link>
-          <Link
-            href="/builder"
-            className="hidden rounded-full px-3 py-1.5 text-sm text-muted hover:bg-surface-2 hover:text-fg lg:block"
-          >
-            {t('builder')}
-          </Link>
+          <NavLinks />
           <SearchButton />
           <LocaleSwitcher />
           <ThemeToggle />

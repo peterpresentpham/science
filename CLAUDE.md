@@ -13,7 +13,7 @@
 
 ## Dự án
 
-"Nguyên Tố": bảng tuần hoàn tương tác. Site **100% tĩnh**, không backend, không tài khoản. Next.js export tĩnh, có 2 ngôn ngữ vi/en.
+"Nguyên tố": bảng tuần hoàn tương tác. Site **100% tĩnh**, không backend, không tài khoản. Next.js export tĩnh, có 2 ngôn ngữ vi/en.
 
 - Monorepo pnpm, không dùng Turborepo:
   - `packages/core`: logic hoá học (cấu hình electron…)
